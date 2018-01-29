@@ -30,7 +30,11 @@ fn main() {
         }
     };
 
-    println!("With text:\n{}", contents);
+    let bytes = contents.as_bytes();
+
+    for (_, &item) in bytes.iter().enumerate() {
+        println!("{}", item);
+    }
 }
 
 fn error(msg: &str) {
