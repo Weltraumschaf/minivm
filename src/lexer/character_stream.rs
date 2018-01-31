@@ -34,17 +34,20 @@ impl CharacterStream {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use hamcrest::prelude::*;
 
     #[test]
     #[ignore]
     fn next() {
-        let sut = CharacterStream::new(String::from("Hello,\nWorld!"));
         assert_eq!(2 + 2, 4);
     }
 
     #[test]
-    #[ignore]
-    fn has_next() {}
+    fn has_next() {
+        let sut = CharacterStream::new(String::from("Hello,\nWorld!"));
+        assert_that!(1, is(equal_to(1)));
+//        assert_that(sut.has_next(), is(false));
+    }
 
     #[test]
     #[ignore]

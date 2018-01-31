@@ -2,6 +2,10 @@ use std::env;
 use std::fs::File;
 use std::io::prelude::*;
 
+#[cfg(test)]
+#[macro_use]
+extern crate hamcrest;
+
 mod lexer;
 
 fn main() {
