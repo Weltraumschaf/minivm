@@ -1,11 +1,11 @@
-mod character_stream;
-mod lexer;
+pub mod character_stream;
+pub mod character_helper;
+pub mod lexer;
+pub mod parser;
+pub mod token;
 
 #[derive(Debug)]
-enum Token {}
-
-#[derive(Debug)]
-struct Position {
+pub struct Position {
     line: u64,
     column: u64,
 }

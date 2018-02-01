@@ -1,7 +1,7 @@
-use lexer::Position;
+use frontend::Position;
 
 #[derive(Debug)]
-struct CharacterStream {
+pub struct CharacterStream {
     input: String,
     index: usize,
     line: u64,
@@ -10,7 +10,7 @@ struct CharacterStream {
 }
 
 impl CharacterStream {
-    fn new(input: String) -> CharacterStream {
+    pub fn new(input: String) -> CharacterStream {
         CharacterStream {
             input,
             index: 0,
@@ -20,7 +20,7 @@ impl CharacterStream {
         }
     }
 
-    fn next(&mut self) -> Option<char> {
+    pub fn next(&mut self) -> Option<char> {
         if !self.has_next() {
             return None
         }
@@ -50,7 +50,7 @@ impl CharacterStream {
         current
     }
 
-    fn has_next(&self) -> bool {
+    pub fn has_next(&self) -> bool {
         self.index < self.input.len()
     }
 
@@ -65,7 +65,7 @@ impl CharacterStream {
         c
     }
 
-    fn position(&self) -> Position {
+    pub fn position(&self) -> Position {
         Position { line: self.line, column: self.column }
     }
 }
