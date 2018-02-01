@@ -3,6 +3,9 @@ use frontend::character_helper::CharacterHelper;
 use frontend::token::Token;
 use frontend::token::TokenType::*;
 use frontend::Position;
+use frontend::lexer::number_lexer::NumberLexer;
+
+mod number_lexer;
 
 pub struct Lexer {
     input: CharacterStream,
@@ -21,17 +24,15 @@ impl Lexer {
     }
 
     fn next(&mut self) -> Token {
-        let mut token = Token::new(
-            Position::null(),
-            EOF,
-            String::from(""));
+        let mut token = self.default();
 
         while self.input.has_next() {
             if let Some(current) = self.input.next() {
                 if CharacterHelper::is_alphabetic(current) {
 
                 } else if CharacterHelper::is_numeric(current) {
-
+                    let lexer = NumberLexer::new();
+                    token = lexer.scan(self);
                 } else if CharacterHelper::is_double_quote(current) {
 
                 } else if CharacterHelper::is_single_quote(current) {
@@ -48,16 +49,24 @@ impl Lexer {
                     break;
                 }
             } else {
-                token = Token::new(
-                    self.input.position(),
-                    EOF,
-                    String::from(""));
+                token = self.default();
             }
         }
 
         token
     }
 
+    fn default(&self) -> Token {
+        Token::new(
+            self.input.position(),
+            EOF,
+            String::from(""))
+    }
+
+}
+
+trait SubLexer {
+    fn scan(&self, parent: &Lexer) -> Token;
 }
 
 #[cfg(test)]
