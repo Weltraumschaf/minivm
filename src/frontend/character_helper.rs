@@ -99,6 +99,7 @@ mod tests {
         assert_that!(CharacterHelper::is_numeric('+'), is(false));
         assert_that!(CharacterHelper::is_numeric(' '), is(false));
         assert_that!(CharacterHelper::is_numeric('\n'), is(false));
+        assert_that!(CharacterHelper::is_numeric(0 as char), is(false));
     }
 
     #[test]

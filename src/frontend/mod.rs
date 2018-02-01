@@ -4,7 +4,7 @@ pub mod lexer;
 pub mod parser;
 pub mod token;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct Position {
     line: u64,
     column: u64,

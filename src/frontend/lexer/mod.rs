@@ -23,33 +23,36 @@ impl Lexer {
         }
     }
 
+    pub fn input(self) -> CharacterStream {
+        self.input
+    }
+
     fn next(&mut self) -> Token {
         let mut token = self.default();
 
         while self.input.has_next() {
-            if let Some(current) = self.input.next() {
-                if CharacterHelper::is_alphabetic(current) {
+            self.input.next();
+            let current = self.input.current();
 
-                } else if CharacterHelper::is_numeric(current) {
-                    let lexer = NumberLexer::new();
-                    token = lexer.scan(self);
-                } else if CharacterHelper::is_double_quote(current) {
-
-                } else if CharacterHelper::is_single_quote(current) {
-
-                } else if CharacterHelper::is_operator(current) {
-
-                } else if CharacterHelper::is_white_space(current) {
-
-                } else if CharacterHelper::is_new_line(current) {
-                    token = Token::new(
-                        self.input.position(),
-                        EOL,
-                        String::from("\n"));
-                    break;
-                }
-            } else {
-                token = self.default();
+            if CharacterHelper::is_alphabetic(current) {
+// TODO
+            } else if CharacterHelper::is_numeric(current) {
+                let lexer = NumberLexer::new();
+                token = lexer.scan(&mut self.input);
+            } else if CharacterHelper::is_double_quote(current) {
+// TODO
+            } else if CharacterHelper::is_single_quote(current) {
+// TODO
+            } else if CharacterHelper::is_operator(current) {
+// TODO
+            } else if CharacterHelper::is_white_space(current) {
+// TODO
+            } else if CharacterHelper::is_new_line(current) {
+                token = Token::new(
+                    self.input.position(),
+                    EOL,
+                    String::from("\n"));
+                break;
             }
         }
 
@@ -62,11 +65,10 @@ impl Lexer {
             EOF,
             String::from(""))
     }
-
 }
 
 trait SubLexer {
-    fn scan(&self, parent: &Lexer) -> Token;
+    fn scan(&self, input: &mut CharacterStream) -> Token;
 }
 
 #[cfg(test)]

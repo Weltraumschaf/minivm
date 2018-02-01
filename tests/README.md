@@ -49,6 +49,8 @@ NOT_KW      = "not" .
 IF_KW       = "if" .
 ELSE_KW     = "else" .
 WHILE_KW    = "while" .
+CONST_KW    = "const" .
+VAR_KW      = "var" .
 
 ASSIGN_OP   = "=" .
 
