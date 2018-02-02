@@ -2,8 +2,10 @@
 #[macro_use]
 extern crate hamcrest;
 
-pub mod frontend;
+mod backend;
 pub mod commands;
+pub mod frontend;
+mod model;
 
 pub fn error(msg: &str) {
     println!("ERROR: {}", msg);
