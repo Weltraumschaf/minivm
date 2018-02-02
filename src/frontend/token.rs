@@ -25,7 +25,7 @@ pub enum TokenType {
     CHAR(char),
     // Literals:
     KEYWORD(Keyword),
-    SYMBOL(String),
+    IDENTIFIER(String),
     // Delimiters:
     L_PAREN,
     R_PAREN,
@@ -51,6 +51,22 @@ pub enum Keyword {
     WHILE,
     CONST,
     VAR,
+}
+
+impl Keyword {
+    pub fn for_literal(literal: &String) -> Keyword {
+        match literal.as_ref() {
+            "and" => Keyword::AND,
+            "or" => Keyword::OR,
+            "not" => Keyword::NOT,
+            "if" => Keyword::IF,
+            "else" => Keyword::ELSE,
+            "while" => Keyword::WHILE,
+            "const" => Keyword::CONST,
+            "var" => Keyword::VAR,
+            _ => panic!("Unrecognized keyword '{}'!", literal),
+        }
+    }
 }
 
 #[derive(Debug, PartialEq)]

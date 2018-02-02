@@ -9,6 +9,10 @@ impl CharacterHelper {
         ch.is_numeric()
     }
 
+    pub fn is_alphanumeric(ch: char) -> bool {
+        (CharacterHelper::is_alphabetic(ch) || CharacterHelper::is_numeric(ch))
+    }
+
     pub fn is_double_quote(ch: char) -> bool {
         ch == '"'
     }
@@ -100,6 +104,18 @@ mod tests {
         assert_that!(CharacterHelper::is_numeric(' '), is(false));
         assert_that!(CharacterHelper::is_numeric('\n'), is(false));
         assert_that!(CharacterHelper::is_numeric(0 as char), is(false));
+    }
+
+    #[test]
+    fn is_alphanumeric() {
+        assert_that!(CharacterHelper::is_alphanumeric('0'), is(true));
+        assert_that!(CharacterHelper::is_alphanumeric('5'), is(true));
+        assert_that!(CharacterHelper::is_alphanumeric('a'), is(true));
+        assert_that!(CharacterHelper::is_alphanumeric('g'), is(true));
+        assert_that!(CharacterHelper::is_alphanumeric('Z'), is(true));
+
+        assert_that!(CharacterHelper::is_alphanumeric('-'), is(false));
+        assert_that!(CharacterHelper::is_alphanumeric('_'), is(false));
     }
 
     #[test]

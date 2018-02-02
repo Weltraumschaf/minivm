@@ -11,6 +11,8 @@ extern crate hamcrest;
 
 mod frontend;
 
+// Make this a executable lib crate and move the main in out.
+// https://doc.rust-lang.org/book/second-edition/ch07-02-controlling-visibility-with-pub.html
 fn main() {
     let args: Vec<String> = env::args().collect();
 

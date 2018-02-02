@@ -1,9 +1,9 @@
-#[cfg(test)]
-use frontend::Position;
 use frontend::token::*;
 use frontend::lexer::SubLexer;
 use frontend::character_stream::CharacterStream;
 use frontend::character_helper::CharacterHelper;
+#[cfg(test)]
+use frontend::Position;
 
 pub struct NumberLexer {}
 
@@ -17,7 +17,6 @@ impl NumberLexer {
     // @param input must not be {@code null}
     // @return all digits from input
     fn unsigned_integer_digits(&self, input: &mut CharacterStream) -> String {
-        // Extract the digits.
         let mut digits = String::new();
 
         loop {
@@ -47,7 +46,7 @@ enum Type {
 impl SubLexer for NumberLexer {
     fn scan(&self, input: &mut CharacterStream) -> Token {
         let position = input.position();
-        let mut raw_value = String::new();
+        let mut literal = String::new();
         let mut whole_digits = String::new();    // Digits before the decimal point.
         let mut fraction_digits = String::new(); // Digits after the decimal point.
         let mut exponent_digits = String::new(); // Exponent digits.
@@ -61,12 +60,12 @@ impl SubLexer for NumberLexer {
             panic!("At least one digit necessary!");
         }
 
-        raw_value.push_str(whole_digits.as_str());
+        literal.push_str(whole_digits.as_str());
 
         // Is there a dot, so we have a floating point number.
         if '.' == input.current() {
             number_type = Type::REAL;
-            raw_value.push(input.current());
+            literal.push(input.current());
             input.next(); // Consume decimal point.
             // Collect the digits of the fraction part of the number.
             fraction_digits.push_str(self.unsigned_integer_digits(input).as_str());
@@ -75,18 +74,18 @@ impl SubLexer for NumberLexer {
                 panic!("At least one fraction digit necessary!");
             }
 
-            raw_value.push_str(fraction_digits.as_str());
+            literal.push_str(fraction_digits.as_str());
         }
 
         // Is there an exponent part?
         if input.current() == 'E' || input.current() == 'e' {
             number_type = Type::REAL;  // Exponent, so token type is FLOAT.
-            raw_value.push(input.current());
+            literal.push(input.current());
             input.next(); // Consume 'E' or 'e'.
 
             // Exponent sign?
             if input.current() == '+' || input.current() == '-' {
-                raw_value.push(input.current());
+                literal.push(input.current());
                 input.next(); // Consume '+' or '-'.
             }
 
@@ -97,28 +96,28 @@ impl SubLexer for NumberLexer {
                 panic!("At least one exponent digit necessary!");
             }
 
-            raw_value.push_str(exponent_digits.as_str());
+            literal.push_str(exponent_digits.as_str());
         }
 
         let token_type;
         match number_type {
             Type::INTEGER => {
                 // Compute the value of an integer number token.
-                match raw_value.parse::<i64>() {
+                match literal.parse::<i64>() {
                     Ok(value) => token_type = TokenType::INTEGER(value),
-                    Err(error) => panic!(format!("ERROR: {}: \"{}\"", error, raw_value))
+                    Err(error) => panic!(format!("ERROR: {}: \"{}\"", error, literal))
                 }
             },
             Type::REAL => {
                 // Compute the value of a real number token.
-                match raw_value.parse::<f64>() {
+                match literal.parse::<f64>() {
                     Ok(value) => token_type = TokenType::REAL(value),
-                    Err(error) => panic!(format!("ERROR: {}: \"{}\"", error, raw_value))
+                    Err(error) => panic!(format!("ERROR: {}: \"{}\"", error, literal))
                 }
             }
         }
 
-        Token::new(position, token_type, raw_value)
+        Token::new(position, token_type, literal)
     }
 }
 

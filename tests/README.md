@@ -19,7 +19,7 @@ CHARACTER   = "a" .. "z" | "A" .. "Z" .
 DIGIT       = "0" .. "9" .
 DIGITS      = DIGIT { DIGIT } .
 SIGN        = "+" | "-" .
-SYMBOL      =  ( CHARACTER | "_" ) { CHARACTER DIGIT | | "_" | "-" } .
+IDENTIFIER      =  ( CHARACTER | "_" ) { CHARACTER DIGIT } .
 
 (* Types *)
 TRUE                = "true" .

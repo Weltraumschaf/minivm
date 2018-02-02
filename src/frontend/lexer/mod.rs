@@ -4,7 +4,9 @@ use frontend::token::Token;
 use frontend::token::TokenType::*;
 use frontend::Position;
 use frontend::lexer::number_lexer::NumberLexer;
+use frontend::lexer::identifier_lexer::IdentifierLexer;
 
+mod identifier_lexer;
 mod number_lexer;
 
 pub struct Lexer {
@@ -35,10 +37,9 @@ impl Lexer {
             let current = self.input.current();
 
             if CharacterHelper::is_alphabetic(current) {
-// TODO
+                token = IdentifierLexer::new().scan(&mut self.input);
             } else if CharacterHelper::is_numeric(current) {
-                let lexer = NumberLexer::new();
-                token = lexer.scan(&mut self.input);
+                token = NumberLexer::new().scan(&mut self.input);
             } else if CharacterHelper::is_double_quote(current) {
 // TODO
             } else if CharacterHelper::is_single_quote(current) {
@@ -46,7 +47,7 @@ impl Lexer {
             } else if CharacterHelper::is_operator(current) {
 // TODO
             } else if CharacterHelper::is_white_space(current) {
-// TODO
+                // ignore white spaces
             } else if CharacterHelper::is_new_line(current) {
                 token = Token::new(
                     self.input.position(),
