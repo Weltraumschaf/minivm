@@ -1,8 +1,8 @@
-use std::fs::File;
-use std::io::prelude::*;
-use minivm::frontend::character_stream::CharacterStream;
-use minivm::frontend::lexer::Lexer;
-use minivm::frontend::parser::Parser;
+use minivm::commands::compile_command::CompileCommand;
+use minivm::commands::parse_command::ParserCommand;
+use minivm::commands::run_command::RunCommand;
+use minivm::commands::Command;
+use minivm::error;
 use clap::{Arg, App, SubCommand};
 
 #[cfg(test)]
@@ -55,41 +55,15 @@ fn main() {
 
     if let Some(matches) = matches.subcommand_matches("parse") {
         let file = matches.value_of("file").unwrap();
-        println!("Parsing file {} ...", file);
-
-        let mut f = match File::open(file) {
-            Ok(f) => f,
-            Err(_) => {
-                error("Failed to read file!");
-                return;
-            }
-        };
-
-        let mut content = String::new();
-        match f.read_to_string(&mut content) {
-            Ok(contents) => contents,
-            Err(_) => {
-                error("Something went wrong reading the file!");
-                return;
-            }
-        };
-
-        let input_stream = CharacterStream::new(content);
-        let lexer = Lexer::new(input_stream);
-        let parser = Parser::new(lexer);
-        parser.parse();
+        ParserCommand::new(file.to_string()).execute();
     } else if let Some(matches) = matches.subcommand_matches("compile") {
         let file = matches.value_of("file").unwrap();
-        println!("Compile file {} ...", file);
+        CompileCommand::new(file.to_string()).execute();
     } else if let Some(matches) = matches.subcommand_matches("run") {
         let file = matches.value_of("file").unwrap();
-        println!("Execute file {} ...", file);
+        RunCommand::new(file.to_string()).execute();
     } else {
         error("No subcommand given!");
         return;
     }
-}
-
-fn error(msg: &str) {
-    println!("ERROR: {}", msg);
 }
