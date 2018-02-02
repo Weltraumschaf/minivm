@@ -1,17 +1,15 @@
-use std::env;
 use std::fs::File;
 use std::io::prelude::*;
-use frontend::character_stream::CharacterStream;
-use frontend::lexer::Lexer;
-use frontend::parser::Parser;
+use minivm::frontend::character_stream::CharacterStream;
+use minivm::frontend::lexer::Lexer;
+use minivm::frontend::parser::Parser;
 use clap::{Arg, App, SubCommand};
 
 #[cfg(test)]
 #[macro_use]
 extern crate hamcrest;
 extern crate clap;
-
-mod frontend;
+extern crate minivm;
 
 // Make this a executable lib crate and move the main in out.
 // https://doc.rust-lang.org/book/second-edition/ch07-02-controlling-visibility-with-pub.html
