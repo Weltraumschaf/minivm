@@ -18,3 +18,9 @@ impl SubLexer for CharacterLexer {
         panic!("not implemented yet: character literal");
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use hamcrest::prelude::*;
+}

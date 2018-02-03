@@ -11,9 +11,8 @@ extern crate hamcrest;
 extern crate clap;
 extern crate minivm;
 
-// Make this a executable lib crate and move the main in out.
-// https://doc.rust-lang.org/book/second-edition/ch07-02-controlling-visibility-with-pub.html
 fn main() {
+    // https://docs.rs/clap/2.29.2/clap/
     let matches = App::new("Mini Virtual Machine")
         .version("1.0.0")
         .author("Sven Strittmatter <ich@weltraumschaf.de>")

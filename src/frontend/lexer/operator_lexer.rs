@@ -18,3 +18,9 @@ impl SubLexer for OperatorLexer {
         panic!("not implemented yet: operator");
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use hamcrest::prelude::*;
+}
