@@ -22,7 +22,7 @@ pub enum TokenType {
     REAL(f64),
     BOOL(bool),
     STRING(String),
-    CHAR(char),
+    CHARACTER(char),
     // Literals:
     KEYWORD(Keyword),
     IDENTIFIER(String),
