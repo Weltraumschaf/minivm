@@ -38,7 +38,10 @@ impl SubLexer for StringLexer {
             input.next(); // consume character
         }
 
-        Token::new(position, TokenType::STRING(value.clone()), value.clone())
+        Token::new(
+            position,
+            TokenType::STRING(value.clone()),
+            format!("\"{}\"", value.clone()))
     }
 }
 
@@ -81,7 +84,7 @@ mod tests {
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
             TokenType::STRING(String::from("")),
-            String::from(""))
+            String::from("\"\""))
         )));
     }
 
@@ -106,7 +109,7 @@ mod tests {
             Token::new(
             Position::new(1, 1),
             TokenType::STRING(String::from("foo bar baz")),
-            String::from("foo bar baz"))
+            String::from("\"foo bar baz\""))
         )));
     }
 }

@@ -42,7 +42,7 @@ impl SubLexer for CharacterLexer {
             panic!("Unterminated character literal!");
         }
 
-        Token::new(position, TokenType::CHARACTER(ch), ch.to_string())
+        Token::new(position, TokenType::CHARACTER(ch), format!("'{}'", ch))
     }
 }
 
@@ -52,7 +52,6 @@ mod tests {
     use hamcrest::prelude::*;
 
     #[test]
-    #[ignore]
     fn scan_single_char() {
         let mut src = CharacterStream::new(String::from("'c'"));
         let sut = CharacterLexer::new();
@@ -62,12 +61,11 @@ mod tests {
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
             TokenType::CHARACTER('c'),
-            String::from("c"))
+            String::from("'c'"))
         )));
     }
 
     #[test]
-    #[ignore]
     fn scan_empty_char() {
         let mut src = CharacterStream::new(String::from("''"));
         let sut = CharacterLexer::new();
@@ -82,7 +80,7 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
+    #[ignore] // Panics as expected, but test fails in IDE, not on CLI
     #[should_panic]
     fn scan_unterminated_char() {
         let mut src = CharacterStream::new(String::from("'c"));
