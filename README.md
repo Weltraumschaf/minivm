@@ -33,7 +33,7 @@ EXPONENT_INDICATOR  = "e" | "E" .
 STRING              = '"' ( ANY | '\"' ) { ( ANY | '\"')  } '"' .
 CHAR                = "'" ANY "'"
 
-(* // Delimiters: *)
+(* Delimiters: *)
 LEFT_PAREN      = "(" .
 RIGHT_PAREN     = ")" .
 LEFT_BRACKET    = "[" .
