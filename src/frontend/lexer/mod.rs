@@ -3,11 +3,17 @@ use frontend::character_helper::CharacterHelper;
 use frontend::token::Token;
 use frontend::token::TokenType::*;
 use frontend::Position;
-use frontend::lexer::number_lexer::NumberLexer;
+use frontend::lexer::character_lexer::CharacterLexer;
 use frontend::lexer::identifier_lexer::IdentifierLexer;
+use frontend::lexer::number_lexer::NumberLexer;
+use frontend::lexer::operator_lexer::OperatorLexer;
+use frontend::lexer::string_lexer::StringLexer;
 
+mod character_lexer;
 mod identifier_lexer;
 mod number_lexer;
+mod operator_lexer;
+mod string_lexer;
 
 pub struct Lexer {
     input: CharacterStream,
@@ -43,14 +49,14 @@ impl Lexer {
                 // scan for integer and real number
                 token = NumberLexer::new().scan(&mut self.input);
             } else if CharacterHelper::is_double_quote(current) {
-                // TODO scan for string literal
-                panic!("not implemented yet: string literal");
+                // scan for string literal
+                token = StringLexer::new().scan(&mut self.input);
             } else if CharacterHelper::is_single_quote(current) {
-                // TODO scan for single character literal
-                panic!("not implemented yet: character literal");
+                // scan for single character literal
+                token = CharacterLexer::new().scan(&mut self.input);
             } else if CharacterHelper::is_operator(current) {
                 // TODO scan for operator or delimiter
-                panic!("not implemented yet: operator");
+                token = OperatorLexer::new().scan(&mut self.input);
             } else if CharacterHelper::is_white_space(current) {
                 // ignore white spaces
             } else if CharacterHelper::is_new_line(current) {
