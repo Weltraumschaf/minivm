@@ -33,20 +33,6 @@ impl IdentifierLexer {
         consumed
     }
 
-    fn is_bool(&self, literal: &String) -> bool {
-        "true" == literal || "false" == literal
-    }
-
-    fn is_keyword(&self, literal: &String) -> bool {
-        "and" == literal ||
-            "or" == literal ||
-            "not" == literal ||
-            "if" == literal ||
-            "else" == literal ||
-            "while" == literal ||
-            "const" == literal ||
-            "var" == literal
-    }
 }
 
 impl SubLexer for IdentifierLexer {
@@ -54,19 +40,27 @@ impl SubLexer for IdentifierLexer {
         let position = input.position();
         let literal = self.collect_alpha_numeric_characters(input);
 
-        if self.is_bool(&literal) {
-            let value = literal.parse::<bool>().unwrap();
-            Token::new(position, TokenType::BOOL(value), literal.clone())
-        } else if self.is_keyword(&literal) {
-            let keyword = Keyword::for_literal(&literal);
-            Token::new(position, TokenType::KEYWORD(keyword), literal.clone())
-        } else if literal.is_empty() {
-            Token::new(position, TokenType::EOF, String::from(""))
-        } else {
-            Token::new(
-                position,
-                TokenType::IDENTIFIER(literal.clone()),
-                literal.clone())
+        match literal.as_str() {
+            "true" | "false" => {
+                let value = literal.parse::<bool>().unwrap();
+                Token::new(position, TokenType::BOOL(value), literal.clone())
+            },
+            "and" | "or" | "not" | "if" | "else" | "while" | "const" | "var" => {
+                let keyword = Keyword::for_literal(&literal);
+                Token::new(position, TokenType::KEYWORD(keyword), literal.clone())
+            },
+            "" => {
+                Token::new(
+                    position,
+                    TokenType::EOF,
+                    literal.clone())
+            },
+            _ => {
+                Token::new(
+                    position,
+                    TokenType::IDENTIFIER(literal.clone()),
+                    literal.clone())
+            }
         }
     }
 }
@@ -114,32 +108,6 @@ mod tests {
         let token = sut.collect_alpha_numeric_characters(&mut src);
 
         assert_that!(token, is(equal_to(String::from("h3ll0"))));
-    }
-
-    #[test]
-    fn is_bool() {
-        let sut = IdentifierLexer::new();
-
-        assert_that!(sut.is_bool(&String::from("true")), is(true));
-        assert_that!(sut.is_bool(&String::from("false")), is(true));
-        assert_that!(sut.is_bool(&String::from("snafu")), is(false));
-        assert_that!(sut.is_bool(&String::from("")), is(false));
-    }
-
-    #[test]
-    fn is_keyword() {
-        let sut = IdentifierLexer::new();
-
-        assert_that!(sut.is_keyword(&String::from("and")), is(true));
-        assert_that!(sut.is_keyword(&String::from("or")), is(true));
-        assert_that!(sut.is_keyword(&String::from("not")), is(true));
-        assert_that!(sut.is_keyword(&String::from("if")), is(true));
-        assert_that!(sut.is_keyword(&String::from("else")), is(true));
-        assert_that!(sut.is_keyword(&String::from("while")), is(true));
-        assert_that!(sut.is_keyword(&String::from("const")), is(true));
-        assert_that!(sut.is_keyword(&String::from("var")), is(true));
-        assert_that!(sut.is_keyword(&String::from("snafu")), is(false));
-        assert_that!(sut.is_keyword(&String::from("")), is(false));
     }
 
     #[test]

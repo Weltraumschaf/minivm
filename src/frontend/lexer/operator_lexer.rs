@@ -17,138 +17,153 @@ impl SubLexer for OperatorLexer {
     fn scan(&self, input: &mut CharacterStream) -> Token {
         let position = input.position();
 
-        // delimiters
-        if '(' == input.current() {
-            input.next(); //consume (
-            return Token::new(
-                position,
-                TokenType::L_PAREN,
-                String::from("("));
-        } else if ')' == input.current() {
-            input.next(); //consume )
-            return Token::new(
-                position,
-                TokenType::R_PAREN,
-                String::from(")"));
-        } else if '[' == input.current() {
-            input.next(); //consume [
-            return Token::new(
-                position,
-                TokenType::L_BRACK,
-                String::from("["));
-        } else if ']' == input.current() {
-            input.next(); //consume ]
-            return Token::new(
-                position,
-                TokenType::R_BRACK,
-                String::from("]"));
-        } else if '{' == input.current() {
-            input.next(); //consume {
-            return Token::new(
-                position,
-                TokenType::L_BRACE,
-                String::from("{"));
-        } else if '}' == input.current() {
-            input.next(); //consume }
-            return Token::new(
-                position,
-                TokenType::R_BRACE,
-                String::from("}"));
-        } else if ',' == input.current() {
-            input.next(); //consume ,
-            return Token::new(
-                position,
-                TokenType::COMMA,
-                String::from(","));
-        } else if '=' == input.current() {
-            input.next(); //consume =
-
-            if '=' == input.current() {
+        match input.current() {
+            '(' => {
+                input.next(); //consume (
+                Token::new(
+                    position,
+                    TokenType::L_PAREN,
+                    String::from("("))
+            },
+            ')' => {
+                input.next(); //consume )
+                Token::new(
+                    position,
+                    TokenType::R_PAREN,
+                    String::from(")"))
+            },
+            '[' => {
+                input.next(); //consume [
+                Token::new(
+                    position,
+                    TokenType::L_BRACK,
+                    String::from("["))
+            },
+            ']' => {
+                input.next(); //consume ]
+                Token::new(
+                    position,
+                    TokenType::R_BRACK,
+                    String::from("]"))
+            },
+            '{' => {
+                input.next(); //consume {
+                Token::new(
+                    position,
+                    TokenType::L_BRACE,
+                    String::from("{"))
+            },
+            '}' => {
+                input.next(); //consume }
+                Token::new(
+                    position,
+                    TokenType::R_BRACE,
+                    String::from("}"))
+            },
+            ',' => {
+                input.next(); //consume ,
+                Token::new(
+                    position,
+                    TokenType::COMMA,
+                    String::from(","))
+            },
+            '=' => {
                 input.next(); //consume =
-                return Token::new(
-                    position,
-                    TokenType::OPERATOR(Operator::EQUAL),
-                    String::from("=="));
-            } else {
-                return Token::new(
-                    position,
-                    TokenType::OPERATOR(Operator::ASSIGN),
-                    String::from("="));
-            }
-        } else if '!' == input.current() {
-            input.next(); //consume !
 
-            if '=' == input.current() {
-                input.next(); //consume =
-                return Token::new(
-                    position,
-                    TokenType::OPERATOR(Operator::NOT_EQUAL),
-                    String::from("!="));
-            } else {
-                panic!("Expecting = after ! for != operator!");
-            }
-        } else if '<' == input.current() {
-            input.next(); //consume <
+                if '=' == input.current() {
+                    input.next(); //consume =
+                    Token::new(
+                        position,
+                        TokenType::OPERATOR(Operator::EQUAL),
+                        String::from("=="))
+                } else {
+                    Token::new(
+                        position,
+                        TokenType::OPERATOR(Operator::ASSIGN),
+                        String::from("="))
+                }
+            },
+            '!' => {
+                input.next(); //consume !
 
-            if '=' == input.current() {
-                input.next(); //consume =
-                return Token::new(
-                    position,
-                    TokenType::OPERATOR(Operator::LESS_THAN_EQUAL),
-                    String::from("<="));
-            } else {
-                return Token::new(
-                    position,
-                    TokenType::OPERATOR(Operator::LESS_THAN),
-                    String::from("<"));
-            }
-        } else if '>' == input.current() {
-            input.next(); //consume >
+                if '=' == input.current() {
+                    input.next(); //consume =
+                    Token::new(
+                        position,
+                        TokenType::OPERATOR(Operator::NOT_EQUAL),
+                        String::from("!="))
+                } else {
+                    panic!("Expecting = after ! for != operator!");
+                }
+            },
+            '<' => {
+                input.next(); //consume <
 
-            if '=' == input.current() {
-                input.next(); //consume =
-                return Token::new(
+                if '=' == input.current() {
+                    input.next(); //consume =
+                    Token::new(
+                        position,
+                        TokenType::OPERATOR(Operator::LESS_THAN_EQUAL),
+                        String::from("<="))
+                } else {
+                    Token::new(
+                        position,
+                        TokenType::OPERATOR(Operator::LESS_THAN),
+                        String::from("<"))
+                }
+            },
+            '>' => {
+                input.next(); //consume >
+
+                if '=' == input.current() {
+                    input.next(); //consume =
+                    Token::new(
+                        position,
+                        TokenType::OPERATOR(Operator::GREATER_THAN_EQUAL),
+                        String::from(">="))
+                } else {
+                    Token::new(
+                        position,
+                        TokenType::OPERATOR(Operator::GREATER_THAN),
+                        String::from(">"))
+                }
+            },
+            '+' => {
+                input.next(); //consume +
+                Token::new(
                     position,
-                    TokenType::OPERATOR(Operator::GREATER_THAN_EQUAL),
-                    String::from(">="));
-            } else {
-                return Token::new(
+                    TokenType::OPERATOR(Operator::PLUS),
+                    String::from("+"))
+            },
+            '-' => {
+                input.next(); //consume -
+                Token::new(
                     position,
-                    TokenType::OPERATOR(Operator::GREATER_THAN),
-                    String::from(">"));
+                    TokenType::OPERATOR(Operator::MINUS),
+                    String::from("-"))
+            },
+            '*' => {
+                input.next(); //consume *
+                Token::new(
+                    position,
+                    TokenType::OPERATOR(Operator::STAR),
+                    String::from("*"))
+            },
+            '/' => {
+                input.next(); //consume /
+                Token::new(
+                    position,
+                    TokenType::OPERATOR(Operator::SLASH),
+                    String::from("/"))
+            },
+            '%' => {
+                input.next(); //consume %
+                Token::new(
+                    position,
+                    TokenType::OPERATOR(Operator::MOD),
+                    String::from("%"))
             }
-        } else if '+' == input.current() {
-            input.next(); //consume +
-            return Token::new(
-                position,
-                TokenType::OPERATOR(Operator::PLUS),
-                String::from("+"));
-        } else if '-' == input.current() {
-            input.next(); //consume -
-            return Token::new(
-                position,
-                TokenType::OPERATOR(Operator::MINUS),
-                String::from("-"));
-        } else if '*' == input.current() {
-            input.next(); //consume *
-            return Token::new(
-                position,
-                TokenType::OPERATOR(Operator::STAR),
-                String::from("*"));
-        } else if '/' == input.current() {
-            input.next(); //consume /
-            return Token::new(
-                position,
-                TokenType::OPERATOR(Operator::SLASH),
-                String::from("/"));
-        } else if '%' == input.current() {
-            input.next(); //consume %
-            return Token::new(
-                position,
-                TokenType::OPERATOR(Operator::MOD),
-                String::from("%"));
-        } else {
-            panic!("Unrecognized operator '{}'!", input.current());
+            _ => panic!("Unrecognized operator '{}'!", input.current())
         }
     }
 }
