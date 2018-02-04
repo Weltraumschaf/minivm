@@ -157,4 +157,270 @@ impl SubLexer for OperatorLexer {
 mod tests {
     use super::*;
     use hamcrest::prelude::*;
+
+    #[test]
+    fn scan_l_paren() {
+        let mut src = CharacterStream::new(String::from("("));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::L_PAREN,
+            String::from("("))
+        )));
+    }
+
+    #[test]
+    fn scan_r_paren() {
+        let mut src = CharacterStream::new(String::from(")"));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::R_PAREN,
+            String::from(")"))
+        )));
+    }
+
+    #[test]
+    fn scan_l_brack() {
+        let mut src = CharacterStream::new(String::from("["));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::L_BRACK,
+            String::from("["))
+        )));
+    }
+
+    #[test]
+    fn scan_r_brack() {
+        let mut src = CharacterStream::new(String::from("]"));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::R_BRACK,
+            String::from("]"))
+        )));
+    }
+
+    #[test]
+    fn scan_l_brace() {
+        let mut src = CharacterStream::new(String::from("{"));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::L_BRACE,
+            String::from("{"))
+        )));
+    }
+
+    #[test]
+    fn scan_r_brace() {
+        let mut src = CharacterStream::new(String::from("}"));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::R_BRACE,
+            String::from("}"))
+        )));
+    }
+
+    #[test]
+    fn scan_comma() {
+        let mut src = CharacterStream::new(String::from(","));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::COMMA,
+            String::from(","))
+        )));
+    }
+
+    #[test]
+    fn scan_equal() {
+        let mut src = CharacterStream::new(String::from("=="));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::OPERATOR(Operator::EQUAL),
+            String::from("=="))
+        )));
+    }
+
+    #[test]
+    fn scan_assign() {
+        let mut src = CharacterStream::new(String::from("="));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::OPERATOR(Operator::ASSIGN),
+            String::from("="))
+        )));
+    }
+
+    #[test]
+    fn scan_not_euql() {
+        let mut src = CharacterStream::new(String::from("!="));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::OPERATOR(Operator::NOT_EQUAL),
+            String::from("!="))
+        )));
+    }
+
+    #[test]
+    fn scan_less_than_equal() {
+        let mut src = CharacterStream::new(String::from("<="));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::OPERATOR(Operator::LESS_THAN_EQUAL),
+            String::from("<="))
+        )));
+    }
+
+    #[test]
+    fn scan_less_than() {
+        let mut src = CharacterStream::new(String::from("<"));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::OPERATOR(Operator::LESS_THAN),
+            String::from("<"))
+        )));
+    }
+
+    #[test]
+    fn scan_greater_than_equal() {
+        let mut src = CharacterStream::new(String::from(">="));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::OPERATOR(Operator::GREATER_THAN_EQUAL),
+            String::from(">="))
+        )));
+    }
+
+    #[test]
+    fn scan_greater_than() {
+        let mut src = CharacterStream::new(String::from(">"));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::OPERATOR(Operator::GREATER_THAN),
+            String::from(">"))
+        )));
+    }
+
+    #[test]
+    fn scan_plus() {
+        let mut src = CharacterStream::new(String::from("+"));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::OPERATOR(Operator::PLUS),
+            String::from("+"))
+        )));
+    }
+
+    #[test]
+    fn scan_minus() {
+        let mut src = CharacterStream::new(String::from("-"));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::OPERATOR(Operator::MINUS),
+            String::from("-"))
+        )));
+    }
+
+    #[test]
+    fn scan_star() {
+        let mut src = CharacterStream::new(String::from("*"));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::OPERATOR(Operator::STAR),
+            String::from("*"))
+        )));
+    }
+
+    #[test]
+    fn scan_slash() {
+        let mut src = CharacterStream::new(String::from("/"));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::OPERATOR(Operator::SLASH),
+            String::from("/"))
+        )));
+    }
+
+    #[test]
+    fn scan_mod() {
+        let mut src = CharacterStream::new(String::from("%"));
+        let sut = OperatorLexer::new();
+
+        let token = sut.scan(&mut src);
+
+        assert_that!(token, is(equal_to(
+            Token::new(Position::new(1, 1),
+            TokenType::OPERATOR(Operator::MOD),
+            String::from("%"))
+        )));
+    }
 }
