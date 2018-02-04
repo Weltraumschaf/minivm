@@ -13,6 +13,10 @@ impl Token {
     pub fn new(pos: Position, token_type: TokenType, literal: String) -> Token {
         Token { pos, token_type, literal }
     }
+
+    pub fn get_token_type(&self) -> &TokenType {
+        &self.token_type
+    }
 }
 
 #[derive(Debug, PartialEq)]

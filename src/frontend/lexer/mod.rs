@@ -35,7 +35,11 @@ impl Lexer {
         self.input
     }
 
-    fn next(&mut self) -> Token {
+    pub fn current(&self) -> &Token {
+        &self.current
+    }
+
+    pub fn next(&mut self) {
         let mut token = self.default();
 
         while self.input.has_next() {
@@ -68,7 +72,7 @@ impl Lexer {
             }
         }
 
-        token
+        self.current = token;
     }
 
     fn default(&self) -> Token {

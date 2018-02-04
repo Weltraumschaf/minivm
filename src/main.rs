@@ -51,10 +51,13 @@ fn main() {
                 .required(true)))
         .get_matches();
 
-
     if let Some(matches) = matches.subcommand_matches("parse") {
         let file = matches.value_of("file").unwrap();
-        ParserCommand::new(file.to_string()).execute();
+        ParserCommand::new(
+            file.to_string(),
+            matches.is_present("tokens"),
+            matches.is_present("ast"))
+            .execute();
     } else if let Some(matches) = matches.subcommand_matches("compile") {
         let file = matches.value_of("file").unwrap();
         CompileCommand::new(file.to_string()).execute();
