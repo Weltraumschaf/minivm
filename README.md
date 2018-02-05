@@ -1,5 +1,7 @@
 # A Mini Virtual Machine
 
+[![Build Status](https://travis-ci.org/Weltraumschaf/minivm.svg?branch=master)](https://travis-ci.org/Weltraumschaf/minivm)
+
 A minimalistic language with virtual machine written in [Rust][rust-lang].
 
 The purpose of this project is to get in touch with [Rust][rust-lang].
