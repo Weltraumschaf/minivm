@@ -1,6 +1,8 @@
 #[cfg(test)]
 #[macro_use]
 extern crate hamcrest;
+#[macro_use]
+extern crate log;
 
 mod backend;
 pub mod commands;
@@ -12,5 +14,4 @@ pub fn error(msg: &str) {
 }
 
 #[cfg(test)]
-mod tests {
-}
+mod tests {}

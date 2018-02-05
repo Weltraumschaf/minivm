@@ -40,6 +40,10 @@ impl Command for ParserCommand {
             }
         };
 
+        debug!("Parsing source:");
+        debug!("{}", content);
+        debug!("--- source end ---");
+
         let input_stream = CharacterStream::new(content);
 
         if self.print_tokens {
@@ -49,9 +53,10 @@ impl Command for ParserCommand {
             loop {
                 lexer.next();
                 let token = lexer.current();
-                println!("{:?}", token);
+                println!("{}", token);
 
                 if &TokenType::EOF == token.get_token_type() {
+                    debug!("Got EOF token: Exitting token loop.");
                     break;
                 }
             }

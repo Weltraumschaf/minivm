@@ -9,9 +9,12 @@ use clap::{Arg, App, SubCommand};
 #[macro_use]
 extern crate hamcrest;
 extern crate clap;
+extern crate env_logger;
 extern crate minivm;
 
 fn main() {
+    env_logger::init();
+
     // https://docs.rs/clap/2.29.2/clap/
     let matches = App::new("Mini Virtual Machine")
         .version("1.0.0")

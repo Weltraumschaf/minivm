@@ -40,39 +40,61 @@ impl Lexer {
     }
 
     pub fn next(&mut self) {
-        let mut token = self.default();
+        if !self.input.has_next() {
+            debug!("No more input to lex.");
+            let position = self.input.position();
+            self.current = Token::new(
+                self.input.position(),
+                EOF,
+                String::from(""));
+            return;
+        }
 
         while self.input.has_next() {
-            self.input.next();
+            debug!("Lexer loop iteration start.");
+            let position = self.input.position();
             let current = self.input.current();
 
             if CharacterHelper::is_alphabetic(current) {
                 // scan for boolean/keyword/identifier
-                token = IdentifierLexer::new().scan(&mut self.input);
+                debug!("Current char is '{}' at {}. Use identifier lexer.", current, position);
+                self.current = IdentifierLexer::new().scan(&mut self.input);
+                break;
             } else if CharacterHelper::is_numeric(current) {
                 // scan for integer and real number
-                token = NumberLexer::new().scan(&mut self.input);
+                debug!("Current char is '{}' at {}. Use number lexer.", current, position);
+                self.current = NumberLexer::new().scan(&mut self.input);
+                break;
             } else if CharacterHelper::is_double_quote(current) {
                 // scan for string literal
-                token = StringLexer::new().scan(&mut self.input);
+                debug!("Current char is '{}' at {}. Use string lexer.", current, position);
+                self.current = StringLexer::new().scan(&mut self.input);
+                break;
             } else if CharacterHelper::is_single_quote(current) {
                 // scan for single character literal
-                token = CharacterLexer::new().scan(&mut self.input);
+                debug!("Current char is '{}' at {}. Use character lexer.", current, position);
+                self.current = CharacterLexer::new().scan(&mut self.input);
+                break;
             } else if CharacterHelper::is_operator(current) {
-                // TODO scan for operator or delimiter
-                token = OperatorLexer::new().scan(&mut self.input);
+                // scan for operator or delimiter
+                debug!("Current char is '{}' at {}. Use operator lexer.", current, position);
+                self.current = OperatorLexer::new().scan(&mut self.input);
+                break;
             } else if CharacterHelper::is_white_space(current) {
                 // ignore white spaces
+                debug!("Current char is '{}' at {}. Ignoring whitespace.", current, position);
+                self.input.next(); // consume space
+                break;
             } else if CharacterHelper::is_new_line(current) {
-                token = Token::new(
+                debug!("Current char is '{}' at {}. Detected EOL.", current, position);
+                self.current = Token::new(
                     self.input.position(),
                     EOL,
-                    String::from("\n"));
+                    String::from("\\n"));
+                self.input.next(); // consume \n
                 break;
             }
         }
-
-        self.current = token;
     }
 
     fn default(&self) -> Token {

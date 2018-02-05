@@ -1,21 +1,28 @@
+use std::fmt;
 use frontend::Position;
 
 pub const END_OF_FILE: char = 0 as char;
 
 #[derive(Debug, PartialEq)]
 pub struct Token {
-    pos: Position,
+    position: Position,
     token_type: TokenType,
     literal: String,
 }
 
 impl Token {
-    pub fn new(pos: Position, token_type: TokenType, literal: String) -> Token {
-        Token { pos, token_type, literal }
+    pub fn new(position: Position, token_type: TokenType, literal: String) -> Token {
+        Token { position, token_type, literal }
     }
 
     pub fn get_token_type(&self) -> &TokenType {
         &self.token_type
+    }
+}
+
+impl fmt::Display for Token {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "({} '{}' {})", self.token_type, self.literal, self.position)
     }
 }
 
@@ -43,6 +50,13 @@ pub enum TokenType {
     // Other:
     EOL,
     EOF,
+}
+
+
+impl fmt::Display for TokenType {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "<{:?}>", self)
+    }
 }
 
 #[derive(Debug, PartialEq)]

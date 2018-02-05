@@ -1,3 +1,5 @@
+use std::fmt;
+
 pub mod character_stream;
 pub mod character_helper;
 pub mod lexer;
@@ -21,6 +23,12 @@ impl Position {
 
     fn at(&self, p: Position) -> bool {
         p.line == self.line && p.column == self.column
+    }
+}
+
+impl fmt::Display for Position {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "[{}, {}]", self.line, self.column)
     }
 }
 
