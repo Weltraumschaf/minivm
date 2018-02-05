@@ -46,6 +46,7 @@ enum Type {
 impl SubLexer for NumberLexer {
     fn scan(&self, input: &mut CharacterStream) -> Token {
         let position = input.position();
+        debug!("Start number lexing at position {}.", position);
         let mut literal = String::new();
         let mut whole_digits = String::new();    // Digits before the decimal point.
         let mut fraction_digits = String::new(); // Digits after the decimal point.

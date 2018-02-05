@@ -16,6 +16,7 @@ impl OperatorLexer {
 impl SubLexer for OperatorLexer {
     fn scan(&self, input: &mut CharacterStream) -> Token {
         let position = input.position();
+        debug!("Start operator lexing at position {}.", position);
 
         match input.current() {
             '(' => {

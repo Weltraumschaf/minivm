@@ -16,6 +16,7 @@ impl StringLexer {
 impl SubLexer for StringLexer {
     fn scan(&self, input: &mut CharacterStream) -> Token {
         let position = input.position();
+        debug!("Start string lexing at position {}.", position);
         let mut value = String::new();
 
         if !input.has_next() {

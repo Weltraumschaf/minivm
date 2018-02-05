@@ -1,7 +1,7 @@
 use frontend::character_stream::CharacterStream;
 use frontend::character_helper::CharacterHelper;
 use frontend::token::Token;
-use frontend::token::TokenType::*;
+use frontend::token::TokenType;
 use frontend::Position;
 use frontend::lexer::character_lexer::CharacterLexer;
 use frontend::lexer::identifier_lexer::IdentifierLexer;
@@ -26,7 +26,7 @@ impl Lexer {
             input,
             current: Token::new(
                 Position::null(),
-                EOF,
+                TokenType::EOF,
                 String::from(""))
         }
     }
@@ -45,7 +45,7 @@ impl Lexer {
             let position = self.input.position();
             self.current = Token::new(
                 self.input.position(),
-                EOF,
+                TokenType::EOF,
                 String::from(""));
             return;
         }
@@ -84,24 +84,17 @@ impl Lexer {
                 // ignore white spaces
                 debug!("Current char is '{}' at {}. Ignoring whitespace.", current, position);
                 self.input.next(); // consume space
-                break;
+                continue;
             } else if CharacterHelper::is_new_line(current) {
                 debug!("Current char is '{}' at {}. Detected EOL.", current, position);
                 self.current = Token::new(
                     self.input.position(),
-                    EOL,
+                    TokenType::EOL,
                     String::from("\\n"));
                 self.input.next(); // consume \n
                 break;
             }
         }
-    }
-
-    fn default(&self) -> Token {
-        Token::new(
-            self.input.position(),
-            EOF,
-            String::from(""))
     }
 }
 
@@ -113,11 +106,29 @@ trait SubLexer {
 mod tests {
     use super::*;
     use hamcrest::prelude::*;
-
-    fn crete_sut(input: &str) -> Lexer {
-        Lexer::new(CharacterStream::new(String::from(input)))
-    }
+    use frontend::token::Keyword;
 
     #[test]
-    fn next() {}
+    fn lex_source() {
+        let mut src = CharacterStream::new(String::from("var s = \"Hello, World!\"\n
+var x = 1\n
+var y = 2\n
+z = x + y\n
+println(z)\n"));
+        let mut sut = Lexer::new(src);
+
+        sut.next();
+        let mut expected = Token::new(
+            Position::new(1, 1),
+            TokenType::KEYWORD(Keyword::VAR),
+            String::from("var"));
+        assert_that!(sut.current(), is(equal_to(&expected)));
+
+        sut.next();
+        expected = Token::new(
+            Position::new(1, 5),
+            TokenType::IDENTIFIER(String::from("s")),
+            String::from("s"));
+        assert_that!(sut.current(), is(equal_to(&expected)));
+    }
 }

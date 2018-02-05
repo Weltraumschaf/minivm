@@ -38,6 +38,7 @@ impl IdentifierLexer {
 impl SubLexer for IdentifierLexer {
     fn scan(&self, input: &mut CharacterStream) -> Token {
         let position = input.position();
+        debug!("Start identifier lexing at position {}.", position);
         let literal = self.collect_alpha_numeric_characters(input);
 
         match literal.as_str() {

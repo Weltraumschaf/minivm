@@ -56,7 +56,7 @@ impl Command for ParserCommand {
                 println!("{}", token);
 
                 if &TokenType::EOF == token.get_token_type() {
-                    debug!("Got EOF token: Exitting token loop.");
+                    debug!("Got EOF token: Exiting token loop.");
                     break;
                 }
             }

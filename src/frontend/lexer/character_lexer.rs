@@ -16,6 +16,7 @@ impl CharacterLexer {
 impl SubLexer for CharacterLexer {
     fn scan(&self, input: &mut CharacterStream) -> Token {
         let position = input.position();
+        debug!("Start character lexing at position {}.", position);
 
         if !input.has_next() {
             panic!("Unterminated character literal");
