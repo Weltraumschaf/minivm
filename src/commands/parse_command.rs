@@ -45,10 +45,10 @@ impl Command for ParserCommand {
         debug!("--- source end ---");
 
         let input_stream = CharacterStream::new(content);
+        let mut lexer = Lexer::new(input_stream);
 
         if self.print_tokens {
             println!("Recognized tokens:");
-            let mut lexer = Lexer::new(input_stream);
 
             loop {
                 lexer.next();
@@ -68,7 +68,5 @@ impl Command for ParserCommand {
         if self.print_ast {
             println!("Parsed AST:")
         }
-
-
     }
 }

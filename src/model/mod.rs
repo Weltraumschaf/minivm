@@ -1,3 +1,7 @@
+pub trait AstNode {}
+
+pub struct Programm {}
+
 #[cfg(test)]
 mod tests {
     #[test]
