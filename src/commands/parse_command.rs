@@ -62,12 +62,13 @@ impl Command for ParserCommand {
             }
         }
 
+        let parser = Parser::new(lexer);
+        parser.parse();
+
         if self.print_ast {
             println!("Parsed AST:")
         }
 
 
-//        let parser = Parser::new(lexer);
-//        parser.parse();
     }
 }
