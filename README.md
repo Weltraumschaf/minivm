@@ -2,9 +2,10 @@
 
 [![Build Status](https://travis-ci.org/Weltraumschaf/minivm.svg?branch=master)](https://travis-ci.org/Weltraumschaf/minivm)
 
-A minimalistic language with virtual machine written in [Rust][rust-lang].
+A minimalistic language with virtual machine written in [Rust][rust-lang]. [How to from Terrence Parr][parr-how-to] how to write a virtual machine.
 
 The purpose of this project is to get in touch with [Rust][rust-lang].
+
 ## Source Code Syntax
 
 ### Scanner Grammar (Regular)
@@ -112,4 +113,35 @@ function_call           = IDENTIFIER LEFT_PAREN [ function_params ] RIGHT_PAREN 
 function_params         = equal_expression { "," or_expression } .
 ```
 
+## Backend
+
+### Schematic Overview of a Virtual Machine
+
+```text
+                 +------------------------------------+
+                 |                                    |
+                 | +-------+       registers +------+ |
++----------+     | |       |                 |  sp  | |
+|          |     | |  +----v----+            +------+ |
+|   data   |     | |  | fetch   |            |  fp  | |
+|  memory  <-----> |  +----+----+            +------+ |
+|          |     | |       |                 |  ip  | |
++----------+     | |  +----v----+            +------+ |
+                 | |  | decode  |                     |
+                 | |  +----+----+            +------+ |
++----------+     | |       |                 | ...  | |
+|          |     | |  +----v----+            +------+ |
+|   code   |     | |  | execute |            +------+ |
+|  memory  <-----> |  +----+----+            +------+ |
+|          |     | |       |                 +------+ |
++----------+     | +-------+           stack +------+ |
+                 |                                    |
+                 +------------------------------------+
+
+fetch:   opcode = code[ip]
+decode:  switch (opcode) { ... }
+execute: stack[++sp] = stack[sp--] + stack[sp--] (iadd instruction)
+``` 
+
 [rust-lang]:    https://www.rust-lang.org/
+[parr-how-to]:  https://www.youtube.com/watch?feature=youtu.be&v=OjaAToVkoTw
