@@ -25,7 +25,7 @@ CHARACTER   = "a" .. "z" | "A" .. "Z" .
 DIGIT       = "0" .. "9" .
 DIGITS      = DIGIT { DIGIT } .
 SIGN        = "+" | "-" .
-IDENTIFIER      =  ( CHARACTER | "_" ) { CHARACTER DIGIT } .
+IDENTIFIER  =  ( CHARACTER | "_" ) { CHARACTER DIGIT } .
 
 (* Types *)
 TRUE                = "true" .
@@ -115,33 +115,37 @@ function_params         = equal_expression { "," or_expression } .
 
 ## Backend
 
-### Schematic Overview of a Virtual Machine
+Schematic overview of a virtual machine:
 
 ```text
-                 +------------------------------------+
-                 |                                    |
-                 | +-------+       registers +------+ |
-+----------+     | |       |                 |  sp  | |
-|          |     | |  +----v----+            +------+ |
-|   data   |     | |  | fetch   |            |  fp  | |
-|  memory  <-----> |  +----+----+            +------+ |
-|          |     | |       |                 |  ip  | |
-+----------+     | |  +----v----+            +------+ |
-                 | |  | decode  |                     |
-                 | |  +----+----+            +------+ |
-+----------+     | |       |                 | ...  | |
-|          |     | |  +----v----+            +------+ |
-|   code   |     | |  | execute |            +------+ |
-|  memory  <-----> |  +----+----+            +------+ |
-|          |     | |       |                 +------+ |
-+----------+     | +-------+           stack +------+ |
-                 |                                    |
-                 +------------------------------------+
++----------+     +----------------------------------------+
+|          |     |  /--------\    registers->  +-------+  |
+|          |     |  |        |                 |   sp  |  |
+|   data   |     |  |  +-----v----+            +-------+  |
+|  memory  <----->  |  |   fetch  |            |   fp  |  |
+|          |     |  |  +-----+----+            +-------+  |
+|          |     |  |        |                 |   ip  |  |
++----------+     |  |  +-----v----+            +-------+  |
++----------+     |  |  |  decode  |                       |
+|          |     |  |  +-----+----+                ^      |
+|          |     |  |        |                     |      |
+|   code   |     |  |  +-----v----+            +-------+  |
+|  memory  <----->  |  | execute  |            +-------+  |
+|          |     |  |  +-----+----+            +-------+  |
+|          |     |  |        |                 +-------+  |
+|          |     |  \--------/         stack-> +-------+  |
++----------+     +----------------------------------------+
 
-fetch:   opcode = code[ip]
-decode:  switch (opcode) { ... }
-execute: stack[++sp] = stack[sp--] + stack[sp--] (iadd instruction)
-``` 
+sp: stack pointer
+fp: function pointer
+ip: instruction pointer
+```
+
+Example of an integer addition operation (iadd instruction):
+
+1. fetch: `opcode = code[ip]`
+1. decode: `switch (opcode) { ... }`
+1. execute: `stack[++sp] = stack[sp--] + stack[sp--]`
 
 [rust-lang]:    https://www.rust-lang.org/
 [parr-how-to]:  https://www.youtube.com/watch?feature=youtu.be&v=OjaAToVkoTw
