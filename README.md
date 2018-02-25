@@ -2,23 +2,49 @@
 
 [![Build Status](https://travis-ci.org/Weltraumschaf/minivm.svg?branch=master)](https://travis-ci.org/Weltraumschaf/minivm)
 
-A minimalistic language with virtual machine written in [Rust][rust-lang]. [How to from Terrence Parr][parr-how-to] how to write a virtual machine.
+A minimalistic language with virtual machine written in [Rust][rust-lang]. Based on [how to from Terrence Parr][parr-how-to] to write a virtual machine.
 
 The purpose of this project is to get in touch with [Rust][rust-lang].
 
-## Source Code Syntax
+## General Building Blocks
 
-### Scanner Grammar (Regular)
+In general a general purpose programming language (whether or not it is vm based) is made of three major building blocks:
 
+```text
++-------\      +----------+     +--------------+     +---------+
+|        |     |          |     |              |     |         |
+| source | --> | frontend | --> | intermediate | --> | backend |
+|        |     |          |     |              |     |         |
++--------+     +----------+     +--------------+     +---------+
 ```
+
+The frontend parses the source code and transforms it into an intermediate form (abstract syntax tree). This tree is transformed into byte code which will be executed by the backend. 
+
+## Frontend
+
+The frontend is built of a lexer for lexical analysis (token generation) and a parser to create the abstract syntax tree.
+
+### Source Code Syntax
+
+The source code syntax is defined by two grammars: one for the lexer and one for the parser. Example source:
+
+```text
+TODO
+``` 
+
+#### Lexer Grammar (Regular)
+
+The lexer grammar defines the recognised tokens:
+
+```text
 (*
-    Everything ending with _OP is an operator.
-    Everything ending with _KW is a keyword.
+  Everything ending with _OP is an operator.
+  Everything ending with _KW is a keyword.
 *)
 
 ANY             (* Any character. *)
-EOF             (* End of file. *)
-EOL = "\n" .    (* End of line. *)
+EOF             (* End of file.   *)
+EOL = "\n" .    (* End of line.   *)
 
 WS          = " " | "\n" | "\r" | "\t" .
 CHARACTER   = "a" .. "z" | "A" .. "Z" .
@@ -27,7 +53,7 @@ DIGITS      = DIGIT { DIGIT } .
 SIGN        = "+" | "-" .
 IDENTIFIER  =  ( CHARACTER | "_" ) { CHARACTER DIGIT } .
 
-(* Types *)
+(* Types: *)
 TRUE                = "true" .
 FALSE               = "false" . 
 BOOLEAN             = TRUE  | FALSE .
@@ -48,7 +74,7 @@ LEFT_BRACE      = "{" .
 RIGHT_BRACE     = "}" .
 COMMA           = "," .
     
-(* logical operators as keywrods *)
+(* Logical operators as keywords: *)
 AND_KW      = "and" .
 OR_KW       = "or" .
 NOT_KW      = "not" .
@@ -82,7 +108,7 @@ ADD_OPS     = PLUS_OP | MINUS_OP.
 MUL_OPS     = STAR_OP | SLASH_OP | MOD_OP.
 ```
 
-### Parser Grammar (Context Free)
+#### Parser Grammar (Context Free)
 
 Some definitions:
 1. Expressions always return a value.
