@@ -5,6 +5,7 @@ use frontend::character_helper::CharacterHelper;
 #[cfg(test)]
 use frontend::Position;
 
+/// Recognizes a string literal (`"str"`) token.
 pub struct StringLexer {}
 
 impl StringLexer {

@@ -5,6 +5,7 @@ use frontend::character_helper::CharacterHelper;
 #[cfg(test)]
 use frontend::Position;
 
+/// Recognizes a number literal token.
 pub struct NumberLexer {}
 
 impl NumberLexer {

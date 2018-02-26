@@ -144,7 +144,7 @@ factor                  = var_or_const_value
                         | or_expression 
                         | function_call .
 var_or_const_value      = IDENTIFIER  .
-literal_value           = BOOLEAN | INTEGER | REAL | STRING .
+literal_value           = BOOLEAN | INTEGER | REAL | STRING | CHAR .
 function_call           = IDENTIFIER LEFT_PAREN [ function_params ] RIGHT_PAREN .
 function_params         = equal_expression { "," or_expression } .
 ```

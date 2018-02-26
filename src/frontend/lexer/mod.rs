@@ -17,12 +17,14 @@ mod number_lexer;
 mod operator_lexer;
 mod string_lexer;
 
+/// Does the lexical analysis to recognize tokens from a given source character stream.
 pub struct Lexer {
     input: CharacterStream,
     current: Token,
 }
 
 impl Lexer {
+    /// Creates a new lexer.
     pub fn new(input: CharacterStream) -> Lexer {
         Lexer {
             input,
@@ -33,14 +35,19 @@ impl Lexer {
         }
     }
 
+    /// Get the input character stream.
     pub fn input(self) -> CharacterStream {
         self.input
     }
 
+    /// Get the current recognized token.
+    ///
+    /// If not yet started the lexing [EOF](frontend.TokenType.EOF) will be returned as default.
     pub fn current(&self) -> &Token {
         &self.current
     }
 
+    /// Recognizes the next token.
     pub fn next(&mut self) {
         if !self.input.has_next() {
             debug!("No more input to lex.");

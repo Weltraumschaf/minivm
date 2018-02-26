@@ -5,6 +5,7 @@ use frontend::character_helper::CharacterHelper;
 #[cfg(test)]
 use frontend::Position;
 
+/// Recognizes a character literal (`'c'`) token.
 pub struct CharacterLexer {}
 
 impl CharacterLexer {
