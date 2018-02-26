@@ -42,7 +42,7 @@ impl Lexer {
 
     /// Get the current recognized token.
     ///
-    /// If not yet started the lexing [EOF](frontend.TokenType.EOF) will be returned as default.
+    /// If not yet started the lexing [EOF](../token/enum.TokenType.html#variant.EOF) will be returned as default.
     pub fn current(&self) -> &Token {
         &self.current
     }
