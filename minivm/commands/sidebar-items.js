@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["compile_command",""],["parse_command",""],["run_command",""]],"trait":[["Command",""]]});
+initSidebarItems({"mod":[["compile_command","This module provides the various CLI command implementations."],["parse_command",""],["run_command",""]],"trait":[["Command","Trait for a command to execute."]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["character_helper",""],["character_stream",""],["lexer",""],["parser",""],["token",""]],"struct":[["Position",""]]});
+initSidebarItems({"mod":[["character_helper",""],["character_stream",""],["lexer",""],["parser",""],["token",""]],"struct":[["Position","Describes a character position in the source string."]]});

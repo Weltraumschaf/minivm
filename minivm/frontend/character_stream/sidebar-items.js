@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["CharacterStream",""]]});
+initSidebarItems({"struct":[["CharacterStream","Represents a string as stream of characters."]]});

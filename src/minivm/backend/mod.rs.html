@@ -52,12 +52,12 @@
 <span id="6">6</span>
 <span id="7">7</span>
 </pre><pre class="rust ">
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">it_works</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">2</span> <span class="op">+</span> <span class="number">2</span>, <span class="number">4</span>);
-    }
+<span class="doccomment">///! Backend module of Mini VM.</span>
+
+<span class="doccomment">/// Trait for a virtual machine.</span>
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">VirtualMachine</span> {
+    <span class="doccomment">/// Run a given program.</span>
+    <span class="kw">fn</span> <span class="ident">run</span>(<span class="self">self</span>);
 }</pre>
 </section>
     <section id='search' class="content hidden"></section>

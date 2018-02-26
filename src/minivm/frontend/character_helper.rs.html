@@ -238,30 +238,46 @@
 <span id="192">192</span>
 <span id="193">193</span>
 <span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
 </pre><pre class="rust ">
+<span class="doccomment">/// Provides several helper functions to recognize characters.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CharacterHelper</span> {}
 
 <span class="kw">impl</span> <span class="ident">CharacterHelper</span> {
+    <span class="doccomment">/// Determines if a given character is alphabetic.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_alphabetic</span>(<span class="ident">ch</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="ident">ch</span>.<span class="ident">is_alphabetic</span>()
     }
 
+    <span class="doccomment">/// Determines if a given character is numeric.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_numeric</span>(<span class="ident">ch</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="ident">ch</span>.<span class="ident">is_numeric</span>()
     }
 
+    <span class="doccomment">/// Determines if a given character is alphabetic or numeric.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_alphanumeric</span>(<span class="ident">ch</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         (<span class="ident">CharacterHelper</span>::<span class="ident">is_alphabetic</span>(<span class="ident">ch</span>) <span class="op">||</span> <span class="ident">CharacterHelper</span>::<span class="ident">is_numeric</span>(<span class="ident">ch</span>))
     }
 
+    <span class="doccomment">/// Determines if a given character is a double quote.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_double_quote</span>(<span class="ident">ch</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="ident">ch</span> <span class="op">==</span> <span class="string">&#39;&quot;&#39;</span>
     }
 
+    <span class="doccomment">/// Determines if a given character is a single quote.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_single_quote</span>(<span class="ident">ch</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="ident">ch</span> <span class="op">==</span> <span class="string">&#39;\&#39;&#39;</span>
     }
 
+    <span class="doccomment">/// Determines if a given character is an operator.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_operator</span>(<span class="ident">ch</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="ident">ch</span> <span class="op">==</span> <span class="string">&#39;+&#39;</span> <span class="op">||</span>
             <span class="ident">ch</span> <span class="op">==</span> <span class="string">&#39;-&#39;</span> <span class="op">||</span>
@@ -281,10 +297,12 @@
             <span class="ident">ch</span> <span class="op">==</span> <span class="string">&#39;]&#39;</span>
     }
 
+    <span class="doccomment">/// Determines if a given character is a white space.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_white_space</span>(<span class="ident">ch</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="ident">ch</span> <span class="op">==</span> <span class="string">&#39; &#39;</span> <span class="op">||</span> <span class="ident">ch</span> <span class="op">==</span> <span class="string">&#39;\t&#39;</span>
     }
 
+    <span class="doccomment">/// Determines if a given character is a new line.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_new_line</span>(<span class="ident">ch</span>: <span class="ident">char</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
         <span class="ident">ch</span> <span class="op">==</span> <span class="string">&#39;\n&#39;</span>
     }

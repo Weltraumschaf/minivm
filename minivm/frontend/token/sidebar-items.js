@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["END_OF_FILE",""]],"enum":[["Keyword",""],["Operator",""],["TokenType",""]],"struct":[["Token",""]]});
+initSidebarItems({"constant":[["END_OF_FILE","Sentinel to indicate end of file."]],"enum":[["Keyword","Reserved keywords."],["Operator","Available operators."],["TokenType","Types of tokens."]],"struct":[["Token","Defines a recognized token in the source."]]});

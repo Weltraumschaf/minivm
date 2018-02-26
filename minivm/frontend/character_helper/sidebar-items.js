@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["CharacterHelper",""]]});
+initSidebarItems({"struct":[["CharacterHelper","Provides several helper functions to recognize characters."]]});
