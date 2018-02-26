@@ -2,7 +2,7 @@
 use intermediate::ast::*;
 
 pub trait Visitor<T> {
-    fn visit_name(&mut self, n: &Name) -> T;
-    fn visit_stmt(&mut self, s: &Stmt) -> T;
-    fn visit_expr(&mut self, e: &Expr) -> T;
+    fn visit_identifier(&mut self, n: &Identifier) -> T;
+    fn visit_statement(&mut self, s: &Statement) -> T;
+    fn visit_expression(&mut self, e: &Expression) -> T;
 }

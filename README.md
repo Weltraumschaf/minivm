@@ -29,7 +29,13 @@ The frontend is built of a lexer for lexical analysis (token generation) and a p
 The source code syntax is defined by two grammars: one for the lexer and one for the parser. Example source:
 
 ```text
-TODO
+var s = "Hello, World!"
+println(s)
+
+var x = 1
+var y = 2
+z = x + y
+println(z)
 ``` 
 
 #### Lexer Grammar (Regular)

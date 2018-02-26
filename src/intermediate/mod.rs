@@ -8,21 +8,23 @@ use intermediate::ast::*;
 
 // An example concrete implementation - walks the AST interpreting it as code.
 struct Interpreter;
+
 impl Visitor<i64> for Interpreter {
-    fn visit_name(&mut self, n: &Name) -> i64 { panic!() }
-    fn visit_stmt(&mut self, s: &Stmt) -> i64 {
+    fn visit_identifier(&mut self, n: &Identifier) -> i64 { panic!() }
+
+    fn visit_statement(&mut self, s: &Statement) -> i64 {
         match *s {
-            Stmt::Expr(ref e) => self.visit_expr(e),
-            Stmt::Let(..) => unimplemented!(),
+            Statement::Expression(ref e) => self.visit_expression(e),
+            Statement::Assignment(..) => unimplemented!(),
         }
     }
 
-    fn visit_expr(&mut self, e: &Expr) -> i64 {
+    fn visit_expression(&mut self, e: &Expression) -> i64 {
         match *e {
-            Expr::Integer(n) => n,
-            Expr::Addition(ref lhs, ref rhs) => self.visit_expr(lhs) + self.visit_expr(rhs),
-            Expr::Subtraction(ref lhs, ref rhs) => self.visit_expr(lhs) - self.visit_expr(rhs),
-            _ => panic!("Not implemented!"),
+            Expression::Integer(n) => n,
+            Expression::Addition(ref lhs, ref rhs) => self.visit_expression(lhs) + self.visit_expression(rhs),
+            Expression::Subtraction(ref lhs, ref rhs) => self.visit_expression(lhs) - self.visit_expression(rhs),
+            _ => unimplemented!(),
         }
     }
 }
