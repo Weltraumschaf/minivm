@@ -16,14 +16,16 @@ impl Visitor<i64> for Interpreter {
         match *s {
             Statement::Expression(ref e) => self.visit_expression(e),
             Statement::Assignment(..) => unimplemented!(),
+            _ => unimplemented!(),
         }
     }
 
     fn visit_expression(&mut self, e: &Expression) -> i64 {
         match *e {
             Expression::Integer(n) => n,
-            Expression::Addition(ref lhs, ref rhs) => self.visit_expression(lhs) + self.visit_expression(rhs),
-            Expression::Subtraction(ref lhs, ref rhs) => self.visit_expression(lhs) - self.visit_expression(rhs),
+            Expression::BinaryOperation(ref op, ref lhs, ref rhs) => {
+                self.visit_expression(lhs) + self.visit_expression(rhs)
+            },
             _ => unimplemented!(),
         }
     }

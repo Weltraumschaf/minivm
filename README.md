@@ -125,8 +125,12 @@ Some definitions:
 (* A statement is one line of source. *)
 programm                = statement EOL { statement EOL } EOF . 
 statement               = assignment
+                        | constant
+                        | variable
                         | or_expression .
-assignment              = variable ASSIGN_OP or_expression .
+assignment              = IDENTIFIER ASSIGN_OP or_expression .
+constant                = CONST_KW assignment .
+variable                = VAR_KW ( IDENTIFIER | assignment ) .  
 or_expression           = and_expression { OR_KW and_expression } .
 and_expression          = equal_expression { AND_KW equal_expression } .
 equal_expression        = relation_expression { EQ_OPS relation_expression } .
