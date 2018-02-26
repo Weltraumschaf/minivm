@@ -1,35 +1,9 @@
 // https://github.com/rust-unofficial/patterns/blob/master/patterns/visitor.md
 
-// The data we will visit
-mod ast {
-    pub enum Stmt {
-        Expr(Expr),
-        Let(Name, Expr),
-    }
+mod ast;
+mod visitor;
 
-    pub struct Name {
-        value: String,
-    }
-
-    pub enum Expr {
-        IntLit(i64),
-        Add(Box<Expr>, Box<Expr>),
-        Sub(Box<Expr>, Box<Expr>),
-    }
-}
-
-// The abstract visitor
-mod visit {
-    use intermediate::ast::*;
-
-    pub trait Visitor<T> {
-        fn visit_name(&mut self, n: &Name) -> T;
-        fn visit_stmt(&mut self, s: &Stmt) -> T;
-        fn visit_expr(&mut self, e: &Expr) -> T;
-    }
-}
-
-use intermediate::visit::*;
+use intermediate::visitor::*;
 use intermediate::ast::*;
 
 // An example concrete implementation - walks the AST interpreting it as code.
@@ -45,9 +19,10 @@ impl Visitor<i64> for Interpreter {
 
     fn visit_expr(&mut self, e: &Expr) -> i64 {
         match *e {
-            Expr::IntLit(n) => n,
-            Expr::Add(ref lhs, ref rhs) => self.visit_expr(lhs) + self.visit_expr(rhs),
-            Expr::Sub(ref lhs, ref rhs) => self.visit_expr(lhs) - self.visit_expr(rhs),
+            Expr::Integer(n) => n,
+            Expr::Addition(ref lhs, ref rhs) => self.visit_expr(lhs) + self.visit_expr(rhs),
+            Expr::Subtraction(ref lhs, ref rhs) => self.visit_expr(lhs) - self.visit_expr(rhs),
+            _ => panic!("Not implemented!"),
         }
     }
 }
