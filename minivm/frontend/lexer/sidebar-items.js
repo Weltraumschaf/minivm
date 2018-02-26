@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Lexer",""]]});
+initSidebarItems({"struct":[["Lexer","Does the lexical analysis to recognize tokens from a given source character stream."]]});
