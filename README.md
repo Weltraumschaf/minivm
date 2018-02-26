@@ -92,7 +92,7 @@ VAR_KW      = "var" .
 
 ASSIGN_OP   = "=" .
 
-(* compare operators *)
+(* Compare operators: *)
 EQUAL_OP                = "==" .
 NOT_EQUAL_OP            = "!=" .
 EQ_OPS                  = EQUAL_OP | NOT_EQUAL_OP . 
@@ -104,7 +104,7 @@ GREATER_THAN_EQUAL_OP   = ">=" .
 REL_OPS                 = LESS_THAN_OP | LESS_THAN_EQUAL_OP
                         | GREATER_THAN_OP | GREATER_THAN_EQUAL_OP .
 
-(* math operators *)
+(* Math operators: *)
 PLUS_OP     = "+" .
 MINUS_OP    = "-" .
 STAR_OP     = "*" .
@@ -121,9 +121,9 @@ Some definitions:
 1. Statements does not return a value.
 1. Statements/expressions are terminated by new line.
 
-```
+```text
 (* A statement is one line of source. *)
-programm                = statement EOL { statement EOL } EOF . 
+program                 = statement EOL { statement EOL } EOF . 
 statement               = assignment
                         | constant
                         | variable
