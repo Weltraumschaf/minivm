@@ -7,7 +7,7 @@ extern crate log;
 mod backend;
 pub mod commands;
 pub mod frontend;
-mod model;
+mod intermediate;
 
 pub fn error(msg: &str) {
     println!("ERROR: {}", msg);
