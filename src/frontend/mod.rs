@@ -1,3 +1,5 @@
+///! frontend module of Mini VM.
+
 use std::fmt;
 
 pub mod character_stream;
@@ -6,6 +8,7 @@ pub mod lexer;
 pub mod parser;
 pub mod token;
 
+/// Describes a character position in the source string.
 #[derive(Debug, PartialEq)]
 pub struct Position {
     line: u64,
@@ -13,14 +16,17 @@ pub struct Position {
 }
 
 impl Position {
+    /// Returns a null object.
     fn null() -> Position {
         Position::new(0, 0)
     }
 
+    /// Creates a new position.
     fn new(line: u64, column: u64) -> Position {
         Position { line, column }
     }
 
+    /// Checks if the position is at the given one.
     fn at(&self, p: Position) -> bool {
         p.line == self.line && p.column == self.column
     }

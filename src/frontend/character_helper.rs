@@ -1,26 +1,33 @@
+/// Provides several helper functions to recognize characters.
 pub struct CharacterHelper {}
 
 impl CharacterHelper {
+    /// Determines if a given character is alphabetic.
     pub fn is_alphabetic(ch: char) -> bool {
         ch.is_alphabetic()
     }
 
+    /// Determines if a given character is numeric.
     pub fn is_numeric(ch: char) -> bool {
         ch.is_numeric()
     }
 
+    /// Determines if a given character is alphabetic or numeric.
     pub fn is_alphanumeric(ch: char) -> bool {
         (CharacterHelper::is_alphabetic(ch) || CharacterHelper::is_numeric(ch))
     }
 
+    /// Determines if a given character is a double quote.
     pub fn is_double_quote(ch: char) -> bool {
         ch == '"'
     }
 
+    /// Determines if a given character is a single quote.
     pub fn is_single_quote(ch: char) -> bool {
         ch == '\''
     }
 
+    /// Determines if a given character is an operator.
     pub fn is_operator(ch: char) -> bool {
         ch == '+' ||
             ch == '-' ||
@@ -40,10 +47,12 @@ impl CharacterHelper {
             ch == ']'
     }
 
+    /// Determines if a given character is a white space.
     pub fn is_white_space(ch: char) -> bool {
         ch == ' ' || ch == '\t'
     }
 
+    /// Determines if a given character is a new line.
     pub fn is_new_line(ch: char) -> bool {
         ch == '\n'
     }

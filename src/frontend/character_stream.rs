@@ -1,5 +1,6 @@
 use frontend::Position;
 
+/// Represents a string as stream of characters.
 #[derive(Debug)]
 pub struct CharacterStream {
     input: String,
@@ -10,6 +11,7 @@ pub struct CharacterStream {
 }
 
 impl CharacterStream {
+    /// Creates a new stream.
     pub fn new(input: String) -> CharacterStream {
         CharacterStream {
             input,
@@ -20,6 +22,7 @@ impl CharacterStream {
         }
     }
 
+    /// Move to the next character.
     pub fn next(&mut self) {
         if !self.has_next() {
             return;
@@ -45,10 +48,12 @@ impl CharacterStream {
         }
     }
 
+    /// Check if there is a next character.
     pub fn has_next(&self) -> bool {
         self.index < self.input.len()
     }
 
+    /// Get the character at the streams current position.
     pub fn current(&mut self) -> char {
         match self.input.chars().nth(self.index) {
             Some(ch) => ch,
@@ -56,6 +61,7 @@ impl CharacterStream {
         }
     }
 
+    /// Get the next character without moving to it.
     pub fn peek(&mut self) -> char {
         let index_backup = self.index;
         self.next();
@@ -64,6 +70,7 @@ impl CharacterStream {
         peeked
     }
 
+    /// Get the position of the current character.
     pub fn position(&self) -> Position {
         Position { line: self.line, column: self.column }
     }

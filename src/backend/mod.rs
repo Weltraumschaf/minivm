@@ -1,7 +1,7 @@
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
+///! Backend module of Mini VM.
+
+/// Trait for a virtual machine.
+pub trait VirtualMachine {
+    /// Run a given program.
+    fn run(self);
 }

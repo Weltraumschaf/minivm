@@ -1,3 +1,5 @@
+///! The main module of Mini VM.
+
 #[cfg(test)]
 #[macro_use]
 extern crate hamcrest;
@@ -9,7 +11,7 @@ pub mod commands;
 pub mod frontend;
 mod intermediate;
 
-/// Prints custom error message to STDERR.`
+/// Prints custom error message to STDERR.
 pub fn error(msg: &str) {
     eprintln!("ERROR: {}", msg);
 }

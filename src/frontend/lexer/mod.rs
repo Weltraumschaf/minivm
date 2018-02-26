@@ -1,3 +1,5 @@
+///! This module provides various lexers.
+
 use frontend::character_stream::CharacterStream;
 use frontend::character_helper::CharacterHelper;
 use frontend::token::Token;
