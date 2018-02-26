@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["CompileCommand",""]]});
+initSidebarItems({"struct":[["CompileCommand","Command to compile to byte code."]]});

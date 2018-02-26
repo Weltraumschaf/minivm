@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["RunCommand",""]]});
+initSidebarItems({"struct":[["RunCommand","Command to run byte code."]]});
