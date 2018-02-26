@@ -1,5 +1,6 @@
 use commands::Command;
 
+/// Command to run byte code.
 pub struct RunCommand {
     file: String,
 }

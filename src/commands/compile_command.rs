@@ -1,5 +1,6 @@
 use commands::Command;
 
+/// Command to compile to byte code.
 pub struct CompileCommand {
     file: String,
 }

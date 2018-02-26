@@ -7,6 +7,7 @@ use frontend::token::TokenType;
 use commands::Command;
 use error;
 
+/// Command t oparse source.
 pub struct ParserCommand {
     file: String,
     print_tokens: bool,
