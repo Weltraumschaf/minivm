@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `TokenType` enum in crate `minivm`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, TokenType">
+
+    <title>minivm::frontend::token::TokenType - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc enum">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
+        
+        <p class='location'>Enum TokenType</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#variants">Variants</a><div class="sidebar-links"><a href="#variant.INTEGER">INTEGER</a><a href="#variant.REAL">REAL</a><a href="#variant.BOOL">BOOL</a><a href="#variant.STRING">STRING</a><a href="#variant.CHARACTER">CHARACTER</a><a href="#variant.KEYWORD">KEYWORD</a><a href="#variant.IDENTIFIER">IDENTIFIER</a><a href="#variant.L_PAREN">L_PAREN</a><a href="#variant.R_PAREN">R_PAREN</a><a href="#variant.L_BRACE">L_BRACE</a><a href="#variant.R_BRACE">R_BRACE</a><a href="#variant.L_BRACK">L_BRACK</a><a href="#variant.R_BRACK">R_BRACK</a><a href="#variant.COMMA">COMMA</a><a href="#variant.OPERATOR">OPERATOR</a><a href="#variant.EOL">EOL</a><a href="#variant.EOF">EOF</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Debug">Debug</a><a href="#impl-PartialEq">PartialEq</a><a href="#impl-Display">Display</a></div></div><p class='location'><a href='../../index.html'>minivm</a>::<wbr><a href='../index.html'>frontend</a>::<wbr><a href='index.html'>token</a></p><script>window.sidebarCurrent = {name: 'TokenType', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../../index.html'>minivm</a>::<wbr><a href='../index.html'>frontend</a>::<wbr><a href='index.html'>token</a>::<wbr><a class="enum" href=''>TokenType</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../../src/minivm/frontend/token.rs.html#30-53' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum TokenType {
+    INTEGER(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>),
+    REAL(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>),
+    BOOL(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>),
+    STRING(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>),
+    CHARACTER(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.char.html">char</a>),
+    KEYWORD(<a class="enum" href="../../../minivm/frontend/token/enum.Keyword.html" title="enum minivm::frontend::token::Keyword">Keyword</a>),
+    IDENTIFIER(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>),
+    L_PAREN,
+    R_PAREN,
+    L_BRACE,
+    R_BRACE,
+    L_BRACK,
+    R_BRACK,
+    COMMA,
+    OPERATOR(<a class="enum" href="../../../minivm/frontend/token/enum.Operator.html" title="enum minivm::frontend::token::Operator">Operator</a>),
+    EOL,
+    EOF,
+}</pre><h2 id='variants' class='variants small-section-header'>
+                   Variants<a href='#variants' class='anchor'></a></h2>
+<span id="variant.INTEGER" class="variant small-section-header"><a href="#variant.INTEGER" class="anchor field"></a><span id='INTEGER.v' class='invisible'><code>INTEGER(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i64.html">i64</a>)</code></span></span><span id="variant.REAL" class="variant small-section-header"><a href="#variant.REAL" class="anchor field"></a><span id='REAL.v' class='invisible'><code>REAL(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</code></span></span><span id="variant.BOOL" class="variant small-section-header"><a href="#variant.BOOL" class="anchor field"></a><span id='BOOL.v' class='invisible'><code>BOOL(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code></span></span><span id="variant.STRING" class="variant small-section-header"><a href="#variant.STRING" class="anchor field"></a><span id='STRING.v' class='invisible'><code>STRING(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>)</code></span></span><span id="variant.CHARACTER" class="variant small-section-header"><a href="#variant.CHARACTER" class="anchor field"></a><span id='CHARACTER.v' class='invisible'><code>CHARACTER(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.char.html">char</a>)</code></span></span><span id="variant.KEYWORD" class="variant small-section-header"><a href="#variant.KEYWORD" class="anchor field"></a><span id='KEYWORD.v' class='invisible'><code>KEYWORD(<a class="enum" href="../../../minivm/frontend/token/enum.Keyword.html" title="enum minivm::frontend::token::Keyword">Keyword</a>)</code></span></span><span id="variant.IDENTIFIER" class="variant small-section-header"><a href="#variant.IDENTIFIER" class="anchor field"></a><span id='IDENTIFIER.v' class='invisible'><code>IDENTIFIER(<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>)</code></span></span><span id="variant.L_PAREN" class="variant small-section-header"><a href="#variant.L_PAREN" class="anchor field"></a><span id='L_PAREN.v' class='invisible'><code>L_PAREN</code></span></span><span id="variant.R_PAREN" class="variant small-section-header"><a href="#variant.R_PAREN" class="anchor field"></a><span id='R_PAREN.v' class='invisible'><code>R_PAREN</code></span></span><span id="variant.L_BRACE" class="variant small-section-header"><a href="#variant.L_BRACE" class="anchor field"></a><span id='L_BRACE.v' class='invisible'><code>L_BRACE</code></span></span><span id="variant.R_BRACE" class="variant small-section-header"><a href="#variant.R_BRACE" class="anchor field"></a><span id='R_BRACE.v' class='invisible'><code>R_BRACE</code></span></span><span id="variant.L_BRACK" class="variant small-section-header"><a href="#variant.L_BRACK" class="anchor field"></a><span id='L_BRACK.v' class='invisible'><code>L_BRACK</code></span></span><span id="variant.R_BRACK" class="variant small-section-header"><a href="#variant.R_BRACK" class="anchor field"></a><span id='R_BRACK.v' class='invisible'><code>R_BRACK</code></span></span><span id="variant.COMMA" class="variant small-section-header"><a href="#variant.COMMA" class="anchor field"></a><span id='COMMA.v' class='invisible'><code>COMMA</code></span></span><span id="variant.OPERATOR" class="variant small-section-header"><a href="#variant.OPERATOR" class="anchor field"></a><span id='OPERATOR.v' class='invisible'><code>OPERATOR(<a class="enum" href="../../../minivm/frontend/token/enum.Operator.html" title="enum minivm::frontend::token::Operator">Operator</a>)</code></span></span><span id="variant.EOL" class="variant small-section-header"><a href="#variant.EOL" class="anchor field"></a><span id='EOL.v' class='invisible'><code>EOL</code></span></span><span id="variant.EOF" class="variant small-section-header"><a href="#variant.EOF" class="anchor field"></a><span id='EOF.v' class='invisible'><code>EOF</code></span></span>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Debug' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="enum" href="../../../minivm/frontend/token/enum.TokenType.html" title="enum minivm::frontend::token::TokenType">TokenType</a></code><a href='#impl-Debug' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/token.rs.html#29' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/token.rs.html#29' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>
+</div></div><h3 id='impl-PartialEq' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html" title="trait core::cmp::PartialEq">PartialEq</a> for <a class="enum" href="../../../minivm/frontend/token/enum.TokenType.html" title="enum minivm::frontend::token::TokenType">TokenType</a></code><a href='#impl-PartialEq' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/token.rs.html#29' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class="method"><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class="enum" href="../../../minivm/frontend/token/enum.TokenType.html" title="enum minivm::frontend::token::TokenType">TokenType</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/token.rs.html#29' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class="method"><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class="enum" href="../../../minivm/frontend/token/enum.TokenType.html" title="enum minivm::frontend::token::TokenType">TokenType</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/token.rs.html#29' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 id='impl-Display' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html" title="trait core::fmt::Display">Display</a> for <a class="enum" href="../../../minivm/frontend/token/enum.TokenType.html" title="enum minivm::frontend::token::TokenType">TokenType</a></code><a href='#impl-Display' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/token.rs.html#56-60' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt-1' class="method"><span id='fmt.v-1' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/token.rs.html#57-59' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html#tymethod.fmt">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "minivm";
+    </script>
+    <script src="../../../main.js"></script>
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>
