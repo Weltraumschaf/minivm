@@ -9,8 +9,9 @@ pub mod commands;
 pub mod frontend;
 mod intermediate;
 
+/// Prints custom error message to STDERR.
 pub fn error(msg: &str) {
-    println!("ERROR: {}", msg);
+    eprintln!("ERROR: {}", msg);
 }
 
 #[cfg(test)]
