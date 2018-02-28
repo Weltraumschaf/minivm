@@ -18,11 +18,11 @@ In general a general purpose programming language (whether or not it is vm based
 +--------+     +----------+     +--------------+     +---------+
 ```
 
-The frontend parses the source code and transforms it into an intermediate form (abstract syntax tree). This tree is transformed into byte code which will be executed by the backend. 
+The frontend parses the source code and transforms it into an intermediate form (abstract syntax tree). This tree is transformed into byte code which will be executed by the backend.
 
 ## Frontend
 
-The frontend is built of a lexer for lexical analysis (token generation) and a parser to create the abstract syntax tree.
+The frontend is built of a lexer for lexical analysis (token generation) and a parser to create the abstract syntax tree. It's purpose is to transform the givne source code into an intermediate model (abstract syntax tree).
 
 ### Source Code Syntax
 
@@ -36,7 +36,7 @@ var x = 1
 var y = 2
 z = x + y
 println(z)
-``` 
+```
 
 #### Lexer Grammar (Regular)
 
@@ -61,7 +61,7 @@ IDENTIFIER  =  ( CHARACTER | "_" ) { CHARACTER DIGIT } .
 
 (* Types: *)
 TRUE                = "true" .
-FALSE               = "false" . 
+FALSE               = "false" .
 BOOLEAN             = TRUE  | FALSE .
 INTEGER             = { SIGN } DIGITS .
 REAL                = { SIGN } DIGITS "." { DIGITS } { EXPONENT_PART }
@@ -79,7 +79,7 @@ RIGHT_BRACKET   = "]" .
 LEFT_BRACE      = "{" .
 RIGHT_BRACE     = "}" .
 COMMA           = "," .
-    
+
 (* Logical operators as keywords: *)
 AND_KW      = "and" .
 OR_KW       = "or" .
@@ -95,7 +95,7 @@ ASSIGN_OP   = "=" .
 (* Compare operators: *)
 EQUAL_OP                = "==" .
 NOT_EQUAL_OP            = "!=" .
-EQ_OPS                  = EQUAL_OP | NOT_EQUAL_OP . 
+EQ_OPS                  = EQUAL_OP | NOT_EQUAL_OP .
 
 LESS_THAN_OP            = "<" .
 LESS_THAN_EQUAL_OP      = "<=" .
@@ -116,21 +116,24 @@ MUL_OPS     = STAR_OP | SLASH_OP | MOD_OP.
 
 #### Parser Grammar (Context Free)
 
+The parser grammar defines the semantic structure of the recognized tokens and how to build a abstract syntax tree from it.
+
 Some definitions:
+
 1. Expressions always return a value.
 1. Statements does not return a value.
 1. Statements/expressions are terminated by new line.
 
 ```text
 (* A statement is one line of source. *)
-program                 = statement EOL { statement EOL } EOF . 
+program                 = statement EOL { statement EOL } EOF .
 statement               = assignment
                         | constant
                         | variable
                         | or_expression .
 assignment              = IDENTIFIER ASSIGN_OP or_expression .
 constant                = CONST_KW assignment .
-variable                = VAR_KW ( IDENTIFIER | assignment ) .  
+variable                = VAR_KW ( IDENTIFIER | assignment ) .
 or_expression           = and_expression { OR_KW and_expression } .
 and_expression          = equal_expression { AND_KW equal_expression } .
 equal_expression        = relation_expression { EQ_OPS relation_expression } .
@@ -139,9 +142,9 @@ simple_expression       = term { ADD_OPS term } .
 term                    = factor { MUL_OPS factor } .
 factor                  = var_or_const_value
                         | literal_value
-                        | LEFT_PAREN simple_expression RIGHT_PAREN 
+                        | LEFT_PAREN simple_expression RIGHT_PAREN
                         | NOT_KW factor
-                        | or_expression 
+                        | or_expression
                         | function_call .
 var_or_const_value      = IDENTIFIER  .
 literal_value           = BOOLEAN | INTEGER | REAL | STRING | CHAR .
@@ -149,9 +152,80 @@ function_call           = IDENTIFIER LEFT_PAREN [ function_params ] RIGHT_PAREN 
 function_params         = equal_expression { "," or_expression } .
 ```
 
+## Intermediate
+
+The intermediate part defines the building blocks of the abstract syntax tree (AST). It also provides visitors to walk the AST.
+
+### Some Examples
+
+#### Simple Math Expression
+
+The given source code:
+
+```text
+1 + 2 * 3
+```
+
+produces the tokens:
+
+```text
+<INTEGER(1) '1' [1, 1]>
+<OPERATOR(PLUS) '+' [1, 3]>
+<INTEGER(2) '2' [1, 5]>
+<OPERATOR(STAR) '*' [1, 7]>
+<INTEGER(3) '3' [1, 9]>
+<EOL '\n' [1, 10]>
+<EOF '' [2, 1]>
+```
+
+and the AST:
+
+```text
+   (+)
+   / \
+ (1) (*)
+     / \
+   (2) (3)
+```
+
+#### Variable Declaration with Initialization
+
+The given source code:
+
+```text
+var x = 1 + 2
+```
+
+produces the tokens:
+
+```text
+<KEYWORD(VAR) 'var' [1, 1]>
+<IDENTIFIER("x") 'x' [1, 5]>
+<OPERATOR(ASSIGN) '=' [1, 7]>
+<INTEGER(1) '1' [1, 9]>
+<OPERATOR(PLUS) '+' [1, 11]>
+<INTEGER(2) '2' [1, 13]>
+<EOL '\n' [1, 14]>
+<EOF '' [2, 1]>
+```
+
+and the AST:
+
+```text
+      (=)
+      / \
+(var x) (+)
+        / \
+      (1) (2)
+```
+
 ## Backend
 
-Schematic overview of a virtual machine:
+The backend is responsible for executing the program.
+
+### Virtual Machine
+
+A virtual machine is an idealized abstraction of a general CPU. Schematic overview of a virtual machine:
 
 ```text
 +----------+     +----------------------------------------+
