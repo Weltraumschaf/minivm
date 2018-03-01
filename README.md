@@ -6,6 +6,8 @@ A minimalistic language with virtual machine written in [Rust][rust-lang]. Based
 
 The purpose of this project is to get in touch with [Rust][rust-lang].
 
+The crate doc is [here][crate-doc].
+
 ## General Building Blocks
 
 In general a general purpose programming language (whether or not it is vm based) is made of three major building blocks:
@@ -259,3 +261,4 @@ Example of an integer addition operation (iadd instruction):
 
 [rust-lang]:    https://www.rust-lang.org/
 [parr-how-to]:  https://www.youtube.com/watch?feature=youtu.be&v=OjaAToVkoTw
+[crate-doc]:    https://weltraumschaf.github.io/minivm/minivm/index.html
