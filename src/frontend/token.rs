@@ -94,6 +94,12 @@ impl Keyword {
     }
 }
 
+impl fmt::Display for Keyword {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
 /// Available operators.
 #[derive(Debug, PartialEq)]
 pub enum Operator {
@@ -111,4 +117,10 @@ pub enum Operator {
     STAR,
     SLASH,
     MOD,
+}
+
+impl fmt::Display for Operator {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
 }

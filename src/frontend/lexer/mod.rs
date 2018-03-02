@@ -105,6 +105,10 @@ impl Lexer {
             }
         }
     }
+
+    pub fn peek(&self) -> &Token {
+        unimplemented!();
+    }
 }
 
 trait SubLexer {
