@@ -1,6 +1,6 @@
 # A Mini Virtual Machine
 
-[![Build Status](https://travis-ci.org/Weltraumschaf/minivm.svg?branch=master)](https://travis-ci.org/Weltraumschaf/minivm)
+[![Build Status][travis-badge]][travis-project] [![codecov][codecov-badge]][codecov-project]
 
 A minimalistic language with virtual machine written in [Rust][rust-lang]. Based on [how to from Terrence Parr][parr-how-to] to write a virtual machine.
 
@@ -259,6 +259,10 @@ Example of an integer addition operation (iadd instruction):
 1. decode: `switch (opcode) { ... }`
 1. execute: `stack[++sp] = stack[sp--] + stack[sp--]`
 
-[rust-lang]:    https://www.rust-lang.org/
-[parr-how-to]:  https://www.youtube.com/watch?feature=youtu.be&v=OjaAToVkoTw
-[crate-doc]:    https://weltraumschaf.github.io/minivm/minivm/index.html
+[travis-project]:   https://travis-ci.org/Weltraumschaf/minivm
+[travis-badge]:     https://travis-ci.org/Weltraumschaf/minivm.svg?branch=master
+[codecov-project]:  https://codecov.io/gh/Weltraumschaf/minivm
+[codecov-badge]:    https://codecov.io/gh/Weltraumschaf/minivm/branch/master/graph/badge.svg
+[rust-lang]:        https://www.rust-lang.org/
+[parr-how-to]:      https://www.youtube.com/watch?feature=youtu.be&v=OjaAToVkoTw
+[crate-doc]:        https://weltraumschaf.github.io/minivm/minivm/index.html
