@@ -68,31 +68,33 @@ fn translate(asm: Vec<Vec<String>>) -> Vec<u8> {
         }
 
         if let Some((mnemonic, arguments)) = line.split_first() {
-            match mnemonic.as_str() {
-                "ipush" => {
+            let mnemonic = mnemonic.parse::<Instruction>().unwrap();
+
+            match mnemonic {
+                Instruction::IPush => {
                     if arguments.len() != 1 {
                         panic!("Expecting exactly one argument for ipush!");
                     }
 
-                    buffer.push(u8::from(Instruction::IPush));
+                    buffer.push(u8::from(mnemonic));
                     let int = arguments[0].replace("_", "")
                         .parse::<i64>()
                         .expect("Bad integer given!");
                     buffer.write_i64::<BigEndian>(int).unwrap();
                 },
-                "iadd" => {
+                Instruction::IAdd => {
                     if arguments.len() != 0 {
                         panic!("Expecting exactly zero arguments for iadd!");
                     }
 
-                    buffer.push(u8::from(Instruction::IAdd));
+                    buffer.push(u8::from(mnemonic));
                 },
-                "print" => {
+                Instruction::Print => {
                     if arguments.len() != 0 {
                         panic!("Expecting exactly zero arguments for print!");
                     }
 
-                    buffer.push(u8::from(Instruction::Print));
+                    buffer.push(u8::from(mnemonic));
                 },
                 _ => panic!(format!("Unrecognized mnemonic '{}'!", mnemonic)),
             }
