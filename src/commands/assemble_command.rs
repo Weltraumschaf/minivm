@@ -20,7 +20,7 @@ impl AssembleCommand {
 impl Command for AssembleCommand {
     fn execute(&self) {
         let source_file = Path::new(&self.file);
-        let base_file_name = &source_file.file_stem().unwrap();
+        let base_file_name = source_file.file_stem().unwrap();
         let target_file = &format!("{}.mcode", base_file_name.to_str().unwrap());
         let target_file = Path::new(target_file);
         println!("Assemble file {:?} to {:?} ...", &source_file, &target_file);
