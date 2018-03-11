@@ -1,5 +1,4 @@
 ///! The main module of Mini VM.
-
 #[cfg(test)]
 #[macro_use]
 extern crate hamcrest;

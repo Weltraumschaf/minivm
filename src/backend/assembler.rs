@@ -60,7 +60,7 @@ fn split_line(line: &str) -> Vec<String> {
 }
 
 fn translate(asm: Vec<Vec<String>>) -> Vec<u8> {
-    let mut buffer = Vec::new();
+    let mut buffer: Vec<u8> = Vec::new();
 
     for line in asm {
         if line.is_empty() {
@@ -74,7 +74,7 @@ fn translate(asm: Vec<Vec<String>>) -> Vec<u8> {
                         panic!("Expecting exactly one argument for ipush!");
                     }
 
-                    buffer.push(Instruction::IPush as u8);
+                    buffer.push(u8::from(Instruction::IPush));
                     let int = arguments[0].replace("_", "")
                         .parse::<i64>()
                         .expect("Bad integer given!");
@@ -85,14 +85,14 @@ fn translate(asm: Vec<Vec<String>>) -> Vec<u8> {
                         panic!("Expecting exactly zero arguments for iadd!");
                     }
 
-                    buffer.push(Instruction::IAdd as u8);
+                    buffer.push(u8::from(Instruction::IAdd));
                 },
                 "print" => {
                     if arguments.len() != 0 {
                         panic!("Expecting exactly zero arguments for print!");
                     }
 
-                    buffer.push(Instruction::Print as u8);
+                    buffer.push(u8::from(Instruction::Print));
                 },
                 _ => panic!(format!("Unrecognized mnemonic '{}'!", mnemonic)),
             }
@@ -109,7 +109,7 @@ mod tests {
 
     #[test]
     fn assemble() {
-        let sut = Assembler {};
+        let sut = Assembler::new();
 
         let byte_code = sut.assemble(r#"
 // Simple adition of two integers.
@@ -206,7 +206,41 @@ print
     }
 
     #[test]
+    #[ignore]
     fn disassemble() {
-        let sut = Assembler {};
+        let byte_code = vec![
+            0x02, // ipush
+            0x00, // 1000
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x03,
+            0xe8,
+            0x02, // ipush
+            0x00, // 100
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x64,
+            0x05, // iadd
+            0x0b, // print
+        ];
+
+        let sut = Assembler::new();
+        let assembly = sut.disassemble(byte_code);
+
+        assert_that!(&assembly, is(equal_to(
+r#"
+ipush   1000
+ipush   100
+iadd
+print
+"#
+        )));
     }
 }
