@@ -197,7 +197,7 @@ mod tests {
                 0x00,
                 0x64,
                 0x05, // iadd
-                0x06, // print
+                0x0b, // print
             ])));
     }
 }

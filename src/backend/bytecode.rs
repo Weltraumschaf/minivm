@@ -66,8 +66,28 @@ pub enum Instruction {
     /// Stack (before -> after): [value1, value2] -> [result]
     /// Other bytes (count: operand labels): -
     IAdd = 0x05,
+    /// Subtract two integers.
+    /// Stack (before -> after): [value1, value2] -> [result]
+    /// Other bytes (count: operand labels): -
+    ISub = 0x06,
+    /// Multiply two integers.
+    /// Stack (before -> after): [value1, value2] -> [result]
+    /// Other bytes (count: operand labels): -
+    IMul = 0x07,
+    /// Divide two integers.
+    /// Stack (before -> after): [value1, value2] -> [result]
+    /// Other bytes (count: operand labels): -
+    IDiv = 0x08,
+    /// Remainder of two integers.
+    /// Stack (before -> after): [value1, value2] -> [result]
+    /// Other bytes (count: operand labels): -
+    IRem = 0x09,
+    /// Negate integer.
+    /// Stack (before -> after): [value] -> [result]
+    /// Other bytes (count: operand labels): -
+    INeg = 0x0a,
     /// Print the value on top of the stack.
     /// /// Stack (before -> after): [value] -> []
     /// Other bytes (count: operand labels): -
-    Print = 0x06,
+    Print = 0x0b,
 }
