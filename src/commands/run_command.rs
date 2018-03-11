@@ -12,7 +12,7 @@ impl RunCommand {
 }
 
 impl Command for RunCommand {
-    fn execute(self) {
+    fn execute(&self) {
         println!("Execute file {} ...", self.file);
     }
 }

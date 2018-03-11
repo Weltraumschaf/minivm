@@ -12,7 +12,7 @@ impl CompileCommand {
 }
 
 impl Command for CompileCommand {
-    fn execute(self) {
+    fn execute(&self) {
         println!("Compile file {} ...", self.file);
     }
 }

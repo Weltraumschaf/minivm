@@ -7,6 +7,8 @@ use backend::bytecode::Instruction;
 pub struct Assembler;
 
 impl Assembler {
+    pub fn new() -> Assembler { Assembler }
+
     /// Generates the byte code from the assembly style code.
     pub fn assemble(&self, assembly_code: &str) -> Vec<u8> {
         let asm = read_string(assembly_code);

@@ -21,10 +21,10 @@ impl ParserCommand {
 }
 
 impl Command for ParserCommand {
-    fn execute(self) {
+    fn execute(&self) {
         println!("Parsing file {} ...", self.file);
 
-        let mut f = match File::open(self.file) {
+        let mut f = match File::open(&self.file) {
             Ok(f) => f,
             Err(_) => {
                 error("Failed to read file!");

@@ -13,5 +13,5 @@ pub use self::run_command::RunCommand;
 /// Trait for a command to execute.
 pub trait Command {
     /// Executes the command.
-    fn execute(self);
+    fn execute(&self);
 }
