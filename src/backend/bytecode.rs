@@ -38,7 +38,12 @@ impl List {
 
 /// Defines the available byte code instructions.
 ///
-/// Inspired by https://en.wikipedia.org/wiki/Java_bytecode_instruction_listings
+/// Inspired by some others:
+///
+/// * [Java Byte Code](https://en.wikipedia.org/wiki/Java_bytecode_instruction_listings)
+/// * [Microsoft Common Intermediate Language](https://en.wikipedia.org/wiki/List_of_CIL_instructions)
+/// * [Lua 5.1 VM Instructions](http://underpop.free.fr/l/lua/docs/a-no-frills-introduction-to-lua-5.1-vm-instructions.pdf)
+/// * [Smalltalk-80 Blue Book](http://stephane.ducasse.free.fr/FreeBooks/BlueBook/Bluebook.pdf)
 #[derive(Debug, Copy, Clone)]
 pub enum Instruction {
     /// Perform no operation.
