@@ -1,8 +1,14 @@
 ///! This module provides the various CLI command implementations.
 
-pub mod compile_command;
-pub mod parse_command;
-pub mod run_command;
+mod assemble_command;
+mod compile_command;
+mod parse_command;
+mod run_command;
+
+pub use self::assemble_command::AssembleCommand;
+pub use self::compile_command::CompileCommand;
+pub use self::parse_command::ParserCommand;
+pub use self::run_command::RunCommand;
 
 /// Trait for a command to execute.
 pub trait Command {

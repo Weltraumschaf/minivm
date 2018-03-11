@@ -5,6 +5,7 @@
 extern crate hamcrest;
 #[macro_use]
 extern crate log;
+extern crate byteorder;
 
 mod backend;
 pub mod commands;

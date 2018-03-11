@@ -1,0 +1,6 @@
+ipush       1_000   // Push integer 1000 onto stack
+ipush       100
+iadd
+//istore      3
+//iload       3
+print

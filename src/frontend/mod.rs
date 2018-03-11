@@ -55,7 +55,7 @@ mod tests {
     fn null() {
         let sut = Position::null();
 
-        assert_that(sut.at(Position::null()), is(true));
-        assert_that(sut.at(Position::new(42, 23)), is(false));
+        assert_that!(sut.at(Position::null()), is(true));
+        assert_that!(sut.at(Position::new(42, 23)), is(false));
     }
 }
