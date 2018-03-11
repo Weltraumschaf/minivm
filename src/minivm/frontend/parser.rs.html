@@ -60,8 +60,55 @@
 <span id="14">14</span>
 <span id="15">15</span>
 <span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="ident">frontend</span>::<span class="ident">lexer</span>::<span class="ident">Lexer</span>;
+<span class="kw">use</span> <span class="ident">frontend</span>::<span class="ident">token</span>::<span class="ident">TokenType</span>;
+<span class="kw">use</span> <span class="ident">frontend</span>::<span class="ident">token</span>::<span class="ident">Keyword</span>;
+<span class="kw">use</span> <span class="ident">frontend</span>::<span class="ident">token</span>::<span class="ident">Operator</span>;
 
 <span class="doccomment">/// Parses the tokens recognized by the lexer.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Parser</span> {
@@ -74,7 +121,48 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">loop</span> {
+            <span class="kw">if</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">lexer</span>.<span class="ident">current</span>().<span class="ident">get_token_type</span>() <span class="op">==</span> <span class="ident">TokenType</span>::<span class="ident">EOL</span> {
+                <span class="kw">break</span>;
+            }
 
+            <span class="self">self</span>.<span class="ident">parse_statement</span>();
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">parse_statement</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">lexer</span>.<span class="ident">current</span>().<span class="ident">get_token_type</span>() {
+            <span class="ident">TokenType</span>::<span class="ident">KEYWORD</span>(<span class="kw-2">ref</span> <span class="ident">keyword</span>) <span class="op">=&gt;</span> {
+                <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">keyword</span> {
+                    <span class="ident">Keyword</span>::<span class="ident">CONST</span> <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">parse_constant_declaration</span>(),
+                    <span class="ident">Keyword</span>::<span class="ident">VAR</span> <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">parse_variable_declaration</span>(),
+                    _ <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Unexpected keyword: {}!&quot;</span>, <span class="ident">keyword</span>),
+                }
+            },
+            <span class="ident">TokenType</span>::<span class="ident">IDENTIFIER</span>(_) <span class="op">=&gt;</span> {
+                <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">lexer</span>.<span class="ident">peek</span>().<span class="ident">get_token_type</span>() {
+                    <span class="ident">TokenType</span>::<span class="ident">OPERATOR</span>(<span class="ident">Operator</span>::<span class="ident">ASSIGN</span>) <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">parse_assignment</span>(),
+                    _ <span class="op">=&gt;</span> <span class="self">self</span>.<span class="ident">parse_or_expression</span>(),
+                }
+            },
+            _ <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Unexpected token: {}!&quot;</span>, <span class="self">self</span>.<span class="ident">lexer</span>.<span class="ident">current</span>()),
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">parse_assignment</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="macro">unimplemented</span><span class="macro">!</span>();
+    }
+
+    <span class="kw">fn</span> <span class="ident">parse_constant_declaration</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="macro">unimplemented</span><span class="macro">!</span>();
+    }
+
+    <span class="kw">fn</span> <span class="ident">parse_variable_declaration</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="macro">unimplemented</span><span class="macro">!</span>();
+    }
+
+    <span class="kw">fn</span> <span class="ident">parse_or_expression</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="macro">unimplemented</span><span class="macro">!</span>();
     }
 }</pre>
 </section>

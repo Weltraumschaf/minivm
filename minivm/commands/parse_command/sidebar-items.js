@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["ParserCommand","Command t oparse source."]]});

@@ -44,344 +44,79 @@
         </form>
     </nav>
 
-    <section id='main' class="content"><pre class="line-numbers"><span id="1">  1</span>
-<span id="2">  2</span>
-<span id="3">  3</span>
-<span id="4">  4</span>
-<span id="5">  5</span>
-<span id="6">  6</span>
-<span id="7">  7</span>
-<span id="8">  8</span>
-<span id="9">  9</span>
-<span id="10"> 10</span>
-<span id="11"> 11</span>
-<span id="12"> 12</span>
-<span id="13"> 13</span>
-<span id="14"> 14</span>
-<span id="15"> 15</span>
-<span id="16"> 16</span>
-<span id="17"> 17</span>
-<span id="18"> 18</span>
-<span id="19"> 19</span>
-<span id="20"> 20</span>
-<span id="21"> 21</span>
-<span id="22"> 22</span>
-<span id="23"> 23</span>
-<span id="24"> 24</span>
-<span id="25"> 25</span>
-<span id="26"> 26</span>
-<span id="27"> 27</span>
-<span id="28"> 28</span>
-<span id="29"> 29</span>
-<span id="30"> 30</span>
-<span id="31"> 31</span>
-<span id="32"> 32</span>
-<span id="33"> 33</span>
-<span id="34"> 34</span>
-<span id="35"> 35</span>
-<span id="36"> 36</span>
-<span id="37"> 37</span>
-<span id="38"> 38</span>
-<span id="39"> 39</span>
-<span id="40"> 40</span>
-<span id="41"> 41</span>
-<span id="42"> 42</span>
-<span id="43"> 43</span>
-<span id="44"> 44</span>
-<span id="45"> 45</span>
-<span id="46"> 46</span>
-<span id="47"> 47</span>
-<span id="48"> 48</span>
-<span id="49"> 49</span>
-<span id="50"> 50</span>
-<span id="51"> 51</span>
-<span id="52"> 52</span>
-<span id="53"> 53</span>
-<span id="54"> 54</span>
-<span id="55"> 55</span>
-<span id="56"> 56</span>
-<span id="57"> 57</span>
-<span id="58"> 58</span>
-<span id="59"> 59</span>
-<span id="60"> 60</span>
-<span id="61"> 61</span>
-<span id="62"> 62</span>
-<span id="63"> 63</span>
-<span id="64"> 64</span>
-<span id="65"> 65</span>
-<span id="66"> 66</span>
-<span id="67"> 67</span>
-<span id="68"> 68</span>
-<span id="69"> 69</span>
-<span id="70"> 70</span>
-<span id="71"> 71</span>
-<span id="72"> 72</span>
-<span id="73"> 73</span>
-<span id="74"> 74</span>
-<span id="75"> 75</span>
-<span id="76"> 76</span>
-<span id="77"> 77</span>
-<span id="78"> 78</span>
-<span id="79"> 79</span>
-<span id="80"> 80</span>
-<span id="81"> 81</span>
-<span id="82"> 82</span>
-<span id="83"> 83</span>
-<span id="84"> 84</span>
-<span id="85"> 85</span>
-<span id="86"> 86</span>
-<span id="87"> 87</span>
-<span id="88"> 88</span>
-<span id="89"> 89</span>
-<span id="90"> 90</span>
-<span id="91"> 91</span>
-<span id="92"> 92</span>
-<span id="93"> 93</span>
-<span id="94"> 94</span>
-<span id="95"> 95</span>
-<span id="96"> 96</span>
-<span id="97"> 97</span>
-<span id="98"> 98</span>
-<span id="99"> 99</span>
-<span id="100">100</span>
-<span id="101">101</span>
-<span id="102">102</span>
-<span id="103">103</span>
-<span id="104">104</span>
-<span id="105">105</span>
-<span id="106">106</span>
-<span id="107">107</span>
-<span id="108">108</span>
-<span id="109">109</span>
-<span id="110">110</span>
-<span id="111">111</span>
-<span id="112">112</span>
-<span id="113">113</span>
-<span id="114">114</span>
-<span id="115">115</span>
-<span id="116">116</span>
-<span id="117">117</span>
-<span id="118">118</span>
-<span id="119">119</span>
-<span id="120">120</span>
-<span id="121">121</span>
-<span id="122">122</span>
-<span id="123">123</span>
-<span id="124">124</span>
-<span id="125">125</span>
-<span id="126">126</span>
-<span id="127">127</span>
-<span id="128">128</span>
-<span id="129">129</span>
-<span id="130">130</span>
-<span id="131">131</span>
-<span id="132">132</span>
-<span id="133">133</span>
-<span id="134">134</span>
-<span id="135">135</span>
-<span id="136">136</span>
-<span id="137">137</span>
-<span id="138">138</span>
-<span id="139">139</span>
-<span id="140">140</span>
-<span id="141">141</span>
-<span id="142">142</span>
-<span id="143">143</span>
-<span id="144">144</span>
-<span id="145">145</span>
-<span id="146">146</span>
-<span id="147">147</span>
-<span id="148">148</span>
-<span id="149">149</span>
-<span id="150">150</span>
-<span id="151">151</span>
-<span id="152">152</span>
-<span id="153">153</span>
-<span id="154">154</span>
-<span id="155">155</span>
-<span id="156">156</span>
-<span id="157">157</span>
-<span id="158">158</span>
-<span id="159">159</span>
-<span id="160">160</span>
-<span id="161">161</span>
-<span id="162">162</span>
-<span id="163">163</span>
-<span id="164">164</span>
-<span id="165">165</span>
-<span id="166">166</span>
-<span id="167">167</span>
-<span id="168">168</span>
-<span id="169">169</span>
-<span id="170">170</span>
-<span id="171">171</span>
-<span id="172">172</span>
-<span id="173">173</span>
-<span id="174">174</span>
-<span id="175">175</span>
-<span id="176">176</span>
-<span id="177">177</span>
-<span id="178">178</span>
-<span id="179">179</span>
-<span id="180">180</span>
-<span id="181">181</span>
-<span id="182">182</span>
-<span id="183">183</span>
-<span id="184">184</span>
-<span id="185">185</span>
-<span id="186">186</span>
-<span id="187">187</span>
-<span id="188">188</span>
-<span id="189">189</span>
-<span id="190">190</span>
-<span id="191">191</span>
-<span id="192">192</span>
-<span id="193">193</span>
-<span id="194">194</span>
-<span id="195">195</span>
-<span id="196">196</span>
-<span id="197">197</span>
-<span id="198">198</span>
-<span id="199">199</span>
-<span id="200">200</span>
-<span id="201">201</span>
-<span id="202">202</span>
-<span id="203">203</span>
-<span id="204">204</span>
-<span id="205">205</span>
-<span id="206">206</span>
-<span id="207">207</span>
-<span id="208">208</span>
-<span id="209">209</span>
-<span id="210">210</span>
-<span id="211">211</span>
-<span id="212">212</span>
-<span id="213">213</span>
-<span id="214">214</span>
-<span id="215">215</span>
-<span id="216">216</span>
-<span id="217">217</span>
-<span id="218">218</span>
-<span id="219">219</span>
-<span id="220">220</span>
-<span id="221">221</span>
-<span id="222">222</span>
-<span id="223">223</span>
-<span id="224">224</span>
-<span id="225">225</span>
-<span id="226">226</span>
-<span id="227">227</span>
-<span id="228">228</span>
-<span id="229">229</span>
-<span id="230">230</span>
-<span id="231">231</span>
-<span id="232">232</span>
-<span id="233">233</span>
-<span id="234">234</span>
-<span id="235">235</span>
-<span id="236">236</span>
-<span id="237">237</span>
-<span id="238">238</span>
-<span id="239">239</span>
-<span id="240">240</span>
-<span id="241">241</span>
-<span id="242">242</span>
-<span id="243">243</span>
-<span id="244">244</span>
-<span id="245">245</span>
-<span id="246">246</span>
-<span id="247">247</span>
-<span id="248">248</span>
-<span id="249">249</span>
-<span id="250">250</span>
-<span id="251">251</span>
-<span id="252">252</span>
-<span id="253">253</span>
-<span id="254">254</span>
-<span id="255">255</span>
-<span id="256">256</span>
-<span id="257">257</span>
-<span id="258">258</span>
-<span id="259">259</span>
-<span id="260">260</span>
-<span id="261">261</span>
-<span id="262">262</span>
-<span id="263">263</span>
-<span id="264">264</span>
-<span id="265">265</span>
-<span id="266">266</span>
-<span id="267">267</span>
-<span id="268">268</span>
-<span id="269">269</span>
-<span id="270">270</span>
-<span id="271">271</span>
-<span id="272">272</span>
-<span id="273">273</span>
-<span id="274">274</span>
-<span id="275">275</span>
-<span id="276">276</span>
-<span id="277">277</span>
-<span id="278">278</span>
-<span id="279">279</span>
-<span id="280">280</span>
-<span id="281">281</span>
-<span id="282">282</span>
-<span id="283">283</span>
-<span id="284">284</span>
-<span id="285">285</span>
-<span id="286">286</span>
-<span id="287">287</span>
-<span id="288">288</span>
-<span id="289">289</span>
-<span id="290">290</span>
-<span id="291">291</span>
-<span id="292">292</span>
-<span id="293">293</span>
-<span id="294">294</span>
-<span id="295">295</span>
-<span id="296">296</span>
-<span id="297">297</span>
-<span id="298">298</span>
-<span id="299">299</span>
-<span id="300">300</span>
-<span id="301">301</span>
-<span id="302">302</span>
-<span id="303">303</span>
-<span id="304">304</span>
-<span id="305">305</span>
-<span id="306">306</span>
-<span id="307">307</span>
-<span id="308">308</span>
-<span id="309">309</span>
-<span id="310">310</span>
-<span id="311">311</span>
-<span id="312">312</span>
-<span id="313">313</span>
-<span id="314">314</span>
-<span id="315">315</span>
-<span id="316">316</span>
-<span id="317">317</span>
-<span id="318">318</span>
-<span id="319">319</span>
-<span id="320">320</span>
-<span id="321">321</span>
-<span id="322">322</span>
-<span id="323">323</span>
-<span id="324">324</span>
-<span id="325">325</span>
-<span id="326">326</span>
-<span id="327">327</span>
-<span id="328">328</span>
-<span id="329">329</span>
-<span id="330">330</span>
-<span id="331">331</span>
-<span id="332">332</span>
-<span id="333">333</span>
-<span id="334">334</span>
-<span id="335">335</span>
-<span id="336">336</span>
-<span id="337">337</span>
-<span id="338">338</span>
+    <section id='main' class="content"><pre class="line-numbers"><span id="1"> 1</span>
+<span id="2"> 2</span>
+<span id="3"> 3</span>
+<span id="4"> 4</span>
+<span id="5"> 5</span>
+<span id="6"> 6</span>
+<span id="7"> 7</span>
+<span id="8"> 8</span>
+<span id="9"> 9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+<span id="12">12</span>
+<span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
 </pre><pre class="rust ">
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
 
@@ -423,303 +158,38 @@
 
 <span class="doccomment">/// Defines the available byte code instructions.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Inspired by https://en.wikipedia.org/wiki/Java_bytecode_instruction_listings</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="doccomment">/// Inspired by some others:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// * [Java Byte Code](https://en.wikipedia.org/wiki/Java_bytecode_instruction_listings)</span>
+<span class="doccomment">/// * [Microsoft Common Intermediate Language](https://en.wikipedia.org/wiki/List_of_CIL_instructions)</span>
+<span class="doccomment">/// * [Lua 5.1 VM Instructions](http://underpop.free.fr/l/lua/docs/a-no-frills-introduction-to-lua-5.1-vm-instructions.pdf)</span>
+<span class="doccomment">/// * [Smalltalk-80 Blue Book](http://stephane.ducasse.free.fr/FreeBooks/BlueBook/Bluebook.pdf)</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Instruction</span> {
-    <span class="comment">// Mnemonic	Opcode (in hex)	Opcode (in binary)	Other bytes [count]: [operand labels]	Stack [before]→[after]	Description</span>
-
-    <span class="comment">//	0011 0010		arrayref, index → value	load onto the stack a reference from an array</span>
-    <span class="ident">aaload</span> <span class="op">=</span> <span class="number">0x32</span>,
-    <span class="comment">//0101 0011		arrayref, index, value →	store into a reference in an array</span>
-    <span class="ident">aastore</span> <span class="op">=</span> <span class="number">0x53</span>,
-    <span class="comment">//0000 0001		→ null	push a null reference onto the stack</span>
-    <span class="ident">aconst_null</span> <span class="op">=</span> <span class="number">0x01</span>,
-    <span class="comment">//0001 1001	1: index	→ objectref	load a reference onto the stack from a local variable #index</span>
-    <span class="ident">aload</span> <span class="op">=</span> <span class="number">0x19</span>,
-    <span class="comment">//0010 1010		→ objectref	load a reference onto the stack from local variable 0</span>
-    <span class="ident">aload_0</span> <span class="op">=</span> <span class="number">0x2a</span>,
-    <span class="comment">//0010 1011		→ objectref	load a reference onto the stack from local variable 1</span>
-    <span class="ident">aload_1</span> <span class="op">=</span> <span class="number">0x2b</span>,
-    <span class="comment">//0010 1100		→ objectref	load a reference onto the stack from local variable 2</span>
-    <span class="ident">aload_2</span> <span class="op">=</span> <span class="number">0x2c</span>,
-    <span class="comment">//0010 1101		→ objectref	load a reference onto the stack from local variable 3</span>
-    <span class="ident">aload_3</span> <span class="op">=</span> <span class="number">0x2d</span>,
-    <span class="comment">//1011 1101	2: indexbyte1, indexbyte2	count → arrayref	create a new array of references of length count and component type identified by the class reference index (indexbyte1 &lt;&lt; 8 + indexbyte2) in the constant pool</span>
-    <span class="ident">anewarray</span> <span class="op">=</span> <span class="number">0xbd</span>,
-    <span class="comment">// 01011 0000		objectref → [empty]	return a reference from a method</span>
-    <span class="ident">areturn</span> <span class="op">=</span> <span class="number">0xb0</span>,
-    <span class="comment">//1011 1110		arrayref → length	get the length of an array</span>
-    <span class="ident">arraylength</span> <span class="op">=</span> <span class="number">0xbe</span>,
-    <span class="comment">//0011 1010	1: index	objectref →	store a reference into a local variable #index</span>
-    <span class="ident">astore</span> <span class="op">=</span> <span class="number">0x3a</span>,
-    <span class="comment">//0100 1011		objectref →	store a reference into local variable 0</span>
-    <span class="ident">astore_0</span> <span class="op">=</span> <span class="number">0x4b</span>,
-    <span class="comment">//0100 1100		objectref →	store a reference into local variable 1</span>
-    <span class="ident">astore_1</span> <span class="op">=</span> <span class="number">0x4c</span>,
-    <span class="comment">//0100 1101		objectref →	store a reference into local variable 2</span>
-    <span class="ident">astore_2</span> <span class="op">=</span> <span class="number">0x4d</span>,
-    <span class="comment">//0100 1110		objectref →	store a reference into local variable 3</span>
-    <span class="ident">astore_3</span> <span class="op">=</span> <span class="number">0x4e</span>,
-    <span class="comment">//1011 1111		objectref → [empty], objectref	throws an error or exception (notice that the rest of the stack is cleared, leaving only a reference to the Throwable)</span>
-    <span class="ident">athrow</span> <span class="op">=</span> <span class="number">0xbf</span>,
-    <span class="comment">//0011 0011		arrayref, index → value	load a byte or Boolean value from an array</span>
-    <span class="ident">baload</span> <span class="op">=</span> <span class="number">0x33</span>,
-    <span class="comment">//0101 0100		arrayref, index, value →	store a byte or Boolean value into an array</span>
-    <span class="ident">bastore</span> <span class="op">=</span> <span class="number">0x54</span>,
-    <span class="comment">//0001 0000	1: byte	→ value	push a byte onto the stack as an integer value</span>
-    <span class="ident">bipush</span> <span class="op">=</span> <span class="number">0x10</span>,
-    <span class="comment">//1100 1010			reserved for breakpoints in Java debuggers; should not appear in any class file</span>
-    <span class="ident">breakpoint</span> <span class="op">=</span> <span class="number">0xca</span>,
-    <span class="comment">//0011 0100		arrayref, index → value	load a char from an array</span>
-    <span class="ident">caload</span> <span class="op">=</span> <span class="number">0x34</span>,
-    <span class="comment">//0101 0101		arrayref, index, value →	store a char into an array</span>
-    <span class="ident">castore</span> <span class="op">=</span> <span class="number">0x55</span>,
-    <span class="comment">//1100 0000	2: indexbyte1, indexbyte2	objectref → objectref	checks whether an objectref is of a certain type, the class reference of which is in the constant pool at index (indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-    <span class="ident">checkcast</span> <span class="op">=</span> <span class="number">0xc0</span>,
-    <span class="comment">//1001 0000		value → result	convert a double to a float</span>
-    <span class="ident">d2f</span> <span class="op">=</span> <span class="number">0x90</span>,
-    <span class="comment">//1000 1110		value → result	convert a double to an int</span>
-    <span class="ident">d2i</span> <span class="op">=</span> <span class="number">0x8e</span>,
-    <span class="comment">//1000 1111		value → result	convert a double to a long</span>
-    <span class="ident">d2l</span> <span class="op">=</span> <span class="number">0x8f</span>,
-    <span class="comment">//0110 0011		value1, value2 → result	add two doubles</span>
-    <span class="ident">dadd</span> <span class="op">=</span> <span class="number">0x63</span>,
-    <span class="comment">//0011 0001		arrayref, index → value	load a double from an array</span>
-    <span class="ident">daload</span> <span class="op">=</span> <span class="number">0x31</span>,
-    <span class="comment">//0101 0010		arrayref, index, value →	store a double into an array</span>
-    <span class="ident">dastore</span> <span class="op">=</span> <span class="number">0x52</span>,
-    <span class="comment">//1001 1000		value1, value2 → result	compare two doubles</span>
-    <span class="ident">dcmpg</span> <span class="op">=</span> <span class="number">0x98</span>,
-    <span class="comment">//1001 0111		value1, value2 → result	compare two doubles</span>
-    <span class="ident">dcmpl</span> <span class="op">=</span> <span class="number">0x97</span>,
-    <span class="comment">//0000 1110		→ 0.0	push the constant 0.0 (a double) onto the stack</span>
-    <span class="ident">dconst_0</span> <span class="op">=</span> <span class="number">0x0e</span>,
-    <span class="comment">//0000 1111		→ 1.0	push the constant 1.0 (a double) onto the stack</span>
-    <span class="ident">dconst_1</span> <span class="op">=</span> <span class="number">0x0f</span>,
-    <span class="comment">//0110 1111		value1, value2 → result	divide two doubles</span>
-    <span class="ident">ddiv</span> <span class="op">=</span> <span class="number">0x6f</span>,
-    <span class="comment">//0001 1000	1: index	→ value	load a double value from a local variable #index</span>
-    <span class="ident">dload</span> <span class="op">=</span> <span class="number">0x18</span>,
-    <span class="comment">// 0010 0110		→ value	load a double from local variable 0</span>
-    <span class="ident">dload_0</span> <span class="op">=</span> <span class="number">0x26</span>,
-    <span class="comment">// 0010 0111		→ value	load a double from local variable 1</span>
-    <span class="ident">dload_1</span> <span class="op">=</span> <span class="number">0x27</span>,
-    <span class="comment">// 0010 1000		→ value	load a double from local variable 2</span>
-    <span class="ident">dload_2</span> <span class="op">=</span> <span class="number">0x28</span>,
-    <span class="comment">// 0010 1001		→ value	load a double from local variable 3</span>
-    <span class="ident">dload_3</span> <span class="op">=</span> <span class="number">0x29</span>,
-    <span class="comment">//0110 1011		value1, value2 → result	multiply two doubles</span>
-    <span class="ident">dmul</span> <span class="op">=</span> <span class="number">0x6b</span>,
-    <span class="comment">//0111 0111		value → result	negate a double</span>
-    <span class="ident">dneg</span> <span class="op">=</span> <span class="number">0x77</span>,
-    <span class="comment">//0111 0011		value1, value2 → result	get the remainder from a division between two doubles</span>
-    <span class="ident">drem</span> <span class="op">=</span> <span class="number">0x73</span>,
-    <span class="comment">//1010 1111		value → [empty]	return a double from a method</span>
-    <span class="ident">dreturn</span> <span class="op">=</span> <span class="number">0xaf</span>,
-    <span class="comment">//0011 1001	1: index	value →	store a double value into a local variable #index</span>
-    <span class="ident">dstore</span> <span class="op">=</span> <span class="number">0x39</span>,
-    <span class="comment">//0100 0111		value →	store a double into local variable 0</span>
-    <span class="ident">dstore_0</span> <span class="op">=</span> <span class="number">0x47</span>,
-    <span class="comment">//0100 1000		value →	store a double into local variable 1</span>
-    <span class="ident">dstore_1</span> <span class="op">=</span> <span class="number">0x48</span>,
-    <span class="comment">//0100 1001		value →	store a double into local variable 2</span>
-    <span class="ident">dstore_2</span> <span class="op">=</span> <span class="number">0x49</span>,
-    <span class="comment">//0100 1010		value →	store a double into local variable 3</span>
-    <span class="ident">dstore_3</span> <span class="op">=</span> <span class="number">0x4a</span>,
-    <span class="comment">// 0110 0111		value1, value2 → result	subtract a double from another</span>
-    <span class="ident">dsub</span> <span class="op">=</span> <span class="number">0x67</span>,
-    <span class="comment">// 0101 1001		value → value, value	duplicate the value on top of the stack</span>
-    <span class="ident">dup</span> <span class="op">=</span> <span class="number">0x59</span>,
-    <span class="comment">// 0101 1010		value2, value1 → value1, value2, value1	insert a copy of the top value into the stack two values from the top. value1 and value2 must not be of the type double or long.</span>
-    <span class="ident">dup_x1</span> <span class="op">=</span> <span class="number">0x5a</span>,
-    <span class="comment">// 0101 1011		value3, value2, value1 → value1, value3, value2, value1	insert a copy of the top value into the stack two (if value2 is double or long it takes up the entry of value3, too) or three values (if value2 is neither double nor long) from the top</span>
-    <span class="ident">dup_x2</span> <span class="op">=</span> <span class="number">0x5b</span>,
-    <span class="comment">// 0101 1100		{value2, value1} → {value2, value1}, {value2, value1}	duplicate top two stack words (two values, if value1 is not double nor long; a single value, if value1 is double or long)</span>
-    <span class="ident">dup2</span> <span class="op">=</span> <span class="number">0x5c</span>,
-    <span class="comment">// 0101 1101		value3, {value2, value1} → {value2, value1}, value3, {value2, value1}	duplicate two words and insert beneath third word (see explanation above)</span>
-    <span class="ident">dup2_x1</span> <span class="op">=</span> <span class="number">0x5d</span>,
-    <span class="comment">// 0101 1110		{value4, value3}, {value2, value1} → {value2, value1}, {value4, value3}, {value2, value1}	duplicate two words and insert beneath fourth word</span>
-    <span class="ident">dup2_x2</span> <span class="op">=</span> <span class="number">0x5e</span>,
-    <span class="comment">// 1000 1101		value → result	convert a float to a double</span>
-    <span class="ident">f2d</span> <span class="op">=</span> <span class="number">0x8d</span>,
-    <span class="comment">// 1000 1011		value → result	convert a float to an int</span>
-    <span class="ident">f2i</span> <span class="op">=</span> <span class="number">0x8b</span>,
-    <span class="comment">// 1000 1100		value → result	convert a float to a long</span>
-    <span class="ident">f2l</span> <span class="op">=</span> <span class="number">0x8c</span>,
-    <span class="comment">// 0110 0010		value1, value2 → result	add two floats</span>
-    <span class="ident">fadd</span> <span class="op">=</span> <span class="number">0x62</span>,
-    <span class="comment">// 0011 0000		arrayref, index → value	load a float from an array</span>
-    <span class="ident">faload</span> <span class="op">=</span> <span class="number">0x30</span>,
-    <span class="comment">// 0101 0001		arrayref, index, value →	store a float in an array</span>
-    <span class="ident">fastore</span> <span class="op">=</span> <span class="number">0x51</span>,
-    <span class="comment">// 1001 0110		value1, value2 → result	compare two floats</span>
-    <span class="ident">fcmpg</span> <span class="op">=</span> <span class="number">0x96</span>,
-    <span class="comment">// 1001 0101		value1, value2 → result	compare two floats</span>
-    <span class="ident">fcmpl</span> <span class="op">=</span> <span class="number">0x95</span>,
-    <span class="comment">// 0000 1011		→ 0.0f	push 0.0f on the stack</span>
-    <span class="ident">fconst_0</span> <span class="op">=</span> <span class="number">0x0b</span>,
-    <span class="comment">// 0000 1100		→ 1.0f	push 1.0f on the stack</span>
-    <span class="ident">fconst_1</span> <span class="op">=</span> <span class="number">0x0c</span>,
-    <span class="comment">// 0000 1101		→ 2.0f	push 2.0f on the stack</span>
-    <span class="ident">fconst_2</span> <span class="op">=</span> <span class="number">0x0d</span>,
-    <span class="comment">// 0110 1110		value1, value2 → result	divide two floats</span>
-    <span class="ident">fdiv</span> <span class="op">=</span> <span class="number">0x6e</span>,
-    <span class="comment">// 0001 0111	1: index	→ value	load a float value from a local variable #index</span>
-    <span class="ident">fload</span> <span class="op">=</span> <span class="number">0x17</span>,
-    <span class="comment">// 0010 0010		→ value	load a float value from local variable 0</span>
-    <span class="ident">fload_0</span> <span class="op">=</span> <span class="number">0x22</span>,
-    <span class="comment">// 0010 0011		→ value	load a float value from local variable 1</span>
-    <span class="ident">fload_1</span> <span class="op">=</span> <span class="number">0x23</span>,
-    <span class="comment">// 0010 0100		→ value	load a float value from local variable 2</span>
-    <span class="ident">fload_2</span> <span class="op">=</span> <span class="number">0x24</span>,
-    <span class="comment">// 0010 0101		→ value	load a float value from local variable 3</span>
-    <span class="ident">fload_3</span> <span class="op">=</span> <span class="number">0x25</span>,
-    <span class="comment">// 0110 1010		value1, value2 → result	multiply two floats</span>
-    <span class="ident">fmul</span> <span class="op">=</span> <span class="number">0x6a</span>,
-    <span class="comment">// 0111 0110		value → result	negate a float</span>
-    <span class="ident">fneg</span> <span class="op">=</span> <span class="number">0x76</span>,
-    <span class="comment">// 0111 0010		value1, value2 → result	get the remainder from a division between two floats</span>
-    <span class="ident">frem</span> <span class="op">=</span> <span class="number">0x72</span>,
-    <span class="comment">// 1010 1110		value → [empty]	return a float</span>
-    <span class="ident">freturn</span> <span class="op">=</span> <span class="number">0xae</span>,
-    <span class="comment">// 0011 1000	1: index	value →	store a float value into a local variable #index</span>
-    <span class="ident">fstore</span> <span class="op">=</span> <span class="number">0x38</span>,
-    <span class="comment">// 0100 0011		value →	store a float value into local variable 0</span>
-    <span class="ident">fstore_0</span> <span class="op">=</span> <span class="number">0x43</span>,
-    <span class="comment">// 0100 0100		value →	store a float value into local variable 1</span>
-    <span class="ident">fstore_1</span> <span class="op">=</span> <span class="number">0x44</span>,
-    <span class="comment">// 0100 0101		value →	store a float value into local variable 2</span>
-    <span class="ident">fstore_2</span> <span class="op">=</span> <span class="number">0x45</span>,
-    <span class="comment">// 0100 0110		value →	store a float value into local variable 3</span>
-    <span class="ident">fstore_3</span> <span class="op">=</span> <span class="number">0x46</span>,
-    <span class="comment">// 0110 0110		value1, value2 → result	subtract two floats</span>
-    <span class="ident">fsub</span> <span class="op">=</span> <span class="number">0x66</span>,
-    <span class="comment">// 1011 0100	2: indexbyte1, indexbyte2	objectref → value	get a field value of an object objectref, where the field is identified by field reference in the constant pool index (indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-    <span class="ident">getfield</span> <span class="op">=</span> <span class="number">0xb4</span>,
-<span class="comment">//    getstatic	b2	1011 0010	2: indexbyte1, indexbyte2	→ value	get a static field value of a class, where the field is identified by field reference in the constant pool index (indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-<span class="comment">//    goto	a7	1010 0111	2: branchbyte1, branchbyte2	[no change]	goes to another instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    goto_w	c8	1100 1000	4: branchbyte1, branchbyte2, branchbyte3, branchbyte4	[no change]	goes to another instruction at branchoffset (signed int constructed from unsigned bytes branchbyte1 &lt;&lt; 24 + branchbyte2 &lt;&lt; 16 + branchbyte3 &lt;&lt; 8 + branchbyte4)</span>
-<span class="comment">//    i2b	91	1001 0001		value → result	convert an int into a byte</span>
-<span class="comment">//    i2c	92	1001 0010		value → result	convert an int into a character</span>
-<span class="comment">//    i2d	87	1000 0111		value → result	convert an int into a double</span>
-<span class="comment">//    i2f	86	1000 0110		value → result	convert an int into a float</span>
-<span class="comment">//    i2l	85	1000 0101		value → result	convert an int into a long</span>
-<span class="comment">//    i2s	93	1001 0011		value → result	convert an int into a short</span>
-<span class="comment">//    iadd	60	0110 0000		value1, value2 → result	add two ints</span>
-<span class="comment">//    iaload	2e	0010 1110		arrayref, index → value	load an int from an array</span>
-<span class="comment">//    iand	7e	0111 1110		value1, value2 → result	perform a bitwise AND on two integers</span>
-<span class="comment">//    iastore	4f	0100 1111		arrayref, index, value →	store an int into an array</span>
-<span class="comment">//    iconst_m1	02	0000 0010		→ -1	load the int value −1 onto the stack</span>
-<span class="comment">//    iconst_0	03	0000 0011		→ 0	load the int value 0 onto the stack</span>
-<span class="comment">//    iconst_1	04	0000 0100		→ 1	load the int value 1 onto the stack</span>
-<span class="comment">//    iconst_2	05	0000 0101		→ 2	load the int value 2 onto the stack</span>
-<span class="comment">//    iconst_3	06	0000 0110		→ 3	load the int value 3 onto the stack</span>
-<span class="comment">//    iconst_4	07	0000 0111		→ 4	load the int value 4 onto the stack</span>
-<span class="comment">//    iconst_5	08	0000 1000		→ 5	load the int value 5 onto the stack</span>
-<span class="comment">//    idiv	6c	0110 1100		value1, value2 → result	divide two integers</span>
-<span class="comment">//    if_acmpeq	a5	1010 0101	2: branchbyte1, branchbyte2	value1, value2 →	if references are equal, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    if_acmpne	a6	1010 0110	2: branchbyte1, branchbyte2	value1, value2 →	if references are not equal, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    if_icmpeq	9f	1001 1111	2: branchbyte1, branchbyte2	value1, value2 →	if ints are equal, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    if_icmpge	a2	1010 0010	2: branchbyte1, branchbyte2	value1, value2 →	if value1 is greater than or equal to value2, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    if_icmpgt	a3	1010 0011	2: branchbyte1, branchbyte2	value1, value2 →	if value1 is greater than value2, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    if_icmple	a4	1010 0100	2: branchbyte1, branchbyte2	value1, value2 →	if value1 is less than or equal to value2, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    if_icmplt	a1	1010 0001	2: branchbyte1, branchbyte2	value1, value2 →	if value1 is less than value2, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    if_icmpne	a0	1010 0000	2: branchbyte1, branchbyte2	value1, value2 →	if ints are not equal, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    ifeq	99	1001 1001	2: branchbyte1, branchbyte2	value →	if value is 0, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    ifge	9c	1001 1100	2: branchbyte1, branchbyte2	value →	if value is greater than or equal to 0, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    ifgt	9d	1001 1101	2: branchbyte1, branchbyte2	value →	if value is greater than 0, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    ifle	9e	1001 1110	2: branchbyte1, branchbyte2	value →	if value is less than or equal to 0, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    iflt	9b	1001 1011	2: branchbyte1, branchbyte2	value →	if value is less than 0, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    ifne	9a	1001 1010	2: branchbyte1, branchbyte2	value →	if value is not 0, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    ifnonnull	c7	1100 0111	2: branchbyte1, branchbyte2	value →	if value is not null, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    ifnull	c6	1100 0110	2: branchbyte1, branchbyte2	value →	if value is null, branch to instruction at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2)</span>
-<span class="comment">//    iinc	84	1000 0100	2: index, const	[No change]	increment local variable #index by signed byte const</span>
-<span class="comment">//    iload	15	0001 0101	1: index	→ value	load an int value from a local variable #index</span>
-<span class="comment">//    iload_0	1a	0001 1010		→ value	load an int value from local variable 0</span>
-<span class="comment">//    iload_1	1b	0001 1011		→ value	load an int value from local variable 1</span>
-<span class="comment">//    iload_2	1c	0001 1100		→ value	load an int value from local variable 2</span>
-<span class="comment">//    iload_3	1d	0001 1101		→ value	load an int value from local variable 3</span>
-<span class="comment">//    impdep1	fe	1111 1110			reserved for implementation-dependent operations within debuggers; should not appear in any class file</span>
-<span class="comment">//    impdep2	ff	1111 1111			reserved for implementation-dependent operations within debuggers; should not appear in any class file</span>
-<span class="comment">//    imul	68	0110 1000		value1, value2 → result	multiply two integers</span>
-<span class="comment">//    ineg	74	0111 0100		value → result	negate int</span>
-<span class="comment">//    instanceof	c1	1100 0001	2: indexbyte1, indexbyte2	objectref → result	determines if an object objectref is of a given type, identified by class reference index in constant pool (indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-<span class="comment">//    invokedynamic	ba	1011 1010	4: indexbyte1, indexbyte2, 0, 0	[arg1, [arg2 ...]] → result	invokes a dynamic method and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-<span class="comment">//    invokeinterface	b9	1011 1001	4: indexbyte1, indexbyte2, count, 0	objectref, [arg1, arg2, ...] → result	invokes an interface method on object objectref and puts the result on the stack (might be void); the interface method is identified by method reference index in constant pool (indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-<span class="comment">//    invokespecial	b7	1011 0111	2: indexbyte1, indexbyte2	objectref, [arg1, arg2, ...] → result	invoke instance method on object objectref and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-<span class="comment">//    invokestatic	b8	1011 1000	2: indexbyte1, indexbyte2	[arg1, arg2, ...] → result	invoke a static method and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-<span class="comment">//    invokevirtual	b6	1011 0110	2: indexbyte1, indexbyte2	objectref, [arg1, arg2, ...] → result	invoke virtual method on object objectref and puts the result on the stack (might be void); the method is identified by method reference index in constant pool (indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-<span class="comment">//    ior	80	1000 0000		value1, value2 → result	bitwise int OR</span>
-<span class="comment">//    irem	70	0111 0000		value1, value2 → result	logical int remainder</span>
-<span class="comment">//    ireturn	ac	1010 1100		value → [empty]	return an integer from a method</span>
-<span class="comment">//    ishl	78	0111 1000		value1, value2 → result	int shift left</span>
-<span class="comment">//    ishr	7a	0111 1010		value1, value2 → result	int arithmetic shift right</span>
-<span class="comment">//    istore	36	0011 0110	1: index	value →	store int value into variable #index</span>
-<span class="comment">//    istore_0	3b	0011 1011		value →	store int value into variable 0</span>
-<span class="comment">//    istore_1	3c	0011 1100		value →	store int value into variable 1</span>
-<span class="comment">//    istore_2	3d	0011 1101		value →	store int value into variable 2</span>
-<span class="comment">//    istore_3	3e	0011 1110		value →	store int value into variable 3</span>
-<span class="comment">//    isub	64	0110 0100		value1, value2 → result	int subtract</span>
-<span class="comment">//    iushr	7c	0111 1100		value1, value2 → result	int logical shift right</span>
-<span class="comment">//    ixor	82	1000 0010		value1, value2 → result	int xor</span>
-<span class="comment">//    jsr	a8	1010 1000	2: branchbyte1, branchbyte2	→ address	jump to subroutine at branchoffset (signed short constructed from unsigned bytes branchbyte1 &lt;&lt; 8 + branchbyte2) and place the return address on the stack</span>
-<span class="comment">//    jsr_w	c9	1100 1001	4: branchbyte1, branchbyte2, branchbyte3, branchbyte4	→ address	jump to subroutine at branchoffset (signed int constructed from unsigned bytes branchbyte1 &lt;&lt; 24 + branchbyte2 &lt;&lt; 16 + branchbyte3 &lt;&lt; 8 + branchbyte4) and place the return address on the stack</span>
-<span class="comment">//    l2d	8a	1000 1010		value → result	convert a long to a double</span>
-<span class="comment">//    l2f	89	1000 1001		value → result	convert a long to a float</span>
-<span class="comment">//    l2i	88	1000 1000		value → result	convert a long to a int</span>
-<span class="comment">//    ladd	61	0110 0001		value1, value2 → result	add two longs</span>
-<span class="comment">//    laload	2f	0010 1111		arrayref, index → value	load a long from an array</span>
-<span class="comment">//    land	7f	0111 1111		value1, value2 → result	bitwise AND of two longs</span>
-<span class="comment">//    lastore	50	0101 0000		arrayref, index, value →	store a long to an array</span>
-<span class="comment">//    lcmp	94	1001 0100		value1, value2 → result	push 0 if the two longs are the same, 1 if value1 is greater than value2, -1 otherwise</span>
-<span class="comment">//    lconst_0	09	0000 1001		→ 0L	push 0L (the number zero with type long) onto the stack</span>
-<span class="comment">//    lconst_1	0a	0000 1010		→ 1L	push 1L (the number one with type long) onto the stack</span>
-<span class="comment">//    ldc	12	0001 0010	1: index	→ value	push a constant #index from a constant pool (String, int, float, Class, java.lang.invoke.MethodType, or java.lang.invoke.MethodHandle) onto the stack</span>
-<span class="comment">//    ldc_w	13	0001 0011	2: indexbyte1, indexbyte2	→ value	push a constant #index from a constant pool (String, int, float, Class, java.lang.invoke.MethodType, or java.lang.invoke.MethodHandle) onto the stack (wide index is constructed as indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-<span class="comment">//    ldc2_w	14	0001 0100	2: indexbyte1, indexbyte2	→ value	push a constant #index from a constant pool (double or long) onto the stack (wide index is constructed as indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-<span class="comment">//    ldiv	6d	0110 1101		value1, value2 → result	divide two longs</span>
-<span class="comment">//    lload	16	0001 0110	1: index	→ value	load a long value from a local variable #index</span>
-<span class="comment">//    lload_0	1e	0001 1110		→ value	load a long value from a local variable 0</span>
-<span class="comment">//    lload_1	1f	0001 1111		→ value	load a long value from a local variable 1</span>
-<span class="comment">//    lload_2	20	0010 0000		→ value	load a long value from a local variable 2</span>
-<span class="comment">//    lload_3	21	0010 0001		→ value	load a long value from a local variable 3</span>
-<span class="comment">//    lmul	69	0110 1001		value1, value2 → result	multiply two longs</span>
-<span class="comment">//    lneg	75	0111 0101		value → result	negate a long</span>
-<span class="comment">//    lookupswitch	ab	1010 1011	8+: &lt;0–3 bytes padding&gt;, defaultbyte1, defaultbyte2, defaultbyte3, defaultbyte4, npairs1, npairs2, npairs3, npairs4, match-offset pairs...	key →	a target address is looked up from a table using a key and execution continues from the instruction at that address</span>
-<span class="comment">//    lor	81	1000 0001		value1, value2 → result	bitwise OR of two longs</span>
-<span class="comment">//    lrem	71	0111 0001		value1, value2 → result	remainder of division of two longs</span>
-<span class="comment">//    lreturn	ad	1010 1101		value → [empty]	return a long value</span>
-<span class="comment">//    lshl	79	0111 1001		value1, value2 → result	bitwise shift left of a long value1 by int value2 positions</span>
-<span class="comment">//    lshr	7b	0111 1011		value1, value2 → result	bitwise shift right of a long value1 by int value2 positions</span>
-<span class="comment">//    lstore	37	0011 0111	1: index	value →	store a long value in a local variable #index</span>
-<span class="comment">//    lstore_0	3f	0011 1111		value →	store a long value in a local variable 0</span>
-<span class="comment">//    lstore_1	40	0100 0000		value →	store a long value in a local variable 1</span>
-<span class="comment">//    lstore_2	41	0100 0001		value →	store a long value in a local variable 2</span>
-<span class="comment">//    lstore_3	42	0100 0010		value →	store a long value in a local variable 3</span>
-<span class="comment">//    lsub	65	0110 0101		value1, value2 → result	subtract two longs</span>
-<span class="comment">//    lushr	7d	0111 1101		value1, value2 → result	bitwise shift right of a long value1 by int value2 positions, unsigned</span>
-<span class="comment">//    lxor	83	1000 0011		value1, value2 → result	bitwise XOR of two longs</span>
-<span class="comment">//    monitorenter	c2	1100 0010		objectref →	enter monitor for object (&quot;grab the lock&quot; – start of synchronized() section)</span>
-<span class="comment">//    monitorexit	c3	1100 0011		objectref →	exit monitor for object (&quot;release the lock&quot; – end of synchronized() section)</span>
-<span class="comment">//    multianewarray	c5	1100 0101	3: indexbyte1, indexbyte2, dimensions	count1, [count2,...] → arrayref	create a new array of dimensions dimensions of type identified by class reference in constant pool index (indexbyte1 &lt;&lt; 8 + indexbyte2); the sizes of each dimension is identified by count1, [count2, etc.]</span>
-<span class="comment">//    new	bb	1011 1011	2: indexbyte1, indexbyte2	→ objectref	create new object of type identified by class reference in constant pool index (indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-<span class="comment">//    newarray	bc	1011 1100	1: atype	count → arrayref	create new array with count elements of primitive type identified by atype</span>
-<span class="comment">//    nop	00	0000 0000		[No change]	perform no operation</span>
-<span class="comment">//    pop	57	0101 0111		value →	discard the top value on the stack</span>
-<span class="comment">//    pop2	58	0101 1000		{value2, value1} →	discard the top two values on the stack (or one value, if it is a double or long)</span>
-<span class="comment">//    putfield	b5	1011 0101	2: indexbyte1, indexbyte2	objectref, value →	set field to value in an object objectref, where the field is identified by a field reference index in constant pool (indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-<span class="comment">//    putstatic	b3	1011 0011	2: indexbyte1, indexbyte2	value →	set static field to value in a class, where the field is identified by a field reference index in constant pool (indexbyte1 &lt;&lt; 8 + indexbyte2)</span>
-<span class="comment">//    ret	a9	1010 1001	1: index	[No change]	continue execution from address taken from a local variable #index (the asymmetry with jsr is intentional)</span>
-<span class="comment">//    return	b1	1011 0001		→ [empty]	return void from method</span>
-<span class="comment">//    saload	35	0011 0101		arrayref, index → value	load short from array</span>
-<span class="comment">//    sastore	56	0101 0110		arrayref, index, value →	store short to array</span>
-<span class="comment">//    sipush	11	0001 0001	2: byte1, byte2	→ value	push a short onto the stack as an integer value</span>
-<span class="comment">//    swap	5f	0101 1111		value2, value1 → value1, value2	swaps two top words on the stack (note that value1 and value2 must not be double or long)</span>
-<span class="comment">//    tableswitch	aa	1010 1010	16+: [0–3 bytes padding], defaultbyte1, defaultbyte2, defaultbyte3, defaultbyte4, lowbyte1, lowbyte2, lowbyte3, lowbyte4, highbyte1, highbyte2, highbyte3, highbyte4, jump offsets...	index →	continue execution from an address in the table at offset index</span>
-<span class="comment">//    wide	c4	1100 0100	3/5: opcode, indexbyte1, indexbyte2</span>
-<span class="comment">//    or</span>
-<span class="comment">//    iinc, indexbyte1, indexbyte2, countbyte1, countbyte2	[same as for corresponding instructions]	execute opcode, where opcode is either iload, fload, aload, lload, dload, istore, fstore, astore, lstore, dstore, or ret, but assume the index is 16 bit; or execute iinc, where the index is 16 bits and the constant to increment by is a signed 16 bit short</span>
-<span class="comment">//    (no name)	cb-fd				these values are currently unassigned for opcodes and are reserved for future use</span>
+    <span class="doccomment">/// Perform no operation.</span>
+    <span class="doccomment">/// Stack (before -&gt; after): [no change]</span>
+    <span class="doccomment">/// Other bytes (count: operand labels): -</span>
+    <span class="ident">Nop</span> <span class="op">=</span> <span class="number">0x01</span>,
+    <span class="doccomment">/// Pushes eight bytes onto the stack as an integer value.</span>
+    <span class="doccomment">/// Stack (before -&gt; after): [] -&gt; [value]</span>
+    <span class="doccomment">/// Other bytes (count: operand labels): 8: byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8</span>
+    <span class="ident">IPush</span> <span class="op">=</span> <span class="number">0x02</span>,
+    <span class="doccomment">/// Store integer value into variable #index.</span>
+    <span class="doccomment">/// Stack (before -&gt; after): [value] -&gt; []</span>
+    <span class="doccomment">/// Other bytes (count: operand labels): 1: index</span>
+    <span class="ident">IStore</span> <span class="op">=</span> <span class="number">0x03</span>,
+    <span class="doccomment">/// Load an integer value from a local variable #index.</span>
+    <span class="doccomment">/// Stack (before -&gt; after): [] -&gt; [value]</span>
+    <span class="doccomment">/// Other bytes (count: operand labels): 1: index</span>
+    <span class="ident">ILoad</span> <span class="op">=</span> <span class="number">0x04</span>,
+    <span class="doccomment">/// Add two integers.</span>
+    <span class="doccomment">/// Stack (before -&gt; after): [value1, value2] -&gt; [result]</span>
+    <span class="doccomment">/// Other bytes (count: operand labels): -</span>
+    <span class="ident">IAdd</span> <span class="op">=</span> <span class="number">0x05</span>,
+    <span class="doccomment">/// Print the value on top of the stack.</span>
+    <span class="doccomment">/// /// Stack (before -&gt; after): [value] -&gt; []</span>
+    <span class="doccomment">/// Other bytes (count: operand labels): -</span>
+    <span class="ident">Print</span> <span class="op">=</span> <span class="number">0x06</span>,
 }</pre>
 </section>
     <section id='search' class="content hidden"></section>

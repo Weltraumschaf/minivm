@@ -30,7 +30,7 @@
     <nav class="sidebar">
         <div class="sidebar-menu">&#9776;</div>
         
-        <p class='location'>Struct Lexer</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.new">new</a><a href="#method.input">input</a><a href="#method.current">current</a><a href="#method.next">next</a></div></div><p class='location'><a href='../../index.html'>minivm</a>::<wbr><a href='../index.html'>frontend</a>::<wbr><a href='index.html'>lexer</a></p><script>window.sidebarCurrent = {name: 'Lexer', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
+        <p class='location'>Struct Lexer</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.new">new</a><a href="#method.input">input</a><a href="#method.current">current</a><a href="#method.next">next</a><a href="#method.peek">peek</a></div></div><p class='location'><a href='../../index.html'>minivm</a>::<wbr><a href='../index.html'>frontend</a>::<wbr><a href='index.html'>lexer</a></p><script>window.sidebarCurrent = {name: 'Lexer', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
     </nav>
 
     <nav class="sub">
@@ -55,7 +55,7 @@
                     <h2 id='methods' class='small-section-header'>
                       Methods<a href='#methods' class='anchor'></a>
                     </h2>
-                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../../../minivm/frontend/lexer/struct.Lexer.html" title="struct minivm::frontend::lexer::Lexer">Lexer</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/lexer/mod.rs.html#26-108' title='goto source code'>[src]</a></span></h3>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../../../minivm/frontend/lexer/struct.Lexer.html" title="struct minivm::frontend::lexer::Lexer">Lexer</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/lexer/mod.rs.html#26-112' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>pub fn <a href='#method.new' class='fnname'>new</a>(input: <a class="struct" href="../../../minivm/frontend/character_stream/struct.CharacterStream.html" title="struct minivm::frontend::character_stream::CharacterStream">CharacterStream</a>) -&gt; <a class="struct" href="../../../minivm/frontend/lexer/struct.Lexer.html" title="struct minivm::frontend::lexer::Lexer">Lexer</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/lexer/mod.rs.html#28-36' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Creates a new lexer.</p>
 </div><h4 id='method.input' class="method"><span id='input.v' class='invisible'><code>pub fn <a href='#method.input' class='fnname'>input</a>(self) -&gt; <a class="struct" href="../../../minivm/frontend/character_stream/struct.CharacterStream.html" title="struct minivm::frontend::character_stream::CharacterStream">CharacterStream</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/lexer/mod.rs.html#39-41' title='goto source code'>[src]</a></span></h4>
@@ -66,7 +66,8 @@
 <p>If not yet started the lexing <a href="../token/enum.TokenType.html#variant.EOF">EOF</a> will be returned as default.</p>
 </div><h4 id='method.next' class="method"><span id='next.v' class='invisible'><code>pub fn <a href='#method.next' class='fnname'>next</a>(&amp;mut self)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/lexer/mod.rs.html#51-107' title='goto source code'>[src]</a></span></h4>
 <div class='docblock'><p>Recognizes the next token.</p>
-</div></div></section>
+</div><h4 id='method.peek' class="method"><span id='peek.v' class='invisible'><code>pub fn <a href='#method.peek' class='fnname'>peek</a>(&amp;self) -&gt; &amp;<a class="struct" href="../../../minivm/frontend/token/struct.Token.html" title="struct minivm::frontend::token::Token">Token</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/minivm/frontend/lexer/mod.rs.html#109-111' title='goto source code'>[src]</a></span></h4>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

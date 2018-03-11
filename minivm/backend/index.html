@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `commands` mod in crate `minivm`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, commands">
+    <meta name="description" content="API documentation for the Rust `backend` mod in crate `minivm`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, backend">
 
-    <title>minivm::commands - Rust</title>
+    <title>minivm::backend - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
@@ -30,7 +30,7 @@
     <nav class="sidebar">
         <div class="sidebar-menu">&#9776;</div>
         
-        <p class='location'>Module commands</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#structs">Structs</a></li><li><a href="#traits">Traits</a></li></ul></div><p class='location'><a href='../index.html'>minivm</a></p><script>window.sidebarCurrent = {name: 'commands', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script></div>
+        <p class='location'>Module backend</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#traits">Traits</a></li></ul></div><p class='location'><a href='../index.html'>minivm</a></p><script>window.sidebarCurrent = {name: 'backend', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script></div>
     </nav>
 
     <nav class="sub">
@@ -45,47 +45,26 @@
     </nav>
 
     <section id='main' class="content">
-<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>minivm</a>::<wbr><a class="mod" href=''>commands</a></span><span class='out-of-band'><span id='render-detail'>
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>minivm</a>::<wbr><a class="mod" href=''>backend</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/minivm/commands/mod.rs.html#1-17' title='goto source code'>[src]</a></span></h1>
-<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+               </span><a class='srclink' href='../../src/minivm/backend/mod.rs.html#1-9' title='goto source code'>[src]</a></span></h1>
+<h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
                        <tr class=' module-item'>
-                           <td><a class="struct" href="struct.AssembleCommand.html"
-                                  title='struct minivm::commands::AssembleCommand'>AssembleCommand</a></td>
+                           <td><a class="mod" href="bytecode/index.html"
+                                  title='mod minivm::backend::bytecode'>bytecode</a></td>
                            <td class='docblock-short'>
-                                <p>Command to assemble to byte code.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.CompileCommand.html"
-                                  title='struct minivm::commands::CompileCommand'>CompileCommand</a></td>
-                           <td class='docblock-short'>
-                                <p>Command to compile to byte code.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.ParserCommand.html"
-                                  title='struct minivm::commands::ParserCommand'>ParserCommand</a></td>
-                           <td class='docblock-short'>
-                                <p>Command t oparse source.</p>
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.RunCommand.html"
-                                  title='struct minivm::commands::RunCommand'>RunCommand</a></td>
-                           <td class='docblock-short'>
-                                <p>Command to run byte code.</p>
+                                <p>Backend module of Mini VM.</p>
                            </td>
                        </tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table>
                        <tr class=' module-item'>
-                           <td><a class="trait" href="trait.Command.html"
-                                  title='trait minivm::commands::Command'>Command</a></td>
+                           <td><a class="trait" href="trait.VirtualMachine.html"
+                                  title='trait minivm::backend::VirtualMachine'>VirtualMachine</a></td>
                            <td class='docblock-short'>
-                                <p>Trait for a command to execute.</p>
+                                <p>Trait for a virtual machine.</p>
                            </td>
                        </tr></table></section>
     <section id='search' class="content hidden"></section>

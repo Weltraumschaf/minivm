@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["compile_command","This module provides the various CLI command implementations."],["parse_command",""],["run_command",""]],"trait":[["Command","Trait for a command to execute."]]});
+initSidebarItems({"struct":[["AssembleCommand","Command to assemble to byte code."],["CompileCommand","Command to compile to byte code."],["ParserCommand","Command t oparse source."],["RunCommand","Command to run byte code."]],"trait":[["Command","Trait for a command to execute."]]});
