@@ -1,5 +1,4 @@
 use std::fs::File;
-use std::io::BufReader;
 use std::io::prelude::*;
 use std::path::Path;
 
@@ -46,5 +45,4 @@ impl Command for AssembleCommand {
 mod tests {
     use super::*;
     use hamcrest::prelude::*;
-
 }

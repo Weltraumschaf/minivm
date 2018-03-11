@@ -49,6 +49,14 @@ fn main() {
                 .takes_value(true)
                 .help("The file with assembly code.")
                 .required(true)))
+        .subcommand(SubCommand::with_name("disasm")
+            .about("Prints human readable assembler style form of the givne byte code.")
+            .arg(Arg::with_name("file")
+                .short("f")
+                .long("file")
+                .takes_value(true)
+                .help("The file with byte code.")
+                .required(true)))
         .subcommand(SubCommand::with_name("run")
             .about("Executes a compiled byte code file.")
             .arg(Arg::with_name("file")
@@ -72,6 +80,9 @@ fn main() {
     } else if let Some(matches) = matches.subcommand_matches("asm") {
         let file = matches.value_of("file").unwrap();
         AssembleCommand::new(file.to_string()).execute();
+    } else if let Some(matches) = matches.subcommand_matches("disasm") {
+        let file = matches.value_of("file").unwrap();
+        DisassembleCommand::new(file.to_string()).execute();
     } else if let Some(matches) = matches.subcommand_matches("run") {
         let file = matches.value_of("file").unwrap();
         RunCommand::new(file.to_string()).execute();

@@ -1,5 +1,7 @@
 use std::io::BufReader;
-use byteorder::{BigEndian, WriteBytesExt};
+use std::convert::TryFrom;
+use std::io::Cursor;
+use byteorder::{BigEndian, WriteBytesExt, ReadBytesExt};
 
 use backend::bytecode::Instruction;
 
@@ -17,7 +19,32 @@ impl Assembler {
     }
 
     /// Generates assembly style code from byte code.
-    pub fn disassemble(&self, byte_code: Vec<u8>) -> String { unimplemented!() }
+    pub fn disassemble(&self, byte_code: Vec<u8>) -> String {
+        let mut buffer = String::new();
+        let mut index = 0;
+
+        while index < byte_code.len() {
+            let opcode = byte_code[index];
+            let opcode = Instruction::try_from(opcode).unwrap();
+            buffer.push_str(&format!("{}", opcode));
+            index += 1;
+
+            match opcode {
+                Instruction::IPush => {
+                    buffer.push(' ');
+                    let mut reader = Cursor::new(&byte_code[index..index + 8]);
+                    let argument = reader.read_u64::<BigEndian>().unwrap();
+                    buffer.push_str(&format!("{}", argument));
+                    index += 8;
+                },
+                _ => (),
+            }
+
+            buffer.push('\n');
+        }
+
+        buffer
+    }
 }
 
 fn read_string(assembly_code: &str) -> Vec<Vec<String>> {
@@ -208,7 +235,6 @@ print
     }
 
     #[test]
-    #[ignore]
     fn disassemble() {
         let byte_code = vec![
             0x02, // ipush
@@ -237,9 +263,8 @@ print
         let assembly = sut.disassemble(byte_code);
 
         assert_that!(&assembly, is(equal_to(
-r#"
-ipush   1000
-ipush   100
+r#"ipush 1000
+ipush 100
 iadd
 print
 "#
