@@ -2,9 +2,6 @@ use minivm::commands::*;
 use minivm::error;
 use clap::{Arg, App, SubCommand};
 
-#[cfg(test)]
-#[macro_use]
-extern crate hamcrest;
 extern crate clap;
 extern crate env_logger;
 extern crate minivm;
