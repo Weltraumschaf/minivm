@@ -5,7 +5,7 @@ use std::path::Path;
 use commands::Command;
 use backend::assembler::Assembler;
 
-/// Command to assemble to byte code.
+/// Command to translate assembly style code to byte code.
 pub struct AssembleCommand {
     file: String,
 }

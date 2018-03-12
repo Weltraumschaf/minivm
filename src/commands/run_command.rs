@@ -1,4 +1,6 @@
 use commands::Command;
+use commands::read_file_as_bytes;
+use std::path::Path;
 
 /// Command to run byte code.
 pub struct RunCommand {
@@ -14,5 +16,6 @@ impl RunCommand {
 impl Command for RunCommand {
     fn execute(&self) {
         println!("Execute file {} ...", self.file);
+        let byte_code :Vec<u8> = read_file_as_bytes(Path::new(&self.file));
     }
 }
