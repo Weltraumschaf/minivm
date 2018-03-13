@@ -1,6 +1,8 @@
 use commands::Command;
 use commands::read_file_as_bytes;
 use std::path::Path;
+use std::io::Cursor;
+use byteorder::{BigEndian, ReadBytesExt};
 
 /// Command to run byte code.
 pub struct RunCommand {
@@ -30,9 +32,7 @@ impl CodeMemory {
     }
 
     pub fn fetch(&self, index: usize) -> Result<u8, &str> {
-        let len = self.byte_code.len();
-
-        if index < len {
+        if index < self.byte_code.len() {
             Ok(self.byte_code[index])
         } else {
             Err("Index out of bounds!")
@@ -40,7 +40,17 @@ impl CodeMemory {
     }
 
     pub fn fetch_integer(&self, index: usize) -> Result<i64, &str> {
-        unimplemented!();
+        let end_index = index + 8;
+
+        if end_index < self.byte_code.len() {
+            let mut reader = Cursor::new(&self.byte_code[index..end_index]);
+            match reader.read_i64::<BigEndian>() {
+                Ok(val) => Ok(val),
+                Err(err) => Err("Bad bytes to read i64 from!"),
+            }
+        } else {
+            Err("Index out of bounds!")
+        }
     }
 }
 

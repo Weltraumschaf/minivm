@@ -33,7 +33,7 @@ impl Assembler {
                 Instruction::IPush => {
                     buffer.push(' ');
                     let mut reader = Cursor::new(&byte_code[index..index + 8]);
-                    let argument = reader.read_u64::<BigEndian>().unwrap();
+                    let argument = reader.read_i64::<BigEndian>().unwrap();
                     buffer.push_str(&format!("{}", argument));
                     index += 8;
                 },
