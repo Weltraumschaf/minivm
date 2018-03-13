@@ -27,7 +27,7 @@ impl VirtualMachine {
     }
 
     /// Run a given program.
-    pub fn run(&self) -> Result<(), &str> {
+    pub fn run(&mut self) -> Result<(), &'static str> {
         loop {
             let opcode = self.fetch();
 
@@ -51,7 +51,7 @@ impl VirtualMachine {
         }
     }
 
-    fn fetch(&self) -> Result<u8, &str> {
+    fn fetch(&self) -> Result<u8, &'static str> {
         self.code.fetch(self.instruction_pointer)
     }
 
@@ -59,7 +59,30 @@ impl VirtualMachine {
         Instruction::try_from(opcode)
     }
 
-    fn execute(&self, instruction:Instruction) {}
+    fn execute(&mut self, instruction: Instruction) {
+        self.inc_instruction_pointer();
+
+        match instruction {
+            Instruction::Nop => (),
+            Instruction::IPush => {
+                let result = self.code.fetch_integer(self.instruction_pointer);
+            },
+            Instruction::IStore => unimplemented!(),
+            Instruction::ILoad => unimplemented!(),
+            Instruction::IAdd => unimplemented!(),
+            Instruction::ISub => unimplemented!(),
+            Instruction::IMul => unimplemented!(),
+            Instruction::IDiv => unimplemented!(),
+            Instruction::IRem => unimplemented!(),
+            Instruction::INeg => unimplemented!(),
+            Instruction::Print => unimplemented!(),
+            Instruction::Halt => panic!("The opcode 'halt' should exit the loop before execute!"),
+        }
+    }
+
+    fn inc_instruction_pointer(&mut self) {
+        self.instruction_pointer += 1;
+    }
 }
 
 struct CodeMemory {
@@ -71,7 +94,7 @@ impl CodeMemory {
         CodeMemory { byte_code }
     }
 
-    fn fetch(&self, index: usize) -> Result<u8, &str> {
+    fn fetch(&self, index: usize) -> Result<u8, &'static str> {
         if index < self.byte_code.len() {
             Ok(self.byte_code[index])
         } else {
@@ -79,7 +102,7 @@ impl CodeMemory {
         }
     }
 
-    fn fetch_integer(&self, index: usize) -> Result<i64, &str> {
+    fn fetch_integer(&self, index: usize) -> Result<i64, &'static str> {
         let end_index = index + WORD_SIZE;
 
         if end_index < self.byte_code.len() {
