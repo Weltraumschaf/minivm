@@ -1,42 +1,11 @@
 use std::convert::TryFrom;
 use std::str::FromStr;
 use std::fmt;
-use backend::BytecodeError;
 
-// Inspired by https://rustbyexample.com/custom_types/enum/testcase_linked_list.html
-pub enum List {
-    /// Tuple struct that wraps an element and a pointer to the next node.
-    Cons(Instruction, Box<List>),
-    /// A node that signifies the end of the linked list.
-    Nil,
-}
-
-impl List {
-    pub fn new() -> List {
-        List::Nil
-    }
-
-    pub fn prepend(self, elem: Instruction) -> List {
-        List::Cons(elem, Box::new(self))
-    }
-
-    pub fn append(self, elem: Instruction) -> List {
-        unimplemented!()
-    }
-
-    pub fn len(&self) -> u32 {
-        match *self {
-            List::Cons(_, ref tail) => 1 + tail.len(),
-            List::Nil => 0
-        }
-    }
-
-    pub fn stringify(&self) -> String {
-        match *self {
-            List::Cons(ref head, ref tail) => format!("{:?}, {}", head, tail.stringify()),
-            List::Nil => format!("Nil"),
-        }
-    }
+#[derive(Debug, PartialEq)]
+pub enum Error {
+    UnknownInstruction(u8),
+    UnknownMnemonic(String),
 }
 
 /// Defines the available byte code instructions.
@@ -139,7 +108,7 @@ impl From<Instruction> for u8 {
 }
 
 impl TryFrom<u8> for Instruction {
-    type Error = BytecodeError;
+    type Error = Error;
 
     fn try_from(original: u8) -> Result<Self, Self::Error> {
         match original {
@@ -155,13 +124,13 @@ impl TryFrom<u8> for Instruction {
             0x0a => Ok(Instruction::INeg),
             0x0b => Ok(Instruction::Print),
             0x0c => Ok(Instruction::Halt),
-            n => Err(BytecodeError::UnknownInstruction(n)),
+            n => Err(Error::UnknownInstruction(n)),
         }
     }
 }
 
 impl FromStr for Instruction {
-    type Err = BytecodeError;
+    type Err = Error;
 
     fn from_str(original: &str) -> Result<Self, Self::Err> {
         match original {
@@ -177,7 +146,7 @@ impl FromStr for Instruction {
             "ineg" => Ok(Instruction::INeg),
             "print" => Ok(Instruction::Print),
             "halt" => Ok(Instruction::Halt),
-            m => Err(BytecodeError::UnknownMnemonic(m.to_string())),
+            m => Err(Error::UnknownMnemonic(m.to_string())),
         }
     }
 }
@@ -217,7 +186,7 @@ mod tests {
         assert_that!(Instruction::try_from(0x0a), is(equal_to(Ok(Instruction::INeg))));
         assert_that!(Instruction::try_from(0x0b), is(equal_to(Ok(Instruction::Print))));
         assert_that!(Instruction::try_from(0x0c), is(equal_to(Ok(Instruction::Halt))));
-        assert_that!(Instruction::try_from(0x0d), is(equal_to(Err(BytecodeError::UnknownInstruction(0x0d)))));
+        assert_that!(Instruction::try_from(0x0d), is(equal_to(Err(Error::UnknownInstruction(0x0d)))));
     }
 
     #[test]
@@ -234,7 +203,7 @@ mod tests {
         assert_that!(Instruction::from_str("ineg"), is(equal_to(Ok(Instruction::INeg))));
         assert_that!(Instruction::from_str("print"), is(equal_to(Ok(Instruction::Print))));
         assert_that!(Instruction::from_str("halt"), is(equal_to(Ok(Instruction::Halt))));
-        assert_that!(Instruction::from_str("foo"), is(equal_to(Err(BytecodeError::UnknownMnemonic(String::from("foo"))))));
+        assert_that!(Instruction::from_str("foo"), is(equal_to(Err(Error::UnknownMnemonic(String::from("foo"))))));
     }
 
     #[test]
