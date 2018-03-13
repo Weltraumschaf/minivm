@@ -96,9 +96,13 @@ pub enum Instruction {
     /// Other bytes (count: operand labels): -
     INeg,
     /// Print the value on top of the stack.
-    /// /// Stack (before -> after): [value] -> []
+    /// Stack (before -> after): [value] -> []
     /// Other bytes (count: operand labels): -
     Print,
+    /// Stops the VM so no mire code will be executed.
+    /// Stack (before -> after): [] -> []
+    /// Other bytes (count: operand labels): -
+    Halt,
 }
 
 impl fmt::Display for Instruction {
@@ -115,6 +119,7 @@ impl fmt::Display for Instruction {
             Instruction::IRem => write!(f, "irem"),
             Instruction::INeg => write!(f, "ineg"),
             Instruction::Print => write!(f, "print"),
+            Instruction::Halt => write!(f, "halt"),
         }
     }
 }
@@ -133,6 +138,7 @@ impl From<Instruction> for u8 {
             Instruction::IRem => 0x09,
             Instruction::INeg => 0x0a,
             Instruction::Print => 0x0b,
+            Instruction::Halt => 0x0c,
         }
     }
 }
@@ -153,6 +159,7 @@ impl TryFrom<u8> for Instruction {
             0x09 => Ok(Instruction::IRem),
             0x0a => Ok(Instruction::INeg),
             0x0b => Ok(Instruction::Print),
+            0x0c => Ok(Instruction::Halt),
             n => Err(AssemblerError::UnknownInstruction(n)),
         }
     }
@@ -174,6 +181,7 @@ impl FromStr for Instruction {
             "irem" => Ok(Instruction::IRem),
             "ineg" => Ok(Instruction::INeg),
             "print" => Ok(Instruction::Print),
+            "halt" => Ok(Instruction::Halt),
             m => Err(AssemblerError::UnknownMnemonic(m.to_string())),
         }
     }
@@ -197,6 +205,7 @@ mod tests {
         assert_that!(u8::from(Instruction::IRem), is(equal_to(0x09)));
         assert_that!(u8::from(Instruction::INeg), is(equal_to(0x0a)));
         assert_that!(u8::from(Instruction::Print), is(equal_to(0x0b)));
+        assert_that!(u8::from(Instruction::Halt), is(equal_to(0x0c)));
     }
 
     #[test]
@@ -212,7 +221,8 @@ mod tests {
         assert_that!(Instruction::try_from(0x09), is(equal_to(Ok(Instruction::IRem))));
         assert_that!(Instruction::try_from(0x0a), is(equal_to(Ok(Instruction::INeg))));
         assert_that!(Instruction::try_from(0x0b), is(equal_to(Ok(Instruction::Print))));
-        assert_that!(Instruction::try_from(0x0c), is(equal_to(Err(AssemblerError::UnknownInstruction(0x0c)))));
+        assert_that!(Instruction::try_from(0x0c), is(equal_to(Ok(Instruction::Halt))));
+        assert_that!(Instruction::try_from(0x0d), is(equal_to(Err(AssemblerError::UnknownInstruction(0x0d)))));
     }
 
     #[test]
@@ -228,6 +238,7 @@ mod tests {
         assert_that!(Instruction::from_str("irem"), is(equal_to(Ok(Instruction::IRem))));
         assert_that!(Instruction::from_str("ineg"), is(equal_to(Ok(Instruction::INeg))));
         assert_that!(Instruction::from_str("print"), is(equal_to(Ok(Instruction::Print))));
+        assert_that!(Instruction::from_str("halt"), is(equal_to(Ok(Instruction::Halt))));
         assert_that!(Instruction::from_str("foo"), is(equal_to(Err(AssemblerError::UnknownMnemonic(String::from("foo"))))));
     }
 
@@ -244,5 +255,6 @@ mod tests {
         assert_that!(&format!("{}", Instruction::IRem), is(equal_to("irem")));
         assert_that!(&format!("{}", Instruction::INeg), is(equal_to("ineg")));
         assert_that!(&format!("{}", Instruction::Print), is(equal_to("print")));
+        assert_that!(&format!("{}", Instruction::Halt), is(equal_to("halt")));
     }
 }
