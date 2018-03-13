@@ -1,9 +1,16 @@
 ///! Backend module of Mini VM.
-use std::io::Cursor;
-use byteorder::{BigEndian, ReadBytesExt};
-
 pub mod bytecode;
 pub mod assembler;
+
+use std::io::Cursor;
+use byteorder::{BigEndian, ReadBytesExt};
+use std::convert::TryFrom;
+
+use backend::bytecode::Instruction;
+use backend::bytecode::Error;
+
+/// Architectural word size in bytes.
+const WORD_SIZE: usize = 8;
 
 /// Trait for a virtual machine.
 pub struct VirtualMachine {
@@ -22,16 +29,37 @@ impl VirtualMachine {
     /// Run a given program.
     pub fn run(&self) -> Result<(), &str> {
         loop {
-            self.fetch();
-            self.decode();
-            self.execute();
+            let opcode = self.fetch();
+
+            if opcode.is_err() {
+                return Err(opcode.unwrap_err());
+            }
+
+            let instruction = self.decode(opcode.unwrap());
+
+            if instruction.is_err() {
+                return Err("Bad opcode!");
+            }
+
+            let instruction = instruction.unwrap();
+
+            if instruction == Instruction::Halt {
+                return Ok(());
+            }
+
+            self.execute(instruction);
         }
-        Ok(())
     }
 
-    fn fetch(&self) {}
-    fn decode(&self) {}
-    fn execute(&self) {}
+    fn fetch(&self) -> Result<u8, &str> {
+        self.code.fetch(self.instruction_pointer)
+    }
+
+    fn decode(&self, opcode: u8) -> Result<Instruction, Error> {
+        Instruction::try_from(opcode)
+    }
+
+    fn execute(&self, instruction:Instruction) {}
 }
 
 struct CodeMemory {
@@ -39,11 +67,11 @@ struct CodeMemory {
 }
 
 impl CodeMemory {
-    pub fn new(byte_code: Vec<u8>) -> CodeMemory {
+    fn new(byte_code: Vec<u8>) -> CodeMemory {
         CodeMemory { byte_code }
     }
 
-    pub fn fetch(&self, index: usize) -> Result<u8, &str> {
+    fn fetch(&self, index: usize) -> Result<u8, &str> {
         if index < self.byte_code.len() {
             Ok(self.byte_code[index])
         } else {
@@ -51,8 +79,8 @@ impl CodeMemory {
         }
     }
 
-    pub fn fetch_integer(&self, index: usize) -> Result<i64, &str> {
-        let end_index = index + 8;
+    fn fetch_integer(&self, index: usize) -> Result<i64, &str> {
+        let end_index = index + WORD_SIZE;
 
         if end_index < self.byte_code.len() {
             let mut reader = Cursor::new(&self.byte_code[index..end_index]);
