@@ -1,6 +1,7 @@
 use std::convert::TryFrom;
 use std::str::FromStr;
 use std::fmt;
+use backend::BytecodeError;
 
 // Inspired by https://rustbyexample.com/custom_types/enum/testcase_linked_list.html
 pub enum List {
@@ -36,12 +37,6 @@ impl List {
             List::Nil => format!("Nil"),
         }
     }
-}
-
-#[derive(Debug, PartialEq)]
-pub enum AssemblerError {
-    UnknownInstruction(u8),
-    UnknownMnemonic(String),
 }
 
 /// Defines the available byte code instructions.
@@ -144,7 +139,7 @@ impl From<Instruction> for u8 {
 }
 
 impl TryFrom<u8> for Instruction {
-    type Error = AssemblerError;
+    type Error = BytecodeError;
 
     fn try_from(original: u8) -> Result<Self, Self::Error> {
         match original {
@@ -160,13 +155,13 @@ impl TryFrom<u8> for Instruction {
             0x0a => Ok(Instruction::INeg),
             0x0b => Ok(Instruction::Print),
             0x0c => Ok(Instruction::Halt),
-            n => Err(AssemblerError::UnknownInstruction(n)),
+            n => Err(BytecodeError::UnknownInstruction(n)),
         }
     }
 }
 
 impl FromStr for Instruction {
-    type Err = AssemblerError;
+    type Err = BytecodeError;
 
     fn from_str(original: &str) -> Result<Self, Self::Err> {
         match original {
@@ -182,7 +177,7 @@ impl FromStr for Instruction {
             "ineg" => Ok(Instruction::INeg),
             "print" => Ok(Instruction::Print),
             "halt" => Ok(Instruction::Halt),
-            m => Err(AssemblerError::UnknownMnemonic(m.to_string())),
+            m => Err(BytecodeError::UnknownMnemonic(m.to_string())),
         }
     }
 }
