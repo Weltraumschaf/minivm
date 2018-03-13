@@ -51,7 +51,6 @@ impl Lexer {
     pub fn next(&mut self) {
         if !self.input.has_next() {
             debug!("No more input to lex.");
-            let position = self.input.position();
             self.current = Token::new(
                 self.input.position(),
                 TokenType::EOF,

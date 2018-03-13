@@ -1,7 +1,6 @@
 use frontend::lexer::SubLexer;
 use frontend::token::*;
 use frontend::character_stream::CharacterStream;
-use frontend::character_helper::CharacterHelper;
 #[cfg(test)]
 use frontend::Position;
 

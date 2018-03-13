@@ -21,8 +21,17 @@ impl VirtualMachine {
 
     /// Run a given program.
     pub fn run(&self) -> Result<(), &str> {
+        loop {
+            self.fetch();
+            self.decode();
+            self.execute();
+        }
         Ok(())
     }
+
+    fn fetch(&self) {}
+    fn decode(&self) {}
+    fn execute(&self) {}
 }
 
 struct CodeMemory {
@@ -49,7 +58,7 @@ impl CodeMemory {
             let mut reader = Cursor::new(&self.byte_code[index..end_index]);
             match reader.read_i64::<BigEndian>() {
                 Ok(val) => Ok(val),
-                Err(err) => Err("Bad bytes to read i64 from!"),
+                Err(_) => Err("Bad bytes to read i64 from!"),
             }
         } else {
             Err("Index out of bounds!")

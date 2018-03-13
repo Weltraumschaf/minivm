@@ -20,7 +20,7 @@ impl Command for RunCommand {
         println!("Execute file {} ...", self.file);
         let byte_code = read_file_as_bytes(Path::new(&self.file));
         let vm = VirtualMachine::new(byte_code);
-        let result = vm.run();
+        let _ = vm.run();
     }
 }
 

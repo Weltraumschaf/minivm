@@ -1,4 +1,3 @@
-use std::io::BufReader;
 use std::convert::TryFrom;
 use std::io::Cursor;
 use byteorder::{BigEndian, WriteBytesExt, ReadBytesExt};
