@@ -259,6 +259,11 @@ Example of an integer addition operation (iadd instruction):
 1. decode: `switch (opcode) { ... }`
 1. execute: `stack[++sp] = stack[sp--] + stack[sp--]`
 
+## TODO
+
+- Consider using a parser generator
+    - [lalrpop](http://lalrpop.github.io/lalrpop/README.html)
+
 [travis-project]:   https://travis-ci.org/Weltraumschaf/minivm
 [travis-badge]:     https://travis-ci.org/Weltraumschaf/minivm.svg?branch=master
 [codecov-project]:  https://codecov.io/gh/Weltraumschaf/minivm

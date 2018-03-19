@@ -3,7 +3,7 @@ use std::str::FromStr;
 use std::fmt;
 
 #[derive(Debug, PartialEq)]
-pub enum Error {
+pub enum BytecodeError {
     UnknownInstruction(u8),
     UnknownMnemonic(String),
 }
@@ -108,7 +108,7 @@ impl From<Instruction> for u8 {
 }
 
 impl TryFrom<u8> for Instruction {
-    type Error = Error;
+    type Error = BytecodeError;
 
     fn try_from(original: u8) -> Result<Self, Self::Error> {
         match original {
@@ -124,13 +124,13 @@ impl TryFrom<u8> for Instruction {
             0x0a => Ok(Instruction::INeg),
             0x0b => Ok(Instruction::Print),
             0x0c => Ok(Instruction::Halt),
-            n => Err(Error::UnknownInstruction(n)),
+            n => Err(BytecodeError::UnknownInstruction(n)),
         }
     }
 }
 
 impl FromStr for Instruction {
-    type Err = Error;
+    type Err = BytecodeError;
 
     fn from_str(original: &str) -> Result<Self, Self::Err> {
         match original {
@@ -146,7 +146,7 @@ impl FromStr for Instruction {
             "ineg" => Ok(Instruction::INeg),
             "print" => Ok(Instruction::Print),
             "halt" => Ok(Instruction::Halt),
-            m => Err(Error::UnknownMnemonic(m.to_string())),
+            m => Err(BytecodeError::UnknownMnemonic(m.to_string())),
         }
     }
 }
@@ -186,7 +186,7 @@ mod tests {
         assert_that!(Instruction::try_from(0x0a), is(equal_to(Ok(Instruction::INeg))));
         assert_that!(Instruction::try_from(0x0b), is(equal_to(Ok(Instruction::Print))));
         assert_that!(Instruction::try_from(0x0c), is(equal_to(Ok(Instruction::Halt))));
-        assert_that!(Instruction::try_from(0x0d), is(equal_to(Err(Error::UnknownInstruction(0x0d)))));
+        assert_that!(Instruction::try_from(0x0d), is(equal_to(Err(BytecodeError::UnknownInstruction(0x0d)))));
     }
 
     #[test]
@@ -203,7 +203,7 @@ mod tests {
         assert_that!(Instruction::from_str("ineg"), is(equal_to(Ok(Instruction::INeg))));
         assert_that!(Instruction::from_str("print"), is(equal_to(Ok(Instruction::Print))));
         assert_that!(Instruction::from_str("halt"), is(equal_to(Ok(Instruction::Halt))));
-        assert_that!(Instruction::from_str("foo"), is(equal_to(Err(Error::UnknownMnemonic(String::from("foo"))))));
+        assert_that!(Instruction::from_str("foo"), is(equal_to(Err(BytecodeError::UnknownMnemonic(String::from("foo"))))));
     }
 
     #[test]

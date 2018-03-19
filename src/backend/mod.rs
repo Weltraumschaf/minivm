@@ -1,20 +1,19 @@
 ///! Backend module of Mini VM.
 pub mod bytecode;
+pub mod byte_conversion;
 pub mod assembler;
+pub mod memory;
 
-use std::io::Cursor;
-use byteorder::{BigEndian, ReadBytesExt};
 use std::convert::TryFrom;
 
-use backend::bytecode::Instruction;
-use backend::bytecode::Error;
-
-/// Architectural word size in bytes.
-const WORD_SIZE: usize = 8;
+use backend::bytecode::{Instruction, BytecodeError};
+use backend::byte_conversion::*;
+use backend::memory::{CodeMemory, Stack};
 
 /// Trait for a virtual machine.
 pub struct VirtualMachine {
     code: CodeMemory,
+    stack: Stack,
     instruction_pointer: usize,
 }
 
@@ -22,6 +21,7 @@ impl VirtualMachine {
     pub fn new(byte_code: Vec<u8>) -> VirtualMachine {
         VirtualMachine {
             code: CodeMemory::new(byte_code),
+            stack: Stack::new(),
             instruction_pointer: 0,
         }
     }
@@ -55,7 +55,7 @@ impl VirtualMachine {
         self.code.fetch(self.instruction_pointer)
     }
 
-    fn decode(&self, opcode: u8) -> Result<Instruction, Error> {
+    fn decode(&self, opcode: u8) -> Result<Instruction, BytecodeError> {
         Instruction::try_from(opcode)
     }
 
@@ -65,11 +65,26 @@ impl VirtualMachine {
         match instruction {
             Instruction::Nop => (),
             Instruction::IPush => {
-                let result = self.code.fetch_integer(self.instruction_pointer);
+                let result = self.code.fetch_word(self.instruction_pointer);
+
+                match result {
+                    Ok(value) => self.stack.push(value),
+                    Err(msg) => panic!("Error: {}", msg),
+                }
+
+                self.inc_instruction_pointer_word();
             },
             Instruction::IStore => unimplemented!(),
             Instruction::ILoad => unimplemented!(),
-            Instruction::IAdd => unimplemented!(),
+            Instruction::IAdd => {
+                let first_operand = self.stack.pop();
+                let second_operand = self.stack.pop();
+                let first_operand = word_to_integer(first_operand);
+                let second_operand = word_to_integer(second_operand);
+                let result = first_operand + second_operand;
+                let result = integer_to_word(result);
+                self.stack.push(result);
+            },
             Instruction::ISub => unimplemented!(),
             Instruction::IMul => unimplemented!(),
             Instruction::IDiv => unimplemented!(),
@@ -83,61 +98,14 @@ impl VirtualMachine {
     fn inc_instruction_pointer(&mut self) {
         self.instruction_pointer += 1;
     }
-}
 
-struct CodeMemory {
-    byte_code: Vec<u8>,
-}
-
-impl CodeMemory {
-    fn new(byte_code: Vec<u8>) -> CodeMemory {
-        CodeMemory { byte_code }
-    }
-
-    fn fetch(&self, index: usize) -> Result<u8, &'static str> {
-        if index < self.byte_code.len() {
-            Ok(self.byte_code[index])
-        } else {
-            Err("Index out of bounds!")
-        }
-    }
-
-    fn fetch_integer(&self, index: usize) -> Result<i64, &'static str> {
-        let end_index = index + WORD_SIZE;
-
-        if end_index < self.byte_code.len() {
-            let mut reader = Cursor::new(&self.byte_code[index..end_index]);
-            match reader.read_i64::<BigEndian>() {
-                Ok(val) => Ok(val),
-                Err(_) => Err("Bad bytes to read i64 from!"),
-            }
-        } else {
-            Err("Index out of bounds!")
-        }
+    fn inc_instruction_pointer_word(&mut self) {
+        self.instruction_pointer += WORD_SIZE;
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-    use hamcrest::prelude::*;
-
-    #[test]
-    fn fetch() {
-        let sut = CodeMemory::new(vec![0x01, 0x02, 0x03]);
-
-        assert_that!(sut.fetch(0), is(equal_to(Ok(0x01))));
-        assert_that!(sut.fetch(1), is(equal_to(Ok(0x02))));
-        assert_that!(sut.fetch(2), is(equal_to(Ok(0x03))));
-    }
-
-    #[test]
-    fn fetch_out_of_bound() {
-        let sut = CodeMemory::new(vec![0x01, 0x02, 0x03]);
-
-        assert_that!(sut.fetch(3), is(equal_to(Err("Index out of bounds!"))));
-    }
-
-    #[test]
-    fn fetch_integer() {}
+//    use super::*;
+//    use hamcrest::prelude::*;
 }
