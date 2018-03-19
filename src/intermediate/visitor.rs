@@ -8,7 +8,7 @@ pub trait Visitor<T> {
 }
 
 // An example concrete implementation - walks the AST interpreting it as code.
-struct Interpreter;
+pub struct Interpreter;
 
 impl Visitor<i64> for Interpreter {
     fn visit_identifier(&mut self, n: &Identifier) -> i64 { panic!() }

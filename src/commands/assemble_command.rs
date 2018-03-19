@@ -37,12 +37,12 @@ impl Command for AssembleCommand {
             .expect("Can't create target file!");
         output.write(&byte_code)
             .expect("Can't write target file!");
-        output.flush();
+        let _ = output.flush();
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-    use hamcrest::prelude::*;
+//    use super::*;
+//    use hamcrest::prelude::*;
 }
