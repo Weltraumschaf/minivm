@@ -106,14 +106,14 @@ impl SubLexer for NumberLexer {
             Type::INTEGER => {
                 // Compute the value of an integer number token.
                 match literal.parse::<i64>() {
-                    Ok(value) => token_type = TokenType::INTEGER(value),
+                    Ok(value) => token_type = TokenType::Integer(value),
                     Err(error) => panic!(format!("ERROR: {}: \"{}\"", error, literal))
                 }
             },
             Type::REAL => {
                 // Compute the value of a real number token.
                 match literal.parse::<f64>() {
-                    Ok(value) => token_type = TokenType::REAL(value),
+                    Ok(value) => token_type = TokenType::Real(value),
                     Err(error) => panic!(format!("ERROR: {}: \"{}\"", error, literal))
                 }
             }
@@ -177,7 +177,7 @@ mod tests {
 
         assert_that!(token,
             is(equal_to(
-                Token::new(Position::new(1, 1), TokenType::INTEGER(42), String::from("42")))
+                Token::new(Position::new(1, 1), TokenType::Integer(42), String::from("42")))
             )
         );
     }
@@ -191,7 +191,7 @@ mod tests {
 
         assert_that!(token,
             is(equal_to(
-                Token::new(Position::new(1, 1), TokenType::REAL(3.14), String::from("3.14")))
+                Token::new(Position::new(1, 1), TokenType::Real(3.14), String::from("3.14")))
             )
         );
     }
@@ -205,7 +205,7 @@ mod tests {
 
         assert_that!(token,
             is(equal_to(
-                Token::new(Position::new(1, 1), TokenType::REAL(0.07), String::from("7.0e-2")))
+                Token::new(Position::new(1, 1), TokenType::Real(0.07), String::from("7.0e-2")))
             )
         );
     }
@@ -219,7 +219,7 @@ mod tests {
 
         assert_that!(token,
             is(equal_to(
-                Token::new(Position::new(1, 1), TokenType::REAL(0.07), String::from("7.0E-2")))
+                Token::new(Position::new(1, 1), TokenType::Real(0.07), String::from("7.0E-2")))
             )
         );
     }
@@ -233,7 +233,7 @@ mod tests {
 
         assert_that!(token,
             is(equal_to(
-                Token::new(Position::new(1, 1), TokenType::REAL(700.), String::from("7.0e2")))
+                Token::new(Position::new(1, 1), TokenType::Real(700.), String::from("7.0e2")))
             )
         );
     }
@@ -247,7 +247,7 @@ mod tests {
 
         assert_that!(token,
             is(equal_to(
-                Token::new(Position::new(1, 1), TokenType::REAL(700.), String::from("7.0E+2")))
+                Token::new(Position::new(1, 1), TokenType::Real(700.), String::from("7.0E+2")))
             )
         );
     }

@@ -23,49 +23,49 @@ impl SubLexer for OperatorLexer {
                 input.next(); //consume (
                 Token::new(
                     position,
-                    TokenType::L_PAREN,
+                    TokenType::LeftParen,
                     String::from("("))
             },
             ')' => {
                 input.next(); //consume )
                 Token::new(
                     position,
-                    TokenType::R_PAREN,
+                    TokenType::RightParen,
                     String::from(")"))
             },
             '[' => {
                 input.next(); //consume [
                 Token::new(
                     position,
-                    TokenType::L_BRACK,
+                    TokenType::LeftBracket,
                     String::from("["))
             },
             ']' => {
                 input.next(); //consume ]
                 Token::new(
                     position,
-                    TokenType::R_BRACK,
+                    TokenType::RightBracket,
                     String::from("]"))
             },
             '{' => {
                 input.next(); //consume {
                 Token::new(
                     position,
-                    TokenType::L_BRACE,
+                    TokenType::LeftBrace,
                     String::from("{"))
             },
             '}' => {
                 input.next(); //consume }
                 Token::new(
                     position,
-                    TokenType::R_BRACE,
+                    TokenType::RightBrace,
                     String::from("}"))
             },
             ',' => {
                 input.next(); //consume ,
                 Token::new(
                     position,
-                    TokenType::COMMA,
+                    TokenType::Comma,
                     String::from(","))
             },
             '=' => {
@@ -75,12 +75,12 @@ impl SubLexer for OperatorLexer {
                     input.next(); //consume =
                     Token::new(
                         position,
-                        TokenType::OPERATOR(Operator::EQUAL),
+                        TokenType::Operator(Operator::Equal),
                         String::from("=="))
                 } else {
                     Token::new(
                         position,
-                        TokenType::OPERATOR(Operator::ASSIGN),
+                        TokenType::Operator(Operator::Assign),
                         String::from("="))
                 }
             },
@@ -91,7 +91,7 @@ impl SubLexer for OperatorLexer {
                     input.next(); //consume =
                     Token::new(
                         position,
-                        TokenType::OPERATOR(Operator::NOT_EQUAL),
+                        TokenType::Operator(Operator::NotEqual),
                         String::from("!="))
                 } else {
                     panic!("Expecting = after ! for != operator!");
@@ -104,12 +104,12 @@ impl SubLexer for OperatorLexer {
                     input.next(); //consume =
                     Token::new(
                         position,
-                        TokenType::OPERATOR(Operator::LESS_THAN_EQUAL),
+                        TokenType::Operator(Operator::LessThanEqual),
                         String::from("<="))
                 } else {
                     Token::new(
                         position,
-                        TokenType::OPERATOR(Operator::LESS_THAN),
+                        TokenType::Operator(Operator::LessThan),
                         String::from("<"))
                 }
             },
@@ -120,12 +120,12 @@ impl SubLexer for OperatorLexer {
                     input.next(); //consume =
                     Token::new(
                         position,
-                        TokenType::OPERATOR(Operator::GREATER_THAN_EQUAL),
+                        TokenType::Operator(Operator::GreaterThanEqual),
                         String::from(">="))
                 } else {
                     Token::new(
                         position,
-                        TokenType::OPERATOR(Operator::GREATER_THAN),
+                        TokenType::Operator(Operator::GreaterThan),
                         String::from(">"))
                 }
             },
@@ -133,35 +133,35 @@ impl SubLexer for OperatorLexer {
                 input.next(); //consume +
                 Token::new(
                     position,
-                    TokenType::OPERATOR(Operator::PLUS),
+                    TokenType::Operator(Operator::Plus),
                     String::from("+"))
             },
             '-' => {
                 input.next(); //consume -
                 Token::new(
                     position,
-                    TokenType::OPERATOR(Operator::MINUS),
+                    TokenType::Operator(Operator::Minus),
                     String::from("-"))
             },
             '*' => {
                 input.next(); //consume *
                 Token::new(
                     position,
-                    TokenType::OPERATOR(Operator::STAR),
+                    TokenType::Operator(Operator::Star),
                     String::from("*"))
             },
             '/' => {
                 input.next(); //consume /
                 Token::new(
                     position,
-                    TokenType::OPERATOR(Operator::SLASH),
+                    TokenType::Operator(Operator::Slash),
                     String::from("/"))
             },
             '%' => {
                 input.next(); //consume %
                 Token::new(
                     position,
-                    TokenType::OPERATOR(Operator::MOD),
+                    TokenType::Operator(Operator::Mod),
                     String::from("%"))
             }
             _ => panic!("Unrecognized operator '{}'!", input.current())
@@ -183,7 +183,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::L_PAREN,
+            TokenType::LeftParen,
             String::from("("))
         )));
     }
@@ -197,7 +197,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::R_PAREN,
+            TokenType::RightParen,
             String::from(")"))
         )));
     }
@@ -211,7 +211,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::L_BRACK,
+            TokenType::LeftBracket,
             String::from("["))
         )));
     }
@@ -225,7 +225,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::R_BRACK,
+            TokenType::RightBracket,
             String::from("]"))
         )));
     }
@@ -239,7 +239,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::L_BRACE,
+            TokenType::LeftBrace,
             String::from("{"))
         )));
     }
@@ -253,7 +253,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::R_BRACE,
+            TokenType::RightBrace,
             String::from("}"))
         )));
     }
@@ -267,7 +267,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::COMMA,
+            TokenType::Comma,
             String::from(","))
         )));
     }
@@ -281,7 +281,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::OPERATOR(Operator::EQUAL),
+            TokenType::Operator(Operator::Equal),
             String::from("=="))
         )));
     }
@@ -295,7 +295,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::OPERATOR(Operator::ASSIGN),
+            TokenType::Operator(Operator::Assign),
             String::from("="))
         )));
     }
@@ -309,7 +309,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::OPERATOR(Operator::NOT_EQUAL),
+            TokenType::Operator(Operator::NotEqual),
             String::from("!="))
         )));
     }
@@ -323,7 +323,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::OPERATOR(Operator::LESS_THAN_EQUAL),
+            TokenType::Operator(Operator::LessThanEqual),
             String::from("<="))
         )));
     }
@@ -337,7 +337,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::OPERATOR(Operator::LESS_THAN),
+            TokenType::Operator(Operator::LessThan),
             String::from("<"))
         )));
     }
@@ -351,7 +351,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::OPERATOR(Operator::GREATER_THAN_EQUAL),
+            TokenType::Operator(Operator::GreaterThanEqual),
             String::from(">="))
         )));
     }
@@ -365,7 +365,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::OPERATOR(Operator::GREATER_THAN),
+            TokenType::Operator(Operator::GreaterThan),
             String::from(">"))
         )));
     }
@@ -379,7 +379,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::OPERATOR(Operator::PLUS),
+            TokenType::Operator(Operator::Plus),
             String::from("+"))
         )));
     }
@@ -393,7 +393,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::OPERATOR(Operator::MINUS),
+            TokenType::Operator(Operator::Minus),
             String::from("-"))
         )));
     }
@@ -407,7 +407,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::OPERATOR(Operator::STAR),
+            TokenType::Operator(Operator::Star),
             String::from("*"))
         )));
     }
@@ -421,7 +421,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::OPERATOR(Operator::SLASH),
+            TokenType::Operator(Operator::Slash),
             String::from("/"))
         )));
     }
@@ -435,7 +435,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::OPERATOR(Operator::MOD),
+            TokenType::Operator(Operator::Mod),
             String::from("%"))
         )));
     }

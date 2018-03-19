@@ -132,14 +132,14 @@ println(z)\n"));
         sut.next();
         let mut expected = Token::new(
             Position::new(1, 1),
-            TokenType::KEYWORD(Keyword::VAR),
+            TokenType::Keyword(Keyword::Var),
             String::from("var"));
         assert_that!(sut.current(), is(equal_to(&expected)));
 
         sut.next();
         expected = Token::new(
             Position::new(1, 5),
-            TokenType::IDENTIFIER(String::from("s")),
+            TokenType::Identifier(String::from("s")),
             String::from("s"));
         assert_that!(sut.current(), is(equal_to(&expected)));
     }

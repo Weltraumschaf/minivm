@@ -25,16 +25,16 @@ impl Parser {
 
     fn parse_statement(&self) {
         match *self.lexer.current().get_token_type() {
-            TokenType::KEYWORD(ref keyword) => {
+            TokenType::Keyword(ref keyword) => {
                 match *keyword {
-                    Keyword::CONST => self.parse_constant_declaration(),
-                    Keyword::VAR => self.parse_variable_declaration(),
+                    Keyword::Const => self.parse_constant_declaration(),
+                    Keyword::Var => self.parse_variable_declaration(),
                     _ => panic!("Unexpected keyword: {}!", keyword),
                 }
             },
-            TokenType::IDENTIFIER(_) => {
+            TokenType::Identifier(_) => {
                 match *self.lexer.peek().get_token_type() {
-                    TokenType::OPERATOR(Operator::ASSIGN) => self.parse_assignment(),
+                    TokenType::Operator(Operator::Assign) => self.parse_assignment(),
                     _ => self.parse_or_expression(),
                 }
             },

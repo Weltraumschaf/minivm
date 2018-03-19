@@ -28,7 +28,7 @@ impl SubLexer for CharacterLexer {
         if CharacterHelper::is_single_quote(input.current()) {
             return Token::new(
                 position,
-                TokenType::CHARACTER(0 as char),
+                TokenType::Character(0 as char),
                 String::from(""));
         }
 
@@ -44,7 +44,7 @@ impl SubLexer for CharacterLexer {
             panic!("Unterminated character literal!");
         }
 
-        Token::new(position, TokenType::CHARACTER(ch), format!("'{}'", ch))
+        Token::new(position, TokenType::Character(ch), format!("'{}'", ch))
     }
 }
 
@@ -62,7 +62,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::CHARACTER('c'),
+            TokenType::Character('c'),
             String::from("'c'"))
         )));
     }
@@ -76,7 +76,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::CHARACTER(0 as char),
+            TokenType::Character(0 as char),
             String::from(""))
         )));
     }

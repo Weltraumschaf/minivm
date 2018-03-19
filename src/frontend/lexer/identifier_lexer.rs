@@ -45,11 +45,11 @@ impl SubLexer for IdentifierLexer {
         match literal.as_str() {
             "true" | "false" => {
                 let value = literal.parse::<bool>().unwrap();
-                Token::new(position, TokenType::BOOL(value), literal.clone())
+                Token::new(position, TokenType::Bool(value), literal.clone())
             },
             "and" | "or" | "not" | "if" | "else" | "while" | "const" | "var" => {
                 let keyword = Keyword::for_literal(&literal);
-                Token::new(position, TokenType::KEYWORD(keyword), literal.clone())
+                Token::new(position, TokenType::Keyword(keyword), literal.clone())
             },
             "" => {
                 Token::new(
@@ -60,7 +60,7 @@ impl SubLexer for IdentifierLexer {
             _ => {
                 Token::new(
                     position,
-                    TokenType::IDENTIFIER(literal.clone()),
+                    TokenType::Identifier(literal.clone()),
                     literal.clone())
             }
         }
@@ -120,7 +120,7 @@ mod tests {
         let token = sut.scan(&mut src);
 
         assert_that!(token, is(equal_to(
-            Token::new(Position::new(1, 1), TokenType::BOOL(true), String::from("true"))
+            Token::new(Position::new(1, 1), TokenType::Bool(true), String::from("true"))
         )));
     }
 
@@ -132,7 +132,7 @@ mod tests {
         let token = sut.scan(&mut src);
 
         assert_that!(token, is(equal_to(
-            Token::new(Position::new(1, 1), TokenType::BOOL(false), String::from("false"))
+            Token::new(Position::new(1, 1), TokenType::Bool(false), String::from("false"))
         )));
     }
 
@@ -144,7 +144,7 @@ mod tests {
         let token = sut.scan(&mut src);
 
         assert_that!(token, is(equal_to(
-            Token::new(Position::new(1, 1), TokenType::KEYWORD(Keyword::VAR), String::from("var"))
+            Token::new(Position::new(1, 1), TokenType::Keyword(Keyword::Var), String::from("var"))
         )));
     }
 
@@ -157,7 +157,7 @@ mod tests {
 
         assert_that!(token, is(equal_to(
             Token::new(Position::new(1, 1),
-            TokenType::IDENTIFIER(String::from("snafu")),
+            TokenType::Identifier(String::from("snafu")),
             String::from("snafu"))
         )));
     }

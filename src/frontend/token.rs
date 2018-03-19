@@ -34,24 +34,24 @@ impl fmt::Display for Token {
 #[derive(Debug, PartialEq)]
 pub enum TokenType {
     // Types:
-    INTEGER(i64),
-    REAL(f64),
-    BOOL(bool),
-    STRING(String),
-    CHARACTER(char),
+    Integer(i64),
+    Real(f64),
+    Bool(bool),
+    String(String),
+    Character(char),
     // Literals:
-    KEYWORD(Keyword),
-    IDENTIFIER(String),
+    Keyword(Keyword),
+    Identifier(String),
     // Delimiters:
-    L_PAREN,
-    R_PAREN,
-    L_BRACE,
-    R_BRACE,
-    L_BRACK,
-    R_BRACK,
-    COMMA,
+    LeftParen,
+    RightParen,
+    LeftBrace,
+    RightBrace,
+    LeftBracket,
+    RightBracket,
+    Comma,
     // Operators:
-    OPERATOR(Operator),
+    Operator(Operator),
     // Other:
     EOL,
     EOF,
@@ -67,28 +67,28 @@ impl fmt::Display for TokenType {
 /// Reserved keywords.
 #[derive(Debug, PartialEq)]
 pub enum Keyword {
-    AND,
-    OR,
-    NOT,
-    IF,
-    ELSE,
-    WHILE,
-    CONST,
-    VAR,
+    And,
+    Or,
+    Not,
+    If,
+    Else,
+    While,
+    Const,
+    Var,
 }
 
 impl Keyword {
     /// Maps a literal keyword.
     pub fn for_literal(literal: &String) -> Keyword {
         match literal.as_ref() {
-            "and" => Keyword::AND,
-            "or" => Keyword::OR,
-            "not" => Keyword::NOT,
-            "if" => Keyword::IF,
-            "else" => Keyword::ELSE,
-            "while" => Keyword::WHILE,
-            "const" => Keyword::CONST,
-            "var" => Keyword::VAR,
+            "and" => Keyword::And,
+            "or" => Keyword::Or,
+            "not" => Keyword::Not,
+            "if" => Keyword::If,
+            "else" => Keyword::Else,
+            "while" => Keyword::While,
+            "const" => Keyword::Const,
+            "var" => Keyword::Var,
             _ => panic!("Unrecognized keyword '{}'!", literal),
         }
     }
@@ -103,20 +103,20 @@ impl fmt::Display for Keyword {
 /// Available operators.
 #[derive(Debug, PartialEq)]
 pub enum Operator {
-    ASSIGN,
+    Assign,
     // compare operators
-    EQUAL,
-    NOT_EQUAL,
-    LESS_THAN,
-    LESS_THAN_EQUAL,
-    GREATER_THAN,
-    GREATER_THAN_EQUAL,
+    Equal,
+    NotEqual,
+    LessThan,
+    LessThanEqual,
+    GreaterThan,
+    GreaterThanEqual,
     // math operators
-    PLUS,
-    MINUS,
-    STAR,
-    SLASH,
-    MOD,
+    Plus,
+    Minus,
+    Star,
+    Slash,
+    Mod,
 }
 
 impl fmt::Display for Operator {
