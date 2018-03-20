@@ -1,8 +1,7 @@
 use std::convert::TryFrom;
-use std::io::Cursor;
-use byteorder::{BigEndian, WriteBytesExt, ReadBytesExt};
 
 use backend::bytecode::Instruction;
+use backend::byte_conversion::*;
 
 /// Generates byte code from assembly style code.
 pub struct Assembler;
@@ -31,8 +30,8 @@ impl Assembler {
             match opcode {
                 Instruction::IPush => {
                     buffer.push(' ');
-                    let mut reader = Cursor::new(&byte_code[index..index + 8]);
-                    let argument = reader.read_i64::<BigEndian>().unwrap();
+                    let end_index = index + WORD_SIZE ;
+                    let argument = bytes_to_word(&byte_code[index..end_index]).unwrap();
                     buffer.push_str(&format!("{}", argument));
                     index += 8;
                 },
@@ -106,7 +105,7 @@ fn translate(asm: Vec<Vec<String>>) -> Vec<u8> {
                     let int = arguments[0].replace("_", "")
                         .parse::<i64>()
                         .expect("Bad integer given!");
-                    buffer.write_i64::<BigEndian>(int).unwrap();
+                    buffer.append(&mut int_to_write(int));
                 },
                 Instruction::IAdd => {
                     if arguments.len() != 0 {

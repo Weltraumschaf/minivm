@@ -77,13 +77,14 @@ impl VirtualMachine {
             Instruction::IStore => unimplemented!(),
             Instruction::ILoad => unimplemented!(),
             Instruction::IAdd => {
-                let first_operand = self.stack.pop();
-                let second_operand = self.stack.pop();
-                let first_operand = word_to_integer(first_operand);
-                let second_operand = word_to_integer(second_operand);
-                let result = first_operand + second_operand;
-                let result = integer_to_word(result);
-                self.stack.push(result);
+                unimplemented!();
+//                let first_operand = self.stack.pop();
+//                let second_operand = self.stack.pop();
+//                let first_operand = word_to_integer(first_operand);
+//                let second_operand = word_to_integer(second_operand);
+//                let result = first_operand + second_operand;
+//                let result = integer_to_word(result);
+//                self.stack.push(result);
             },
             Instruction::ISub => unimplemented!(),
             Instruction::IMul => unimplemented!(),

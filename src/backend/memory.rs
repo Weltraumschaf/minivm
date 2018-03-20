@@ -1,5 +1,3 @@
-use std::io::Cursor;
-use byteorder::{BigEndian, ReadBytesExt};
 use backend::byte_conversion::*;
 
 /// Code memory holds the read only byte code to execute.
@@ -38,12 +36,7 @@ impl CodeMemory {
 
         if end_index <= self.byte_code.len() {
             let word = &self.byte_code[index..end_index];
-            let mut reader = Cursor::new(word);
-            println!("Fetching: {:?}", word);
-            match reader.read_u64::<BigEndian>() {
-                Ok(val) => Ok(val),
-                Err(_) => Err("Bad bytes to read u64 from!"),
-            }
+            bytes_to_word(word)
         } else {
             Err("Index out of bounds!")
         }
