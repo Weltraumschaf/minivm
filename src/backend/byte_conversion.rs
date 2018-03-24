@@ -15,7 +15,7 @@ pub fn bytes_to_word(bytes: &[u8]) -> Result<u64, &'static str> {
     }
 }
 
-pub fn int_to_write(value: i64) -> Vec<u8> {
+pub fn int_to_bytes(value: i64) -> Vec<u8> {
     let mut buffer: Vec<u8> = Vec::new();
     buffer.write_i64::<BigEndian>(value).unwrap();
     buffer

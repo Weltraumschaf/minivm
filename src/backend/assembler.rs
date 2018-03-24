@@ -105,7 +105,7 @@ fn translate(asm: Vec<Vec<String>>) -> Vec<u8> {
                     let int = arguments[0].replace("_", "")
                         .parse::<i64>()
                         .expect("Bad integer given!");
-                    buffer.append(&mut int_to_write(int));
+                    buffer.append(&mut int_to_bytes(int));
                 },
                 Instruction::IAdd => {
                     if arguments.len() != 0 {
