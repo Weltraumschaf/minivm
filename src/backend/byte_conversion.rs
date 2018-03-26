@@ -39,6 +39,11 @@ pub fn int_to_bytes(value: i64) -> Vec<u8> {
     buffer
 }
 
+pub fn int_to_word(value: i64) -> u64 {
+    let bytes = int_to_bytes(value);
+    bytes_to_word(&bytes).unwrap()
+}
+
 pub fn float_to_bytes(value: f64) -> Vec<u8> {
     let mut buffer: Vec<u8> = Vec::new();
     buffer.write_f64::<BigEndian>(value).unwrap();

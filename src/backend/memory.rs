@@ -32,7 +32,7 @@ impl CodeMemory {
     ///
     /// Returns an error result if the given index is beyond the number of available bytes.
     pub fn fetch_word(&self, index: usize) -> Result<u64, &'static str> {
-        let end_index = index + WORD_SIZE ;
+        let end_index = index + WORD_SIZE;
 
         if end_index <= self.byte_code.len() {
             let word = &self.byte_code[index..end_index];
@@ -43,12 +43,20 @@ impl CodeMemory {
     }
 }
 
-pub struct Stack;
+pub struct Stack {
+    mem: Vec<u64>,
+}
 
 impl Stack {
-    pub fn new() -> Stack { Stack }
-    pub fn push(&self, value: u64) {}
-    pub fn pop(&self) -> u64 { 0 }
+    pub fn new() -> Stack { Stack { mem: Vec::new() } }
+
+    pub fn push(&mut self, value: u64) {
+        self.mem.push(value);
+    }
+
+    pub fn pop(&mut self) -> u64 {
+        self.mem.pop().unwrap()
+    }
 }
 
 #[cfg(test)]
@@ -57,7 +65,7 @@ mod tests {
     use hamcrest::prelude::*;
 
     #[test]
-    fn fetch() {
+    fn code_memory_fetch() {
         let sut = CodeMemory::new(vec![0x01, 0x02, 0x03]);
 
         assert_that!(sut.fetch(0), is(equal_to(Ok(0x01))));
@@ -66,23 +74,33 @@ mod tests {
     }
 
     #[test]
-    fn fetch_out_of_bound() {
+    fn code_memory_fetch_out_of_bound() {
         let sut = CodeMemory::new(vec![0x01, 0x02, 0x03]);
 
         assert_that!(sut.fetch(3), is(equal_to(Err("Index out of bounds!"))));
     }
 
     #[test]
-    fn fetch_word() {
+    fn code_memory_fetch_word() {
         let sut = CodeMemory::new(vec![0x00, 0x03, 0x43, 0x95, 0x4d, 0x60, 0x86, 0x83]);
 
         assert_that!(sut.fetch_word(0), is(equal_to(Ok(918733457491587))));
     }
 
     #[test]
-    fn fetch_word_out_of_bound() {
+    fn code_memory_fetch_word_out_of_bound() {
         let sut = CodeMemory::new(vec![0x01, 0x02, 0x03]);
 
         assert_that!(sut.fetch_word(3), is(equal_to(Err("Index out of bounds!"))));
+    }
+
+    #[test]
+    fn stack_push_nd_pop() {
+        let mut sut = Stack::new();
+        sut.push(42);
+        sut.push(23);
+
+        assert_that!(sut.pop(), is(equal_to(23)));
+        assert_that!(sut.pop(), is(equal_to(42)));
     }
 }

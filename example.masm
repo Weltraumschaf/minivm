@@ -7,4 +7,4 @@ ipush       100
 iadd
 //istore      3
 //iload       3
-print
+iprint

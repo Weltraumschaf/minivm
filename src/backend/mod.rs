@@ -77,21 +77,26 @@ impl VirtualMachine {
             Instruction::IStore => unimplemented!(),
             Instruction::ILoad => unimplemented!(),
             Instruction::IAdd => {
-                unimplemented!();
-//                let first_operand = self.stack.pop();
-//                let second_operand = self.stack.pop();
-//                let first_operand = word_to_integer(first_operand);
-//                let second_operand = word_to_integer(second_operand);
-//                let result = first_operand + second_operand;
-//                let result = integer_to_word(result);
-//                self.stack.push(result);
+                let first_operand = self.stack.pop();
+                let first_operand = word_to_int(first_operand);
+
+                let second_operand = self.stack.pop();
+                let second_operand = word_to_int(second_operand);
+
+                let result = first_operand + second_operand;
+                let result = int_to_word(result);
+                self.stack.push(result);
             },
             Instruction::ISub => unimplemented!(),
             Instruction::IMul => unimplemented!(),
             Instruction::IDiv => unimplemented!(),
             Instruction::IRem => unimplemented!(),
             Instruction::INeg => unimplemented!(),
-            Instruction::Print => unimplemented!(),
+            Instruction::IPrint => {
+                let operand = self.stack.pop();
+                let operand = word_to_int(operand);
+                print!("{}", operand);
+            },
             Instruction::Halt => panic!("The opcode 'halt' should exit the loop before execute!"),
         }
     }

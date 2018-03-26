@@ -114,7 +114,7 @@ fn translate(asm: Vec<Vec<String>>) -> Vec<u8> {
 
                     buffer.push(u8::from(mnemonic));
                 },
-                Instruction::Print => {
+                Instruction::IPrint => {
                     if arguments.len() != 0 {
                         panic!("Expecting exactly zero arguments for print!");
                     }
@@ -146,7 +146,7 @@ ipush       100
 iadd
 
 // Print theresult from the stack.
-print
+iprint
 "#);
 
         assert_that!(
@@ -186,13 +186,13 @@ ipush       100
 iadd
 
 // Print theresult from the stack.
-print
+iprint
 "#),
             is(equal_to(vec![
                 vec![String::from("ipush"), String::from("1_000")],
                 vec![String::from("ipush"), String::from("100")],
                 vec![String::from("iadd")],
-                vec![String::from("print")]
+                vec![String::from("iprint")]
             ]))
         );
     }
@@ -264,7 +264,7 @@ print
 r#"ipush 1000
 ipush 100
 iadd
-print
+iprint
 "#
         )));
     }
